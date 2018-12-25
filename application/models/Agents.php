@@ -41,7 +41,9 @@ class Agents extends CI_Model {
 	function updateAgent($id, $data) {
 		$this->db->where('id', $id);
 		$this->db->update('agent', $data);
-		return true;
+		return true;  
+
+		
 	}
 	
 }

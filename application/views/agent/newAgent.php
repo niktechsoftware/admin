@@ -256,6 +256,29 @@
 	                  <?= form_error('password'); ?>
 	                </div>
 	              </div>
+	              <div>
+	                <p>
+	                 <i>Terms And Conditions:</i>
+	                </p>
+	               <div style="overflow-y:auto; height:120px;" >
+	               
+	                <p>1. Every Members is bound to obey the Terms and Condition of the company as may be framed time to time . </p>
+	                <p>2. Submit the self attested photocopy of I.D.Proof Residence proof, Qualification proof along with two no’s of stamp size photograph.  </p>
+	                <p>3. No representative is authorized to advetise, declare, Voucher, Praclaim any things for and on behalf of the company in writing. </p>
+	                <p>4. In case of any branch of all /any of these clauses to Terms and conditions for the company shall terminate its business relation with the concerned representative.   </p>
+	                <p>5. Submission of this application form for membership to engage as a Representative with does not necessarily guarantee any employment in the said company. A representative will work on incentive and reward basis only.</p>
+	                <p>6. In case of death to the member, the concerned nominee or the nearest kin of the deceased person may continue marketing activities of the company in the same rank held by deceased representative. However, a fresh application will have to submitted by the desirous candidate in such case to company indicated the details of the applicant shall enjoy all the benefits applicable to deceased Representative. </p>
+	                <p>7. While acting as a marketing member of the company no person shall be allowed to carry out the same or similar type of activities in any other company and organization or identical or similar nature.  </p>
+	                <p>8. Once engage as a representative under a particular unit in companies marketing structure no person shall be entitled to change such original unit save and except in case where the management can consider such changes justified on the grounds of misbehavior criminal and immoral activities etc.of his superior member. </p>
+	                <p>9. The target for market mobilization per month and annum for a marketing member in each category predetermined by the company and the incentive/special incentive reward therefore are viable to pursue the product option and schemes and the same shall be binding upon the representative. </p>
+	                <p>10. The company will not be responsible for any cash transaction unless receive and acknowledge be way an official receipt at the companies corporate office only. </p>
+	                <p>11. The company preserves the right to modify, change or abandon the career structure at is sole discretion without assigning any reason or notice therefore. </p>
+	                <p>12. All disputes shall be subject to the jurisdiction o f Bhabhua only. </p>
+	               </div>
+	                <input type="checkbox" name="check" value="check">
+	               <span><b> I agree to abide by the terms and conditions and cerular issued up to date and also to be issued by the company form time to time . </p>
+	                </b></span><br>
+	              </div>
 
 	              <div class="form-group gutter-xs">
 	                <label class="col-sm-2 control-label" for="form-control-1">&nbsp;</label>

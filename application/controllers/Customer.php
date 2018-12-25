@@ -7,6 +7,7 @@ class Customer extends CI_Controller {
 		if ($this->input->server('REQUEST_METHOD') == 'GET') {
 
 			$this->load->model("branch");
+			
 			$branch = $this->branch->getBranch();
 
 			$this->load->model("investmentPlans");
