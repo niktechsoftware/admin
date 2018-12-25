@@ -38,27 +38,37 @@ class Agent extends CI_Controller {
 				$loginID = $this->logintable->setLogin($loginData);
 
 				$employeData = array(
-					"isAdmin" 		=> $this->input->post('isAdmin'),
-					"loginID" 		=> $loginID,
-					"branchID" 		=> $this->input->post('branchID'),
-					"name" 			=> $this->input->post('name'),
-					"fatherName" 	=> $this->input->post('fatherName'),
-					"motherName" 	=> $this->input->post('motherName'),
-					"dob" 			=> $this->input->post('dob'),
-					"gender" 		=> $this->input->post('gender'),
-					"category" 		=> $this->input->post('category'),
-					"qualification" => $this->input->post('qualification'),
-					"activeStatus" 	=> 1,
-					"address" 		=> $this->input->post('address'),
-					"city" 			=> $this->input->post('city'),
-					"state" 		=> $this->input->post('state'),
-					"pin" 			=> $this->input->post('pin'),
-					"country" 		=> $this->input->post('country'),
-					"phone" 		=> $this->input->post('phone'),
-					"mobile" 		=> $this->input->post('mobile'),
-					"email" 		=> $this->input->post('email'),
-					"aadharNo" 		=> $this->input->post('aadharNo'),
-					"rank" 			=> $this->input->post('rank')
+					
+					"loginID" 		    => $loginID,
+					"branchID" 		    => $this->input->post('branchID'),
+					"name" 			    => $this->input->post('name'),
+					"fatherName" 	    => $this->input->post('fatherName'),
+					"dob" 			    => $this->input->post('dob'),
+					"gender" 		    => $this->input->post('gender'),
+					"marital_status"    => $this->input->post('marital_status'),
+					"category" 		    => $this->input->post('category'),
+					"qualification"     => $this->input->post('qualification'),
+					"occupation"        => $this->input->post('occupation'),
+					"activeStatus" 	    => 1,
+					"present_address"   => $this->input->post('present_address'),
+					"parmanent_address" => $this->input->post('parmanent_address'),
+					"city" 			    => $this->input->post('city'),
+					"state" 		    => $this->input->post('state'),
+					"nationality"       => $this->input->post('nationality'),
+					"religion"          => $this->input->post('religion'),
+					"experience"        => $this->input->post('experience'),
+					"pin" 			    => $this->input->post('pin'),
+					"country" 		    => $this->input->post('country'),					
+					"mobile" 		    => $this->input->post('mobile'),
+					"email" 		    => $this->input->post('email'),
+					"aadharNo" 		    => $this->input->post('aadharNo'),
+					"rank" 			    => $this->input->post('rank'),
+					"nominee" 	        => $this->input->post('nominee'),
+					"nominee_age" 	    => $this->input->post('nominee_age'),
+					"nominee_mobile"    => $this->input->post('nominee_mobile'),
+					"relation"          => $this->input->post('relation'),
+					"nominee_gender"    => $this->input->post('nominee_gender')
+					
 				);
 				$employeeID = $this->agents->setAgent($employeData);
 				$this->load->library('upload');
