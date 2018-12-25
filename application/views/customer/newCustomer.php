@@ -316,7 +316,7 @@
 	              <div class="form-group">
 	                 <label class="col-sm-2 control-label" for="form-control-20">Agent Code</label>
 	                <div class="col-sm-4">
-	                  <select  class="form-control" id="agentCode" name="agentCode"  required="required">
+	                  <select  class="form-control" id="agentCode" name="agentCode" >
 	                	<option>- Select Code-</option>
 	                	<?php $this->load->model('Agents');
 	                		foreach ($agents as  $value):

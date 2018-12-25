@@ -38,6 +38,8 @@
                
                $this->db->where("id",$planid->committeeID);
                $comititle =  $this->db->get("committee")->row()->title;
+
+
 ?>
 
 
@@ -162,6 +164,28 @@
                           </div>
                         </td>
                       </tr>
+
+<tr>
+  <td colspan="4">   <div class="form-group">
+                   <label class="col-sm-4 control-label" for="form-control-20">Agent Code</label>
+                  <div class="col-sm-4">
+                    <select  class="form-control" id="agentCode" name="agentCode" >
+                    <option>- Select Code-</option>
+                    <?php $this->load->model('Agents');
+                      foreach ($agents as  $value):
+                        $userrow = $this->Agents->agentUsredata($value->loginID);?>
+                        <option value="<?php echo $value->id;?>"><?php echo $value->name."[".$userrow->username."]";?></option>
+              <?php 
+                      endforeach;
+                    ?>
+                    </select>
+                    <?= form_error('branchID'); ?>
+                  </div></td>
+ 
+</tr>
+
+
+
                       <tr>
                         <td>
                           <input type="submit" class="btn btn-primary" value="Save & Print">
