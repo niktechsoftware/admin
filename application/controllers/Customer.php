@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Customer extends CI_Controller {
 
+	public function getRank(){
+	$agentCode= 	$this->input->post("date1");
+		$this->load->model('Agents');
+		$rank = $this->Agents->getRank($agentCode);
+		echo $rank;
+	}
+
 	public function newcustomer() {
 		if ($this->input->server('REQUEST_METHOD') == 'GET') {
 
@@ -12,6 +19,9 @@ class Customer extends CI_Controller {
 			$this->load->model("investmentPlans");
 			$plans = $this->investmentPlans->getPlans();
 
+			$this->load->model('Agents');
+            $data['agents']=$this->Agents->getAllAgents()->result();
+            
 			$data['category'] 	= ['GEN','OBC','SC','ST','OTHER'];
 			$data['gender'] 	= ['MALE','FEMALE','OTHER'];
 			$data['isAdmin'] 	= array("NO" => 0, "YES" => 1);
@@ -20,6 +30,12 @@ class Customer extends CI_Controller {
 			$data['title'] 		= 'New Customer';
 			$data['body'] 		= 'customer/newCustomer';
 			$this->load->view('layout',$data);
+
+
+            
+
+
+
 		}
 		else if ($this->input->server('REQUEST_METHOD') == 'POST') {
 
@@ -340,6 +356,9 @@ class Customer extends CI_Controller {
 		    endif;
 		}
 	}
+
+
+
 
 	public function customers() {
 		$this->load->model("customers");

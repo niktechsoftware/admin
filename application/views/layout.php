@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?= $title ?></title>
+    <script src="<?= base_url(); ?>assets/js/vendor.min.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <meta name="description" content="<?= $this->lang->line('description'); ?>">
     <meta property="og:url" content="<?= $this->lang->line('og_url'); ?>">
@@ -363,10 +364,8 @@
         </div>
       </div>
     </div>
-    <script src="<?= base_url(); ?>assets/js/vendor.min.js"></script>
-    <script src="<?= base_url(); ?>assets/js/elephant.min.js"></script>
-    <script src="<?= base_url(); ?>assets/js/application.min.js"></script>
-    <script src="<?= base_url(); ?>assets/js/demo.min.js"></script>
+    
+   
   </body>
 
 </html>
