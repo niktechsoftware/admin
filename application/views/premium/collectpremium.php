@@ -171,6 +171,7 @@
                   <div class="col-sm-4">
                     <select  class="form-control" id="agentCode" name="agentCode" >
                     <option>- Select Code-</option>
+                    
                     <?php $this->load->model('Agents');
                       foreach ($agents as  $value):
                         $userrow = $this->Agents->agentUsredata($value->loginID);?>
@@ -183,6 +184,7 @@
                   </div></td>
  
 </tr>
+
 
 
 
