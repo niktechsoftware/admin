@@ -305,8 +305,58 @@
 		                </div>
 
 		              </div>
-		            </div>
- -->
+		            </div>-->
+
+
+
+<div class="divider divider-horizontal">
+                  <div class="divider-content text-primary"><h4>AGENT DETAIL</h4></div>
+                </div>
+
+	              <div class="form-group">
+	                 <label class="col-sm-2 control-label" for="form-control-20">Agent Code</label>
+	                <div class="col-sm-4">
+	                  <select  class="form-control" id="agentCode" name="agentCode" >
+	                	<option>- Select Code-</option>
+	                	<?php $this->load->model('Agents');
+	                		foreach ($agents as  $value):
+	                			$userrow = $this->Agents->agentUsredata($value->loginID);?>
+	                			<option value="<?php echo $value->id;?>"><?php echo $value->name."[".$userrow->username."]";?></option>
+							<?php	
+	                		endforeach;
+	                	?>
+	                  </select>
+	                  <?= form_error('branchID'); ?>
+	                </div>
+
+               
+                
+
+
+
+	                <label class="col-sm-2 control-label" for="form-control-38">Rank</label>
+	                <div class="col-sm-4">
+	                  <input  class="form-control" name="arank" id = "arank" type="text" required="required">
+	                  <?= form_error('password'); ?>
+	                </div>
+	              </div>
+	              
+  <script> 
+  	
+				 $("#agentCode").change(function(){
+               
+		var date1 = $('#agentCode').val();
+		
+		$.post("<?php echo site_url('index.php/Customer/getRank') ?>", {date1 : date1}, function(data){
+            $("#arank").val(data);
+		});
+		
+   		 });</script>
+
+
+
+
+ 
 
 	              <div class="divider divider-horizontal">
                   	<div class="divider-content text-primary"><h4>INVESTMENT PLAN DETAIL</h4></div>
@@ -493,6 +543,16 @@
 		              </div>
 		              
 	              </span>
+
+
+
+
+
+  
+
+
+
+
 	              
 	              <div class="divider divider-horizontal">
                   <div class="divider-content text-primary"><h4>LOGIN DETAIL</h4></div>

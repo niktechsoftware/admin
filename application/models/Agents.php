@@ -16,7 +16,15 @@ class Agents extends CI_Model {
 		 * 	return employee table Data getting from database.
 		 */
 		return $result;
-	}
+}
+		function agentUsredata($login_id)
+		{
+
+		$this->db->where('id',$login_id);
+		$result=$this->db->get('login');
+		return $result->row();
+		}
+	
 
 	function setAgent($employe) {
 
@@ -41,9 +49,13 @@ class Agents extends CI_Model {
 	function updateAgent($id, $data) {
 		$this->db->where('id', $id);
 		$this->db->update('agent', $data);
-		return true;  
-
-		
+		return true;
 	}
+
+	public function getRank($acode){
+	$this->db->where("id",$acode);
+	$result = $this->db->get("agent");
+	return $result->row()->rank;
+}
 	
 }

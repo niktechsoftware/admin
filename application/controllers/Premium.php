@@ -249,7 +249,8 @@ class Premium extends CI_Controller {
               }
               
 	
-		
+		$this->load->model('Agents');
+            $data['agents']=$this->Agents->getAllAgents()->result();
 		$data = array(
 		    'tableid' => $tableid,
 			'planid' => $planid, 
