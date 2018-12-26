@@ -28,14 +28,14 @@
 	                
 	                </div>
 
-	                <label class="col-sm-2 control-label" for="form-control-2">Policy No</label>
+	               
 	                 
 	                
 	                <div class="col-sm-2"> 
 	                </div>
 
 	                <label class="col-sm-2 control-label" for="form-control-3">Username</label>
-	                <div class="col-sm-2"><?= $loginDetail->username;; ?></div>
+	                <div class="col-sm-2"><?= $loginDetail->username; ?></div>
 	              </div>
 
 
@@ -49,10 +49,7 @@
 	                <input id="form-control-1" class="form-control" name="fatherName" type="text" required="required" value="<?= $employee->fatherName; ?>">
 	                  </div>
 
-	                <label class="col-sm-2 control-label" for="form-control-3">Mother Name</label>
-	                <div class="col-sm-2">
-	                <input id="form-control-1" class="form-control" name="motherName" type="text" required="required" value="<?= $employee->motherName; ?>">
-	                 </div>
+	                
 	              </div>
 
 	              <div class="form-group">
@@ -71,15 +68,6 @@
 	                  	?>
 	                  </select></div>
 
-	                <label class="col-sm-2 control-label" for="form-control-6">Category</label>
-	                <div class="col-sm-2"> <select class="form-control" name="category" required="required">
-	                  	<option>-Select Category-</option>
-	                  	<?php foreach ($category as $key => $value) {
-	                  		$sel = set_value('category') == $employee->category ? " selected: selected" : "";
-	                  		echo '<option value="'.$value.'" '.$sel.'>'.$value.'</option>';
-	                  	}
-	                  	?>
-	                  </select></div>
 	              </div>
 
 	              <div class="form-group">
@@ -89,9 +77,9 @@
 	                 
 	                </div>
 
-	                <label class="col-sm-2 control-label" for="form-control-8">Address</label>
+	                <label class="col-sm-2 control-label" for="form-control-8">Present Address</label>
 	                <div class="col-sm-2">
-	                 <input id="form-control-1" class="form-control" name="address" type="text" required="required" value="<?= $employee->address; ?>">
+	                 <input id="form-control-1" class="form-control" name="address" type="text" required="required" value="<?= $employee->present_address; ?>">
 	                 </div>
 	                
 	                <label class="col-sm-2 control-label" for="form-control-9">City</label>
@@ -115,17 +103,11 @@
 	                  
 	                </div>
 
-	                <label class="col-sm-2 control-label" for="form-control-12">Country</label>
-	                <div class="col-sm-2">
-	                 <input id="form-control-1" class="form-control" name="country" type="text" required="required" value="<?= $employee->country; ?>">
-	                 
+	                
 	                </div>
 	              </div>
 
 	              <div class="form-group">
-	                <label class="col-sm-2 control-label" for="form-control-13">Phone</label>
-	                <div class="col-sm-2">
-	                <input id="form-control-1" class="form-control" type="text"minlength="6" name="phone" maxlength="10" title="Phone Number accepts 6-10 Numbers." value="<?= $employee->phone; ?>" >
 	                 
 	                </div>
 
@@ -181,17 +163,17 @@
 
 	              <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-17">Image</label>
-	                 <div class="col-sm-2"><img src="<?= base_url() ?>assets/images/employee/<?= $employee->image; ?>" width="100" />
+	                 <div class="col-sm-2"><img src="<?= base_url() ?>assets/images/agents/<?= $employee->image; ?>" width="100" />
 	                 <input id="form-control-17" class="form-control"  name="image" type="file" >
 	                 </div>
 
 	                <label class="col-sm-2 control-label" for="form-control-18">Signature</label>
-	                <div class="col-sm-2"><img src="<?= base_url() ?>assets/images/employee/<?= $employee->signature; ?>" width="100" />
+	                <div class="col-sm-2"><img src="<?= base_url() ?>assets/images/agents/<?= $employee->signature; ?>" width="100" />
 	                <input id="form-control-18" class="form-control"  name="signature" type="file" >
 	                </div>
 
 	                <label class="col-sm-2 control-label" for="form-control-19">ID-Proof</label>
-	                <div class="col-sm-2"><img src="<?= base_url() ?>assets/images/employee/<?= $employee->idProof; ?>" width="100" />
+	                <div class="col-sm-2"><img src="<?= base_url() ?>assets/images/agents/<?= $employee->idProof; ?>" width="100" />
 	                 <input id="form-control-19" class="form-control"  name="idProof" type="file" ></div>
 	                
 	              </div>

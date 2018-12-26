@@ -38,27 +38,39 @@ class Agent extends CI_Controller {
 				$loginID = $this->logintable->setLogin($loginData);
 
 				$employeData = array(
-					"isAdmin" 		=> $this->input->post('isAdmin'),
+					
 					"loginID" 		=> $loginID,
 					"branchID" 		=> $this->input->post('branchID'),
 					"name" 			=> $this->input->post('name'),
 					"fatherName" 	=> $this->input->post('fatherName'),
-					"motherName" 	=> $this->input->post('motherName'),
+					
 					"dob" 			=> $this->input->post('dob'),
 					"gender" 		=> $this->input->post('gender'),
-					"category" 		=> $this->input->post('category'),
+					
 					"qualification" => $this->input->post('qualification'),
 					"activeStatus" 	=> 1,
-					"address" 		=> $this->input->post('address'),
+					"present_address" => $this->input->post('present_address'),
+				    "permanent_address"=> $this->input->post('permanent_address'),
 					"city" 			=> $this->input->post('city'),
 					"state" 		=> $this->input->post('state'),
 					"pin" 			=> $this->input->post('pin'),
-					"country" 		=> $this->input->post('country'),
-					"phone" 		=> $this->input->post('phone'),
+					
+					"nominee_mobile" => $this->input->post('nominee_mobile'),
 					"mobile" 		=> $this->input->post('mobile'),
-					"email" 		=> $this->input->post('email'),
+					
 					"aadharNo" 		=> $this->input->post('aadharNo'),
-					"rank" 			=> $this->input->post('rank')
+					
+				    "nominee" 		=> $this->input->post('nominee'),
+				    "nominee_age" 	=> $this->input->post('nominee_age'),
+				    "relation" 		=> $this->input->post('relation'),
+				    "rank" 			=> $this->input->post('rank'),
+				    "nationality" 	=> $this->input->post('nationality'),
+				    "experience" 	=> $this->input->post('experience'),
+				    "occupation" 	=> $this->input->post('occupation'),
+				    "marital_status"=> $this->input->post('marital_status'),
+				    "email"=> $this->input->post('email')
+				    
+				    
 				);
 				$employeeID = $this->agents->setAgent($employeData);
 				$this->load->library('upload');
@@ -152,8 +164,7 @@ class Agent extends CI_Controller {
 		$this->load->model('agents');
 		$employee = $this->agents->getagent($employeeID);
 	
-		$this->load->model("investmentDetail");
-		$investmentPlanDetail = $this->investmentDetail->getPlanCustomerID($employeeID);
+		
 	
 		$this->load->model("investmentPlans");
 		//$planDetail = $this->investmentPlans->getPlan($investmentPlanDetail->planID);
@@ -174,7 +185,7 @@ class Agent extends CI_Controller {
 		//$data['commiteeDetail'] = $commiteeDetail;
 		$data['loginDetail'] = $loginDetail;
 		$data['branchDetail'] = $branchDetail;
-		$data['investDetail'] = $investmentPlanDetail;
+		
 		$data['title'] = 'Employee :: '.$employee->name;
 		$data['body'] = 'agent/agent';
 		$this->load->view('layout',$data);
@@ -182,11 +193,10 @@ class Agent extends CI_Controller {
 	
 	public function agentEdit() {
 		$customerID = $this->uri->segment(2);
-		$this->load->model('employe');
-		$employee = $this->employe->getEmployee($customerID);
+		$this->load->model('agents');
+		$employee = $this->agents->getAgent($customerID);
 	
-		$this->load->model("investmentDetail");
-		$investmentPlanDetail = $this->investmentDetail->getPlanCustomerID($customerID);
+		
 	
 		
 	
@@ -197,7 +207,7 @@ class Agent extends CI_Controller {
 	
 		$this->load->model("auth/logintable");
 		$loginDetail = $this->logintable->getLogin($employee->loginID);
-		$data['category'] = ['GEN','OBC','SC','ST','OTHER'];
+		
 		$data['gender'] 	= ['MALE','FEMALE','OTHER'];
 		$this->load->model('rank');
 		$rank = $this->rank->getRanks();
@@ -205,9 +215,9 @@ class Agent extends CI_Controller {
 		$data['employee'] = $employee;
 		$data['loginDetail'] = $loginDetail;
 		$data['branchDetail'] = $branchDetail;
-		$data['investDetail'] = $investmentPlanDetail;
-		$data['title'] = 'Employee :: '.$employee->name;
-		$data['body'] = 'employee/employeeEdit';
+		
+		$data['title'] = 'Agent :: '.$employee->name;
+		$data['body'] = 'agent/agentEdit';
 		$this->load->view('layout',$data);
 	}
 	

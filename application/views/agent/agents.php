@@ -50,7 +50,7 @@
                             <td><?= $value->name; ?></td>
                             <td><?= $value->fatherName; ?></td>
                             <td><?= $value->activeStatus == 1 ? 'Active' : 'Deactive'; ?></td>
-                            <td><?= $value->address; ?></td>
+                            <td><?= $value->present_address; ?></td>
                             <td><?= $value->mobile; ?></td>
                             <td><?= $value->email; ?></td>
                             <td><?= $value->aadharNo; ?></td>
