@@ -17,99 +17,94 @@
 	        <div class="card-body">
 	          
 	          <div class="demo-form-wrapper">
-	            <form id="demo-inputmask" class="form form-horizontal" method="post" enctype="multipart/form-data">
+	            
 
 	               <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-1">Introducer(Agent) Code</label>
-	                <div class="col-sm-2"><?=  date("ymd", strtotime($employee->created)).'C'.$employee->id; ?></div>
+	                <div class="col-sm-2"><?=  $employee->id; ?></div>
 
-	                <label class="col-sm-2 control-label" for="form-control-2">Policy No</label>
-	                <div class="col-sm-2"> 
-	                </div>
+	               
+	               
 
 	                <label class="col-sm-2 control-label" for="form-control-3">Username</label>
 	                <div class="col-sm-2"><?= $loginDetail->username;; ?></div>
-	              </div>
-
-
-	              <div class="form-group">
+	                
 	                <label class="col-sm-2 control-label" for="form-control-1">Name</label>
 	                <div class="col-sm-2"><?= $employee->name; ?></div>
+	              </div>
+</div>
+  <div class="demo-form-wrapper">
+   
+	              <div class="form-group">
+	                
 
 	                <label class="col-sm-2 control-label" for="form-control-2">Father Name</label>
 	                <div class="col-sm-2"><?= $employee->fatherName; ?></div>
-
-	                <label class="col-sm-2 control-label" for="form-control-3">Mother Name</label>
-	                <div class="col-sm-2"><?= $employee->motherName; ?></div>
-	              </div>
-
-	              <div class="form-group">
-
-	                <label class="col-sm-2 control-label" for="form-control-4">Date of Birth</label>
+ <label class="col-sm-2 control-label" for="form-control-4">Date of Birth</label>
 	                <div class="col-sm-2"><?= $employee->dob; ?></div>
 
 	                <label class="col-sm-2 control-label" for="form-control-5">Gender</label>
 	                <div class="col-sm-2"><?= $employee->gender; ?></div>
 
-	                <label class="col-sm-2 control-label" for="form-control-6">Category</label>
-	                <div class="col-sm-2"><?= $employee->category; ?></div>
+	               
 	              </div>
-
+</div>
+<div class="demo-form-wrapper">
 	              <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-7">Qualification</label>
 	                <div class="col-sm-2"><?= $employee->qualification; ?></div>
 
 	                <label class="col-sm-2 control-label" for="form-control-8">Address</label>
-	                <div class="col-sm-2"><?= $employee->address; ?></div>
-	                
-	                <label class="col-sm-2 control-label" for="form-control-9">City</label>
+	                <div class="col-sm-2"><?= $employee->present_address; ?></div>
+	                 <label class="col-sm-2 control-label" for="form-control-9">City</label>
 	                <div class="col-sm-2"><?= $employee->city; ?></div>
+	              
 	              </div>
+	              </div>
+	            <div class="demo-form-wrapper">
+	                <div class="form-group"> 
+	               
 
-	              <div class="form-group">
+	             
 
 	                <label class="col-sm-2 control-label" for="form-control-10">State</label>
 	                <div class="col-sm-2"><?= $employee->state; ?></div>
-
-	                <label class="col-sm-2 control-label" for="form-control-11">Pincode</label>
+	                 <label class="col-sm-2 control-label" for="form-control-11">Pincode</label>
 	                <div class="col-sm-2"><?= $employee->pin; ?></div>
 
-	                <label class="col-sm-2 control-label" for="form-control-12">Country</label>
-	                <div class="col-sm-2"><?= $employee->country; ?></div>
-	              </div>
-
-	              <div class="form-group">
-	                <label class="col-sm-2 control-label" for="form-control-13">Phone</label>
-	                <div class="col-sm-2"><?= $employee->phone; ?></div>
-
+	                
+	            
+	               
 	                <label class="col-sm-2 control-label" for="form-control-14">Mobile</label>
 	                <div class="col-sm-2"><?= $employee->mobile; ?></div>
+</div>
+</div>
 
+<div class="demo-form-wrapper">
+	              <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-15">Email</label>
 	                <div class="col-sm-2"><?= $employee->email; ?></div>
-	              </div>
-
-	              <div class="form-group">
+	             
+                <label class="col-sm-2 control-label" for="form-control-20">Branch</label>
+	                <div class="col-sm-2"><?= $branchDetail->title; ?></div>
+	             
 
 	                <label class="col-sm-2 control-label" for="form-control-16">Aadhar No</label>
 	                <div class="col-sm-2"><?= $employee->aadharNo; ?></div>
-
-	                <label class="col-sm-2 control-label" for="form-control-20">Branch</label>
-	                <div class="col-sm-2"><?= $branchDetail->title; ?></div>
-
-	                <label class="col-sm-2 control-label" for="form-control-21">Commitee</label>
-	                <div class="col-sm-2"></div>
-	              </div>
-
-
+  </div>
+</div>
+<div class="demo-form-wrapper">
 	              <div class="form-group">
-	                <label class="col-sm-2 control-label" for="form-control-22">Plan Name</label>
-	                <div class="col-sm-2"></div>
+	                
 
+	            
 	                <label class="col-sm-2 control-label" for="form-control-37">Join Date</label>
 	                <div class="col-sm-2"><?= date("d M Y", strtotime($employee->created)); ?></div>
 
-	              </div>
+	               </div>
+</div>
+<div class="demo-form-wrapper">
+	              <div class="form-group">
 
 	              <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-17">Image</label>

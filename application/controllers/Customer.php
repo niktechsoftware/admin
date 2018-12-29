@@ -102,6 +102,7 @@ class Customer extends CI_Controller {
 					"branchID" 		=> $this->input->post('branchID'),
 					"committeeID" 	=> $this->input->post("committee"),
 					"name" 			=> $this->input->post('name'),
+					"joinerID"      => $this->input->post('agentCode'),
 					"fatherName" 	=> $this->input->post('fatherName'),
 					"motherName" 	=> $this->input->post('motherName'),
 					"dob" 			=> date('Y-m-d', strtotime($this->input->post('dob'))),

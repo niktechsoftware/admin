@@ -21,7 +21,7 @@
 
 	               <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-1">Employee ID</label>
-	                <div class="col-sm-2"><?=  date("ymd", strtotime($employee->created)).'C'.$employee->id; ?></div>
+	                <div class="col-sm-2"><?php echo $employee->id; ?></div>
 
 	                <label class="col-sm-2 control-label" for="form-control-2">Policy No</label>
 	                <div class="col-sm-2"> 
@@ -108,7 +108,8 @@
 
 	                <label class="col-sm-2 control-label" for="form-control-37">Join Date</label>
 	                <div class="col-sm-2"><?= date("d M Y", strtotime($employee->created)); ?></div>
-
+                    <label class="col-sm-2 control-label" for="form-control-37">Employee Post</label>
+	                <div class="col-sm-2"><?= $employee->emp_designation; ?></div>
 	              </div>
 
 	              <div class="form-group">

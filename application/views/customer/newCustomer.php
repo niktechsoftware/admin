@@ -210,7 +210,7 @@
 
 	                <label class="col-sm-2 control-label" for="form-control-2">Realtion</label>
 	                <div class="col-sm-4">
-	                  <input id="form-control-213" class="form-control" name="nominee_relation" type="text" required="required" value="<?= set_value('nominee_relation'); ?>">
+	                  <input id="form-control-2132" class="form-control" name="nominee_relation" type="text" required="required" ">
 	                  <?= form_error('nominee_relation'); ?>
 	                </div>
 	              </div>
@@ -316,12 +316,12 @@
 	              <div class="form-group">
 	                 <label class="col-sm-2 control-label" for="form-control-20">Agent Code</label>
 	                <div class="col-sm-4">
-	                  <select  class="form-control" id="agentCode" name="agentCode"  required="required">
+	                  <select  class="form-control" id="agentCode" name="agentCode" >
 	                	<option>- Select Code-</option>
 	                	<?php $this->load->model('Agents');
 	                		foreach ($agents as  $value):
 	                			$userrow = $this->Agents->agentUsredata($value->loginID);?>
-	                			<option value="<?php echo $value->id;?>"><?php echo $value->name."[".$userrow->username."]";?></option>
+	                			<option value="<?php echo $value->id;?>"><?php echo $value->name."[".$value->agent_id."]";?></option>
 							<?php	
 	                		endforeach;
 	                	?>

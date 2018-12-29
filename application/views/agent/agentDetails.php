@@ -9,7 +9,7 @@
                       <span class="btn-label">
                         <span class="icon icon-plus-square icon-lg icon-fw"></span>
                       </span>
-                      New Employee
+                      New Agents
                     </a>
                     <a class="btn btn-sm btn-labeled arrow-info" onclick="window.history.back();" href="#">
                       <span class="btn-label">
@@ -18,46 +18,47 @@
                       Back
                     </a>
                   </div>
-                  <strong>All Employes</strong>
+                  <strong>All Agents</strong>
                 </div>
                 <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
                     <table class="table">
                       <thead>
                         <tr>
-                         
-                          <th>Employee Code</th>
+                          <th>#</th>
+                          <th>Rank</th>
                           <th>Name</th>
                           <th>Father</th>
-                          <th>Status</th>
-                          <th>Address</th>
-                           <th>Employee Post</th>
-                          <th>Mobile</th>
-                          <th>Email</th>
-                          <th>Aadhar No</th>
-                          <th>Created</th>
-                           <th>Detail</th>
-                            <th>Detail Edit</th>
+                          <th>Total Amount</th>
+                          <th>Introducer Name(code)</th>
+                            <th>Detail Paid</th>
+                            <th>Remaining</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($employes as $key => $value): ?>
+                        <?php 
+                        
+                        if( $agents->num_rows()>0)
+                        {foreach ($agents->result() as $key => $value): ?>
                           <tr>
                             <td><?= $value->id; ?></td>
-                           
+                            <td><?= $value->rank; ?></td>
                             <td><?= $value->name; ?></td>
                             <td><?= $value->fatherName; ?></td>
-                            <td><?= $value->activeStatus == 1 ? 'Active' : 'Deactive'; ?></td>
-                            <td><?= $value->address; ?></td>
-                            <td><?= $value->emp_designation; ?></td>
-                            <td><?= $value->mobile; ?></td>
-                            <td><?= $value->email; ?></td>
-                            <td><?= $value->aadharNo; ?></td>
+                           <?php  
+                           $this->db->select_sum('amount');   
+                            $this->db->where("a_id",$value->id)  ;
+                            $query=$this->db->get("agent_comission")->row();
+        	              ?>
+                            <td><?= $query->amount; ?></td>
+                            <?php  $this->db->where("id",$value->introducer_code);
+		   $rdft =  $this->db->get("agent");?>
+                            <td><?php if($rdft->num_rows()>0){$rty =$rdft->row();  echo $rty->name."[".$rty->id."]";} ?></td>
                             <td><?= date("d-M-Y (H:i:s A)", strtotime($value->created)); ?></td>
-                           <td><a class="btn btn-primary" href="<?= base_url() ?>employee/<?= $value->id ?>">Detail</a></td>
-                            <td><a class="btn btn-primary" href="<?= base_url() ?>employeeEdit/<?= $value->id ?>">Edit</a></td>
+                           <td><a class="btn btn-primary" href="<?= base_url() ?>agent/personalAmount/<?= $value->id ?>">Detail</a></td>
+                            <td><a class="btn btn-primary" href="<?= base_url() ?>#/<?= $value->id ?>">Pay</a></td>
                           </tr>
-                        <?php endforeach; ?>
+                        <?php endforeach; }?>
                       </tbody>
                     </table>
                   </div>

@@ -72,7 +72,7 @@ $route['newagent'] = '/agent/newAgent';
 $route['agent/:num'] = '/agent/agentdetails/$id';
 $route['employebybranch'] = '/employee/employebybranch';
 $route['agentEdit/:num']	=	'/agent/agentEdit/$id';
-
+$route['agentsCommission']   =   '/agent/aCommission/';
 
 /* --------------- EMPLOYEE ------------------------- */
 $route['employes'] = '/employee/employes';

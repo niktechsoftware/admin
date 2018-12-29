@@ -10,9 +10,9 @@ class Employee extends CI_Controller {
 
 			$this->load->model('rank');
 			$rank = $this->rank->getRanks();
-
 			$data['category'] = ['GEN','OBC','SC','ST','OTHER'];
 			$data['gender'] 	= ['MALE','FEMALE','OTHER'];
+			$data['post'] 	= ['Computer Operator','Area Manager','Branch Manager','Field Manager','Regional Officer', 'District Manager' ];
 			$data['isAdmin'] 	= array("NO" => 0, "YES" => 1);
 			$data['branch']		= $branch;
 			$data['rank']	= $rank;
@@ -44,6 +44,7 @@ class Employee extends CI_Controller {
 					"name" 			=> $this->input->post('name'),
 					"fatherName" 	=> $this->input->post('fatherName'),
 					"motherName" 	=> $this->input->post('motherName'),
+					"emp_designation" 	=> $this->input->post('emp_designation'),
 					"dob" 			=> $this->input->post('dob'),
 					"gender" 		=> $this->input->post('gender'),
 					"category" 		=> $this->input->post('category'),
@@ -57,8 +58,8 @@ class Employee extends CI_Controller {
 					"phone" 		=> $this->input->post('phone'),
 					"mobile" 		=> $this->input->post('mobile'),
 					"email" 		=> $this->input->post('email'),
-					"aadharNo" 		=> $this->input->post('aadharNo'),
-					"rank" 			=> $this->input->post('rank')
+					"aadharNo" 		=> $this->input->post('aadharNo')
+					
 				);
 				$employeeID = $this->employe->setEmploye($employeData);
 				$this->load->library('upload');
@@ -233,8 +234,8 @@ class Employee extends CI_Controller {
 				"phone" 		=> $this->input->post('phone'),
 				"mobile" 		=> $this->input->post('mobile'),
 				"email" 		=> $this->input->post('email'),
-				"aadharNo" 		=> $this->input->post('aadharNo'),
-				"rank" 			=> $this->input->post('rank')
+				"aadharNo" 		=> $this->input->post('aadharNo')
+			
 		);
 		
 		$employeeID=$this->input->post("employeeID");

@@ -90,7 +90,7 @@
 		                  		<option value="<?= $value->id; ?>"><?= date("d-M-Y", strtotime($value->start)) ?> TO <?= date("d-M-Y", strtotime($value->end)) ?></option>
 		                  	<?php endforeach; ?>
 	                  </select>
-	                  <?= form_error('fsd'); ?>
+	                
 	                </div>
 
 	              </div>

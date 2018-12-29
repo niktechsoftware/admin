@@ -159,7 +159,7 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li><a href="profile.html">Profile</a></li>
-                  <li><a href="loout.html">Sign out</a></li>
+                  <li><a href="<?php echo base_url();?>index.php/login/logout.html">Sign out</a></li>
                 </ul>
               </li>
               <li class="visible-xs-block">
@@ -242,6 +242,7 @@
                     <li class="sidenav-heading">Agent</li>
                     <li><a href="<?= base_url() ?>newagent.html">New</a></li>
                     <li><a href="<?= base_url() ?>agents.html">Agents List</a></li>
+                     <li><a href="<?= base_url() ?>agentsCommission.html">Agents Commission</a></li>
                   </ul>
                 </li>
                 <li class="sidenav-item has-subnav">
@@ -365,7 +366,9 @@
       </div>
     </div>
     
-   
+    <script src="<?= base_url(); ?>assets/js/elephant.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/application.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/demo.min.js"></script>
   </body>
 
 </html>
