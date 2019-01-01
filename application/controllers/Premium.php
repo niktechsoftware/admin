@@ -214,8 +214,9 @@ class Premium extends CI_Controller {
               	
               	$this->db->where("customerID",$detail->customerID);
               		$this->db->where("status","Pending");
-              $rt = 	$this->db->get("misDetail")->result();
+              $rt = 	$this->db->get("misDetail");
                if($rt->num_rows()<2){
+                     $rt=$rt->result();
              	$this->db->where('customerID', $detail->customerID);
               	$this->db->order_by('id', 'DESC');
                     $this->db->limit('1');
@@ -249,10 +250,12 @@ class Premium extends CI_Controller {
               }
               
 	
-		
+		$this->load->model('Agents');
+           
 		$data = array(
 		    'tableid' => $tableid,
 			'planid' => $planid, 
+			'agents'=>$this->Agents->getAllAgents()->result(),
 		
 			'body' => 'premium/collectpremium',
 			'title' => 'Policy Detail'
@@ -263,9 +266,10 @@ class Premium extends CI_Controller {
 	public function setpremium() {
 	    	$tableID = $this->input->post('tableid');
 		$planID = $this->input->post('planID');
-	
+	$this->load->model("Agents");
 		$policyID = $this->input->post('policyID');
 		$customerID = $this->input->post('customerID');
+	
 		$dipositorName = $this->input->post('dipositorName');
 		$payMode = $this->input->post('payMode');
 		$remark = $this->input->post('remark');
@@ -275,9 +279,90 @@ class Premium extends CI_Controller {
 		$totalAmount = $this->input->post('totalAmount');
 		$committee = $this->input->post('committee');
 		
-	$redy = 	$this->db->get("daybook");
+		$this->db->where("Customer_ID",$customerID);
+		$cudetail = $this->db->get("customer")->row();
+		
+		$this->db->where("id",$cudetail->joinerID);
+    	$agentdetails=	$this->db->get("agent")->row();
+		$dur=0;
+		$this->db->where("customerID", $customerID);
+		$plandet = $this->db->get("investmentDetail")->row();
+		
+		$redy = 	$this->db->get("daybook");
 		$ins = $redy->num_rows();
 		$invoice_s = $planID."0".$ins;
+		
+		
+		if($plandet->durationYear < 2.5 ){
+		    $dur=1;
+		}
+		if(($plandet->durationYear > 2.5 )&&($plandet->durationYear < 3.5 )){
+		    $dur=2.6;
+		}
+		
+		if(($plandet->durationYear > 3.5 )&&($plandet->durationYear < 5.8 )){
+		    $dur=3.6;
+		}
+			if(($plandet->durationYear > 5.5 )&&($plandet->durationYear < 8.5 )){
+		    $dur=5.9;
+		}
+		if(($plandet->durationYear > 8.5 )&&($plandet->durationYear < 12.5 )){
+		    $dur=8.6;
+		}
+			if(($plandet->durationYear > 12.5 )&&($plandet->durationYear < 15.5 )){
+		    $dur=12.6;
+		}
+		if(($plandet->durationYear > 15.5 )){
+		    $dur=15.6;
+		}
+		$curanka = $agentdetails->rank;
+		$this->db->where("rank",$agentdetails->rank);
+		$this->db->where("duration",$dur);
+		$getcomi = $this->db->get("agent_comission_charts")->row();
+	//	echo $getcomi->comission1;
+		//echo $getcomi->comission2;
+		//echo "<br>".$agentdetails->rank;
+	//	echo "<br>".$dur;
+	//	echo $totalAmount;
+		$currentAgentC = ($totalAmount*$getcomi->comission2)/100;
+		$cucdata = array(
+		    "a_id"          =>$cudetail->joinerID,
+		    "amount"        =>$currentAgentC,
+		    "invoice_num"   =>$invoice_s
+		    );
+		    $this->db->insert("agent_comission",$cucdata);
+		    
+		    $this->db->select_sum('amount');   
+        $this->db->where("a_id",$cudetail->joinerID)  ;
+        $query=$this->db->get("agent_comission")->row();
+	//	echo "<br>".$query->amount;
+		
+		$uptorank = $this->db->get("rank")->result();
+		$ty=0;
+		$upranj=0;
+		foreach($uptorank as $res):
+		    if($ty!=1){
+		    if($query->amount < $res->promotionAmt){
+		       
+		        $ty=1;
+		        $tuprank = array(
+		            "rank" => $res->id
+		            );
+		            $this->db->where("id",$agentdetails->id);
+		            $this->db->update("agent",$tuprank);
+		    }
+		    }
+		    endforeach;
+		    
+		    $this->db->where("id",$agentdetails->introducer_code);
+		   $rdft =  $this->db->get("agent");
+		    if($rdft->num_rows()>0){
+		        $ui =$rdft->row();
+		        
+		        $this->Agents->getpromotion($ui,$dur,$totalAmount,$invoice_s,$curanka);
+		    }
+		//comission endfor one    
+	
 		$data = array(
 		
 			"premiumAmount"	=>	$totalAmount,
@@ -301,22 +386,22 @@ class Premium extends CI_Controller {
 			"invoice_no"        =>  $invoice_s
 		);
 		
-		if($planID == 1)
+		if($planID == 1){
 			$this->db->where('id', $tableID);
               	$result = $this->db->update('fdDetail',$data);
-
-		if($planID == 2)
+}
+		if($planID == 2){
 			$this->db->where('id', $tableID);
               	$result = $this->db->update('rdDetail',$data);
-
-		if($planID == 3)
+}
+		if($planID == 3){
 			$this->db->where('id', $tableID);
               	$result = $this->db->update('npsDetail',$data);
-
-		if($planID == 4)
+}
+		if($planID == 4){
 		$this->db->where('id', $tableID);
               	$result = $this->db->update('misDetail',$data);
-
+}
 		$this->db->insert("daybook", $daybookData);
 
 		redirect("premium/detail/$policyID", 'refresh');

@@ -13,6 +13,12 @@ class Login extends CI_Controller {
 		$this->load->view('login/forget');
 	}
 
+
+public function logout(){
+   $this->session->unset_userdata();
+		$this->session->sess_destroy();
+		redirect('index.php/login');
+}
 	/**
 	 * 
 	 */

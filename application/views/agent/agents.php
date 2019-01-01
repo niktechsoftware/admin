@@ -27,6 +27,7 @@
                         <tr>
                           <th>#</th>
                           <th>Rank</th>
+                          <th>Agent Code</th>
                           <th>Name</th>
                           <th>Father</th>
                           <th>Status</th>
@@ -47,10 +48,11 @@
                           <tr>
                             <td><?= $value->id; ?></td>
                             <td><?= $value->rank; ?></td>
+                             <td><?= $value->agent_id; ?></td>
                             <td><?= $value->name; ?></td>
                             <td><?= $value->fatherName; ?></td>
                             <td><?= $value->activeStatus == 1 ? 'Active' : 'Deactive'; ?></td>
-                            <td><?= $value->address; ?></td>
+                            <td><?= $value->present_address; ?></td>
                             <td><?= $value->mobile; ?></td>
                             <td><?= $value->email; ?></td>
                             <td><?= $value->aadharNo; ?></td>

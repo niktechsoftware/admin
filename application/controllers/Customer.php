@@ -102,6 +102,7 @@ class Customer extends CI_Controller {
 					"branchID" 		=> $this->input->post('branchID'),
 					"committeeID" 	=> $this->input->post("committee"),
 					"name" 			=> $this->input->post('name'),
+					"joinerID"      => $this->input->post('agentCode'),
 					"fatherName" 	=> $this->input->post('fatherName'),
 					"motherName" 	=> $this->input->post('motherName'),
 					"dob" 			=> date('Y-m-d', strtotime($this->input->post('dob'))),
@@ -217,6 +218,7 @@ class Customer extends CI_Controller {
 					$planID = $this->input->post('planID');
 
 					if($planID == 1):
+					    
 						$daybookData["amount"] = $this->input->post("investAmount-fd");
 						$investmentData["oneTimeInvestment"]= $this->input->post("investAmount-fd");
 						$investmentData["meturity"] 		= $this->input->post("meturtyAmount-fd");

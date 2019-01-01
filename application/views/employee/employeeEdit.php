@@ -21,18 +21,19 @@
 
 	               <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-1">Employee ID</label>
-	                <div class="col-sm-2"><?=  date("ymd", strtotime($employee->created)).'C'.$employee->id; ?>
+	                <div class="col-sm-2"><?=  $employee->id; ?>
 	                <input id="form-control-1" class="form-control" name="employeeID" type="hidden"  value="<?= $employee->id; ?>">
 	                
 	                </div>
 	                
-	                </div>
+	                
 
-	                <label class="col-sm-2 control-label" for="form-control-2">Policy No</label>
+	                <label class="col-sm-2 control-label" for="form-control-2">Employee Post</label>
 	                 
 	                
 	                <div class="col-sm-2"> 
-	                </div>
+	                <?= $employee->emp_designation; ?></div>
+	                
 
 	                <label class="col-sm-2 control-label" for="form-control-3">Username</label>
 	                <div class="col-sm-2"><?= $loginDetail->username;; ?></div>
@@ -65,7 +66,7 @@
 	                <div class="col-sm-2"> <select class="form-control" name="gender" required="required">
 	                  	<option>-Select Gender-</option>
 	                  	<?php foreach ($gender as $key => $value) {
-	                  		$sel = set_value('gender') == $employee->gender ? " selected" : "";
+	                  		$sel = $value == $employee->gender ? " selected" : "";
 	                  		echo '<option value="'.$value.'" '.$sel.'>'.$value.'</option>';
 	                  	}
 	                  	?>
@@ -75,7 +76,7 @@
 	                <div class="col-sm-2"> <select class="form-control" name="category" required="required">
 	                  	<option>-Select Category-</option>
 	                  	<?php foreach ($category as $key => $value) {
-	                  		$sel = set_value('category') == $employee->category ? " selected: selected" : "";
+	                  		$sel = $value == $employee->category ? " selected: selected" : "";
 	                  		echo '<option value="'.$value.'" '.$sel.'>'.$value.'</option>';
 	                  	}
 	                  	?>
@@ -156,19 +157,7 @@
 	                
 	                <?= $branchDetail->title; ?></div>
 
-	               <label class="col-sm-2 control-label" for="form-control-22">Rank</label>
-	                <div class="col-sm-2">
-	                <select class="form-control" name="rank" required="required">
-	                  	<option>-Select Rank-</option>
-	                  	<?php foreach ($rank as $key => $value) {
-	                  		$sel = set_value('rank') == $employee->rank ? " selected" : "";
-	                  		echo '<option value="'.$value->id.'" '.$sel.'>'.$value->id.'</option>';
-	                  	}
-	                  	?>
-	                  </select>
-	                
-	                
-	                </div>
+	              
 	              </div>
 
 

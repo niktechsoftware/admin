@@ -171,6 +171,25 @@
 									Relation: <?= "Mother" ?> Age: <?= $planid->investerAge; ?>
 								</td>
 							</tr>
+							
+								<tr>
+								<td>
+									Plan Name: <?php  if($planid->planID == 1)
+                          {echo "Fixed Deposit (FD)";} 
+                        if($planid->planID == 2)
+                          {echo "RD - Investment";} 
+                        if($planid->planID == 3)
+                          {echo "Adhaarshila National Pension Severs (NPS)";} 
+                        if($planid->planID == 4)
+                          {echo "Monthly Investment Plan (MIP)";} 
+                        if($planid->planID == 5)
+                          {echo "Loan Plan";}  ?>
+								</td>
+								<td>
+									Pay Amount Per Month: <?= $planid->monthlyReturn; ?> 
+								</td>
+							</tr>
+							
 							<tr>
 								<td>
 									In Words: <script>document.write(convert_number(<?= $planid->meturity; ?>))</script>

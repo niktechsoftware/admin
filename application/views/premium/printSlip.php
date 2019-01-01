@@ -121,14 +121,15 @@
                     <td colspan="6"><strong>Print Date:</strong> <?=  date("d-M-Y"); ?></td>
                   </tr>
                   <tr>
-                    <td colspan="6"><strong>Customer No.:</strong> <?=  $getdata->Customer_ID; ?></td>
+ <td colspan="6"><strong>Customer Name.:</strong> <?=  $getdata->name; ?></td>
                   </tr>
                   <tr>
-                    <td colspan="6" style="text-align: center; font-size: 13px;"><strong>Receipt</strong>  <?php echo $invoiceno;?></td>
+                                         
+                    <td colspan="6" style="text-align: right; font-size: 13px;"><strong>Receipt</strong>  <?php echo $invoiceno;?></td>
                   </tr>
                   <tr>
                     <td colspan="4"><strong>Print Branch:</strong> <?php echo $titlebranch;?></td>
-                    <td colspan="2"><strong>Document No:</strong><?= "39887488J899" ?></td>
+                    <td colspan="2"><strong>Document No:</strong><?= $getdata->Customer_ID ?></td>
                   </tr>
                   <tr>
                     <td colspan="4"><strong>Receipt with thanks from:</strong><?= $detail->depositorName ?> </td>
@@ -198,8 +199,11 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Member Code:</strong><?= "9899K009" ?></td>
-                    <td colspan="2"><strong>Member Name:</strong><?= "pushpendra" ?></td>
+                    <td colspan="2"><strong>Agent Code:</strong><?= $getdata->joinerID ?></td>
+                    <?php $this->db->where("id",$getdata->joinerID);
+                    $agname = $this->db->get("agent")->row();
+                    ?>
+                    <td colspan="2"><strong>Agent Name:</strong><?= $agname->name; ?></td>
                     <td colspan="2" rowspan="4" valign="top">
                       <table id="innerTable1" width="150" style="border: 0px solid #FFF;">
                         <tr>

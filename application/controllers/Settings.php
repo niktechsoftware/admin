@@ -184,9 +184,24 @@ class Settings extends CI_Controller {
 				$this->load->view('layout', $data);
 
 		    else:
+		        
+		        
 
 		    	$this->load->model("branch");
 		    	if($this->branch->setBranch($this->input->post())):
+		    	    	$this->load->model("auth/logintable");
+				       $this->db->where("title",$this->input->post("title"));
+				       $st = $this->db->get("branch")->row();
+
+				$loginData = array(
+					"branchID" 	=> $st->id,
+					"roleID" 	=> 1,
+					"isAdmin" 	=> 0,
+					"username" 	=> "branch".$st->id,
+					"password" 	=> sha1(123456)
+				);
+
+				$loginID = $this->logintable->setLogin($loginData);
 		    		redirect(base_url().'branches.html');
 		    	else:
 		    		redirect(base_url().'branches/false');

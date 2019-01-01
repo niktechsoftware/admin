@@ -2,6 +2,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Agent extends CI_Controller {
+    
+    public	function aCommission(){
+	    	$this->load->model("agents");
+		$data['agents'] = $this->agents->getAllAgents();
+		$data['title'] = 'All Agents';
+		$data['body'] = 'agent/agentDetails';
+		$this->load->view('layout',$data);
+	}
+	
+	function personalAmount(){
+	    $agentID = $this->uri->segment(3);
+	    echo $agentID ;
+	}
 
 	public function newAgent() {
 		if ($this->input->server('REQUEST_METHOD') == 'GET') {
@@ -13,6 +26,7 @@ class Agent extends CI_Controller {
 
 			$data['category'] = ['GEN','OBC','SC','ST','OTHER'];
 			$data['gender'] 	= ['MALE','FEMALE','OTHER'];
+				$data['meritalr'] 	= ['Married','Unmarried','OTHER'];
 			$data['isAdmin'] 	= array("NO" => 0, "YES" => 1);
 			$data['branch']		= $branch;
 			$data['rank']	= $rank;
@@ -36,29 +50,47 @@ class Agent extends CI_Controller {
 				);
 
 				$loginID = $this->logintable->setLogin($loginData);
-
+                                $this->db->select('id');
+                                $this->db->from('agent');
+                                $this->db->order_by('id', 'DESC');
+                                $this->db->limit('1');
+                               $tr =  $this->db->get()->row()->id;
+                               $rtyid=5000+$tr+1;
+                               $tryuo = "jmd".$rtyid;
 				$employeData = array(
-					"isAdmin" 		=> $this->input->post('isAdmin'),
-					"loginID" 		=> $loginID,
-					"branchID" 		=> $this->input->post('branchID'),
-					"name" 			=> $this->input->post('name'),
-					"fatherName" 	=> $this->input->post('fatherName'),
-					"motherName" 	=> $this->input->post('motherName'),
-					"dob" 			=> $this->input->post('dob'),
-					"gender" 		=> $this->input->post('gender'),
-					"category" 		=> $this->input->post('category'),
-					"qualification" => $this->input->post('qualification'),
-					"activeStatus" 	=> 1,
-					"address" 		=> $this->input->post('address'),
-					"city" 			=> $this->input->post('city'),
-					"state" 		=> $this->input->post('state'),
-					"pin" 			=> $this->input->post('pin'),
-					"country" 		=> $this->input->post('country'),
-					"phone" 		=> $this->input->post('phone'),
-					"mobile" 		=> $this->input->post('mobile'),
-					"email" 		=> $this->input->post('email'),
-					"aadharNo" 		=> $this->input->post('aadharNo'),
-					"rank" 			=> $this->input->post('rank')
+					"agent_id"          =>$tryuo,
+                    "introducer_code"   =>$this->input->post("agentCode"),
+					"loginID" 		    => $loginID,
+					"branchID" 		    => $this->input->post('branchID'),
+					"name" 			    => $this->input->post('name'),
+					"fatherName" 	    => $this->input->post('fatherName'),
+					"dob" 			    => $this->input->post('dob'),
+					"gender" 		    => $this->input->post('gender'),
+					"marital_status"    => $this->input->post('marital_status'),
+				
+					"qualification"     => $this->input->post('qualification'),
+					"occupation"        => $this->input->post('occupation'),
+					"activeStatus" 	    => 1,
+					"present_address"   => $this->input->post('present_address'),
+				"permanent_address"     =>$this->input->post('permanent_address'),
+					"city" 			    => $this->input->post('city'),
+					"state" 		    => $this->input->post('state'),
+					"nationality"       => $this->input->post('nationality'),
+					
+					"experience"        => $this->input->post('experience'),
+					"pin" 			    => $this->input->post('pin'),
+							
+					"mobile" 		    => $this->input->post('mobile'),
+					"email" 		    => $this->input->post('email'),
+					"aadharNo" 		    => $this->input->post('aadharNo'),
+					"rank" 			    => 1,
+					"nominee" 	        => $this->input->post('nominee'),
+					"nominee_age" 	    => $this->input->post('nominee_age'),
+					"nominee_mobile"    => $this->input->post('nominee_mobile'),
+				    "relation"              =>$this->input->post('relation'),
+					"nominee_gender"    => $this->input->post('nominee_gender')
+					
+
 				);
 				$employeeID = $this->agents->setAgent($employeData);
 				$this->load->library('upload');
@@ -152,8 +184,7 @@ class Agent extends CI_Controller {
 		$this->load->model('agents');
 		$employee = $this->agents->getagent($employeeID);
 	
-		$this->load->model("investmentDetail");
-		$investmentPlanDetail = $this->investmentDetail->getPlanCustomerID($employeeID);
+		
 	
 		$this->load->model("investmentPlans");
 		//$planDetail = $this->investmentPlans->getPlan($investmentPlanDetail->planID);
@@ -168,13 +199,13 @@ class Agent extends CI_Controller {
 		$loginDetail = $this->logintable->getLogin($employee->loginID);
 	
 	
-	
+		$data['meritalr'] 	= ['Married','Unmarried','OTHER'];
 		$data['employee'] = $employee;
 		//$data['planDetail'] = $planDetail;
 		//$data['commiteeDetail'] = $commiteeDetail;
 		$data['loginDetail'] = $loginDetail;
 		$data['branchDetail'] = $branchDetail;
-		$data['investDetail'] = $investmentPlanDetail;
+		
 		$data['title'] = 'Employee :: '.$employee->name;
 		$data['body'] = 'agent/agent';
 		$this->load->view('layout',$data);
@@ -182,11 +213,10 @@ class Agent extends CI_Controller {
 	
 	public function agentEdit() {
 		$customerID = $this->uri->segment(2);
-		$this->load->model('employe');
-		$employee = $this->employe->getEmployee($customerID);
+		$this->load->model('agents');
+		$employee = $this->agents->getAgent($customerID);
 	
-		$this->load->model("investmentDetail");
-		$investmentPlanDetail = $this->investmentDetail->getPlanCustomerID($customerID);
+		
 	
 		
 	
@@ -194,10 +224,10 @@ class Agent extends CI_Controller {
 		$branchDetail = $this->branch->getBranchID($employee->branchID);
 	
 	
-	
+		$data['meritalr'] 	= ['Married','Unmarried','OTHER'];
 		$this->load->model("auth/logintable");
 		$loginDetail = $this->logintable->getLogin($employee->loginID);
-		$data['category'] = ['GEN','OBC','SC','ST','OTHER'];
+		
 		$data['gender'] 	= ['MALE','FEMALE','OTHER'];
 		$this->load->model('rank');
 		$rank = $this->rank->getRanks();
@@ -205,9 +235,9 @@ class Agent extends CI_Controller {
 		$data['employee'] = $employee;
 		$data['loginDetail'] = $loginDetail;
 		$data['branchDetail'] = $branchDetail;
-		$data['investDetail'] = $investmentPlanDetail;
-		$data['title'] = 'Employee :: '.$employee->name;
-		$data['body'] = 'employee/employeeEdit';
+		
+		$data['title'] = 'Agent :: '.$employee->name;
+		$data['body'] = 'agent/agentEdit';
 		$this->load->view('layout',$data);
 	}
 	
@@ -218,23 +248,35 @@ class Agent extends CI_Controller {
 				
 				"branchID" 		=> $this->input->post('branchID'),
 				"name" 			=> $this->input->post('name'),
-				"fatherName" 	=> $this->input->post('fatherName'),
-				"motherName" 	=> $this->input->post('motherName'),
-				"dob" 			=> $this->input->post('dob'),
-				"gender" 		=> $this->input->post('gender'),
-				"category" 		=> $this->input->post('category'),
-				"qualification" => $this->input->post('qualification'),
-				"activeStatus" 	=> 1,
-				"address" 		=> $this->input->post('address'),
-				"city" 			=> $this->input->post('city'),
-				"state" 		=> $this->input->post('state'),
-				"pin" 			=> $this->input->post('pin'),
-				"country" 		=> $this->input->post('country'),
-				"phone" 		=> $this->input->post('phone'),
-				"mobile" 		=> $this->input->post('mobile'),
-				"email" 		=> $this->input->post('email'),
-				"aadharNo" 		=> $this->input->post('aadharNo'),
-				"rank" 			=> $this->input->post('rank')
+				
+					"fatherName" 	    => $this->input->post('fatherName'),
+					"dob" 			    => $this->input->post('dob'),
+					"gender" 		    => $this->input->post('gender'),
+				
+				
+					"qualification"     => $this->input->post('qualification'),
+					"occupation"        => $this->input->post('occupation'),
+					"activeStatus" 	    => 1,
+					"present_address"   => $this->input->post('present_address'),
+				
+					"city" 			    => $this->input->post('city'),
+					"state" 		    => $this->input->post('state'),
+					"nationality"       => $this->input->post('nationality'),
+					"permanent_address"     =>$this->input->post('permanent_address'),
+					"experience"        => $this->input->post('experience'),
+					"pin" 			    => $this->input->post('pin'),
+							
+					"mobile" 		    => $this->input->post('mobile'),
+					"email" 		    => $this->input->post('email'),
+					"aadharNo" 		    => $this->input->post('aadharNo'),
+					"rank" 			    => 1,
+					"nominee" 	        => $this->input->post('nominee'),
+					"nominee_age" 	    => $this->input->post('nominee_age'),
+					"nominee_mobile"    => $this->input->post('nominee_mobile'),
+				    "relation"              =>$this->input->post('relation')
+				
+				
+				
 		);
 		
 		$employeeID=$this->input->post("employeeID");
@@ -269,7 +311,7 @@ class Agent extends CI_Controller {
 					"signature"	=> $siganture
 			);
 			
-			$ft = $this->employe->updateEmployee($employeeID, $dataImage);
+			$ft = $this->agents->updateAgent($employeeID, $dataImage);
 		}
 		if($_FILES['idProof']['name'] !=""){
 		$config['file_name'] = "PROOF".$employeeID.'.'.substr(strrchr($_FILES['idProof']['name'],'.'),1);
@@ -284,9 +326,9 @@ class Agent extends CI_Controller {
 		}
 		
 		if($ft):
-		redirect(base_url().'employes.html');
+		redirect(base_url().'agents.html');
 		else :
-		redirect(base_url().'employes/false');
+		redirect(base_url().'agents/false');
 		endif;
 	}
 

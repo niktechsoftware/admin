@@ -38,6 +38,8 @@
                
                $this->db->where("id",$planid->committeeID);
                $comititle =  $this->db->get("committee")->row()->title;
+
+
 ?>
 
 
@@ -67,7 +69,7 @@
                         <td>
                           <?=  $getdata->Customer_ID; ?>  
                           <input type="hidden" name="policyID" value="<?= $getdata->Customer_ID ?>">
-                          <input type="hidden" name="customerID" value="<?= $planid->id ?>">
+                          <input type="hidden" name="customerID" value="<?= $getdata->Customer_ID ?>">
                          
                             <input type="hidden" name="tableid" value="<?= $tableid ?>">
                           <input type="hidden" name="planID" value="<?php echo $planid->planID; ?>">
@@ -162,6 +164,33 @@
                           </div>
                         </td>
                       </tr>
+
+<tr>
+  <td colspan="4">   <div class="form-group">
+                   <label class="col-sm-4 control-label" for="form-control-20">Agent Code</label>
+                  <div class="col-sm-4">
+                    <select  class="form-control" id="agentCode" name="agentCode" >
+                    <option>- Select Code-</option>
+                    
+                    <?php $this->load->model('Agents');
+                    	
+    
+                      foreach ($agents as  $value):
+                          
+                        $userrow = $this->Agents->agentUsredata($value->loginID);?>
+                        <option value="<?php echo $value->id;?>" <?php if($value->id==$getdata->joinerID){echo 'selected="selected"';}?> ><?php echo $value->name."[".$userrow->username."]";?></option>
+              <?php 
+                      endforeach;
+                    ?>
+                    </select>
+                  
+                  </div></td>
+ 
+</tr>
+
+
+
+
                       <tr>
                         <td>
                           <input type="submit" class="btn btn-primary" value="Save & Print">

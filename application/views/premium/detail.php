@@ -201,7 +201,11 @@
                              
                              </td>
               		<td><?php if($d->status=="Pending"){?><a href="<?= base_url() ?>premium/collectpremium/<?= $d->id ?>/<?= $planid->planID ?>.html" title="Collect Premium" class="btn btn-primary <?= $planid->planID == 5 ? 'disabled' : '' ?>">
-                              <span class="icon icon-rupee icon-lg">Collect</span>
+                              <span class="icon icon-rupee icon-lg"><?php if($planid->planID == 4){
+              echo "Pay";
+              }else{
+              echo "Collect";}?>
+              </span>
                             </a><?php }else{ 
                             echo $d->paid_date;
                              }?>
