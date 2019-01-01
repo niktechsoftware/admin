@@ -204,6 +204,7 @@
                     $agname = $this->db->get("agent")->row();
                     ?>
                     <td colspan="2"><strong>Agent Name:</strong><?= $agname->name; ?></td>
+
                     <td colspan="2" rowspan="4" valign="top">
                       <table id="innerTable1" width="150" style="border: 0px solid #FFF;">
                         <tr>
