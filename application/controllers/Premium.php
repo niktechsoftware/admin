@@ -2,6 +2,24 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Premium extends CI_Controller {
+    
+     function __construct()
+	{
+		parent::__construct();
+		$this->is_login();
+		
+	}
+	
+	function is_login(){
+		$is_login = $this->session->userdata('is_login');
+		$is_lock = $this->session->userdata('is_lock');
+		$logtype = $this->session->userdata('login_type');
+		if($is_login){
+			//echo $is_login;
+			redirect('/login/index', 'refresh');
+		}
+	
+	}
 
 	public function detail() {
 		$data['row']	=8;
@@ -214,8 +232,9 @@ class Premium extends CI_Controller {
               	
               	$this->db->where("customerID",$detail->customerID);
               		$this->db->where("status","Pending");
-              $rt = 	$this->db->get("misDetail")->result();
+              $rt = 	$this->db->get("misDetail");
                if($rt->num_rows()<2){
+                     $rt=$rt->result();
              	$this->db->where('customerID', $detail->customerID);
               	$this->db->order_by('id', 'DESC');
                     $this->db->limit('1');
@@ -247,13 +266,74 @@ class Premium extends CI_Controller {
 					    	}}
               }
               }
+                if($planid == 5){
+              	$this->db->where("id",$tableid);
+              	$result = $this->db->get('loanDetail');
+              	$detail = $result->row();
+              	
+              	
+              /*	$start = strtotime('2010-01-25');
+$end = strtotime('2010-02-20');
+
+$days_between = ceil(abs($end - $start) / 86400);*/
+              	
+              	$this->db->where('customerID', $detail->customerID);
+              	$this->db->order_by('id', 'DESC');
+                    $this->db->limit('2');
+                   $last2row = $this->db->get("loanDetail")->result();
+                  $y=1; foreach($last2row as $l2r):
+                       $firstdate[$y] =  $l2r->should_paid;
+                       $y++;
+                       endforeach;
+                       $start = strtotime($firstdate[1]);
+$end = strtotime($firstdate[2]);
+
+$days_between = ceil(abs($end - $start) / 86400);
+              	echo $days_between;
+              	$this->db->where("customerID",$detail->customerID);
+              		$this->db->where("status","Pending");
+              $rt = 	$this->db->get("loanDetail");
+               if($rt->num_rows()<2){
+                     $rt=$rt->result();
+             	$this->db->where('customerID', $detail->customerID);
+              	$this->db->order_by('id', 'DESC');
+                    $this->db->limit('1');
+                   $lastrow = $this->db->get("loanDetail")->row();
+                    $npstotmonths = $lastrow->remaining_months;
+             	$datea = date('Y-m-d', strtotime("+$days_between days", strtotime($lastrow->should_paid)));
+                  for($i=1; $i<13; $i++){
+					    	if($npstotmonths>0){
+					    		$rdinsertData = array(
+					    				'customerID'=>$lastrow->customerID,
+					    				'policyID'=>$lastrow->policyID,
+					    				'premiumAmount'=>$lastrow->premiumAmount,
+					    				'balancePremium'=>0,
+					    				'paid'=>0,
+					    				'should_paid'=>$datea,
+					    				'depositorName'=>"",
+					    				'payMode'=>"",
+					    				'lateFee'=>"",
+					    				'remark'=>"",
+					    				'paid_date'=>"",
+					    				'status'=>"Pending",
+					    				'remaining_months'=>$npstotmonths,
+					    				'invoice_slip'=>""
+					    
+					    		);
+					    		$npstotmonths=$npstotmonths-1;
+					    		$this->db->insert("loanDetail",$rdinsertData);
+					    		$datea = date('Y-m-d', strtotime("+$days_between days", strtotime($datea)));
+					    	}}
+              }
+              }
               
 	
 		$this->load->model('Agents');
-            $data['agents']=$this->Agents->getAllAgents()->result();
+           
 		$data = array(
 		    'tableid' => $tableid,
 			'planid' => $planid, 
+			'agents'=>$this->Agents->getAllAgents()->result(),
 		
 			'body' => 'premium/collectpremium',
 			'title' => 'Policy Detail'
@@ -264,9 +344,10 @@ class Premium extends CI_Controller {
 	public function setpremium() {
 	    	$tableID = $this->input->post('tableid');
 		$planID = $this->input->post('planID');
-	
+	$this->load->model("Agents");
 		$policyID = $this->input->post('policyID');
 		$customerID = $this->input->post('customerID');
+	
 		$dipositorName = $this->input->post('dipositorName');
 		$payMode = $this->input->post('payMode');
 		$remark = $this->input->post('remark');
@@ -276,14 +357,95 @@ class Premium extends CI_Controller {
 		$totalAmount = $this->input->post('totalAmount');
 		$committee = $this->input->post('committee');
 		
-	$redy = 	$this->db->get("daybook");
+		$this->db->where("Customer_ID",$customerID);
+		$cudetail = $this->db->get("customer")->row();
+		
+		$this->db->where("id",$cudetail->joinerID);
+    	$agentdetails=	$this->db->get("agent")->row();
+		$dur=0;
+		$this->db->where("customerID", $customerID);
+		$plandet = $this->db->get("investmentDetail")->row();
+		
+		$redy = 	$this->db->get("daybook");
 		$ins = $redy->num_rows();
 		$invoice_s = $planID."0".$ins;
+		
+		
+		if($plandet->durationYear < 2.5 ){
+		    $dur=1;
+		}
+		if(($plandet->durationYear > 2.5 )&&($plandet->durationYear < 3.5 )){
+		    $dur=2.6;
+		}
+		
+		if(($plandet->durationYear > 3.5 )&&($plandet->durationYear < 5.8 )){
+		    $dur=3.6;
+		}
+			if(($plandet->durationYear > 5.5 )&&($plandet->durationYear < 8.5 )){
+		    $dur=5.9;
+		}
+		if(($plandet->durationYear > 8.5 )&&($plandet->durationYear < 12.5 )){
+		    $dur=8.6;
+		}
+			if(($plandet->durationYear > 12.5 )&&($plandet->durationYear < 15.5 )){
+		    $dur=12.6;
+		}
+		if(($plandet->durationYear > 15.5 )){
+		    $dur=15.6;
+		}
+		$curanka = $agentdetails->rank;
+		$this->db->where("rank",$agentdetails->rank);
+		$this->db->where("duration",$dur);
+		$getcomi = $this->db->get("agent_comission_charts")->row();
+	//	echo $getcomi->comission1;
+		//echo $getcomi->comission2;
+		//echo "<br>".$agentdetails->rank;
+	//	echo "<br>".$dur;
+	//	echo $totalAmount;
+		$currentAgentC = ($totalAmount*$getcomi->comission2)/100;
+		$cucdata = array(
+		    "a_id"          =>$cudetail->joinerID,
+		    "amount"        =>$currentAgentC,
+		    "invoice_num"   =>$invoice_s
+		    );
+		    $this->db->insert("agent_comission",$cucdata);
+		    
+		    $this->db->select_sum('amount');   
+        $this->db->where("a_id",$cudetail->joinerID)  ;
+        $query=$this->db->get("agent_comission")->row();
+	//	echo "<br>".$query->amount;
+		
+		$uptorank = $this->db->get("rank")->result();
+		$ty=0;
+		$upranj=0;
+		foreach($uptorank as $res):
+		    if($ty!=1){
+		    if($query->amount < $res->promotionAmt){
+		       
+		        $ty=1;
+		        $tuprank = array(
+		            "rank" => $res->id
+		            );
+		            $this->db->where("id",$agentdetails->id);
+		            $this->db->update("agent",$tuprank);
+		    }
+		    }
+		    endforeach;
+		    
+		    $this->db->where("id",$agentdetails->introducer_code);
+		   $rdft =  $this->db->get("agent");
+		    if($rdft->num_rows()>0){
+		        $ui =$rdft->row();
+		        
+		        $this->Agents->getpromotion($ui,$dur,$totalAmount,$invoice_s,$curanka);
+		    }
+		//comission endfor one    
+	
 		$data = array(
 		
 			"premiumAmount"	=>	$totalAmount,
 			"balancePremium"=>	0,
-		
+		"paid"      =>$totalAmount,
 			"depositorName"	=>	$dipositorName,
 			"payMode"		=>	$payMode,
 			"lateFee"		=>	$lateFee,
@@ -302,22 +464,26 @@ class Premium extends CI_Controller {
 			"invoice_no"        =>  $invoice_s
 		);
 		
-		if($planID == 1)
+		if($planID == 1){
 			$this->db->where('id', $tableID);
               	$result = $this->db->update('fdDetail',$data);
-
-		if($planID == 2)
+}
+		if($planID == 2){
 			$this->db->where('id', $tableID);
               	$result = $this->db->update('rdDetail',$data);
-
-		if($planID == 3)
+}
+		if($planID == 3){
 			$this->db->where('id', $tableID);
               	$result = $this->db->update('npsDetail',$data);
-
-		if($planID == 4)
+}
+		if($planID == 4){
 		$this->db->where('id', $tableID);
               	$result = $this->db->update('misDetail',$data);
-
+}
+if($planID == 5){
+		$this->db->where('id', $tableID);
+              	$result = $this->db->update('loanDetail',$data);
+}
 		$this->db->insert("daybook", $daybookData);
 
 		redirect("premium/detail/$policyID", 'refresh');

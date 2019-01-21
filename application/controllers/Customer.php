@@ -2,6 +2,26 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Customer extends CI_Controller {
+    
+    function __construct()
+	{
+		parent::__construct();
+		$this->is_login();
+		
+	}
+	
+	function is_login(){
+		$is_login = $this->session->userdata('is_login');
+		$is_lock = $this->session->userdata('is_lock');
+		$logtype = $this->session->userdata('login_type');
+		if($is_login){
+			//echo $is_login;
+			redirect('/login/index', 'refresh');
+		}
+	
+	}	
+    
+    
 
 	public function getRank(){
 	$agentCode= 	$this->input->post("date1");
@@ -102,6 +122,7 @@ class Customer extends CI_Controller {
 					"branchID" 		=> $this->input->post('branchID'),
 					"committeeID" 	=> $this->input->post("committee"),
 					"name" 			=> $this->input->post('name'),
+					"joinerID"      => $this->input->post('agentCode'),
 					"fatherName" 	=> $this->input->post('fatherName'),
 					"motherName" 	=> $this->input->post('motherName'),
 					"dob" 			=> date('Y-m-d', strtotime($this->input->post('dob'))),
@@ -136,7 +157,7 @@ class Customer extends CI_Controller {
 				$config['upload_path'] = realpath(APPPATH . '../assets/images/customer');
 				// $config['allowed_types'] = 'gif|jpg|jpeg|png';
 				$config['max_size'] = '1024';
-				$config['allowed_types']  = 'gif|jpg|png';
+				$config['allowed_types']  = 'gif|jpg|png|bmp';
 				$config['file_name'] = "IMG".$customerID.'.'.substr(strrchr($_FILES['image']['name'],'.'),1);
 				$image = $config['file_name'];
 				$this->upload->initialize($config);
@@ -210,13 +231,14 @@ class Customer extends CI_Controller {
 					);
 
 					$daybookData = array(
-						"transactionType" 	=> "credit",
+						"transactionType" 	=> $this->input->post("planID") == 5 ? "debit" : "credit",
 						"source" 			=> "First Premium Amount"
 					);
 
 					$planID = $this->input->post('planID');
 
 					if($planID == 1):
+					    
 						$daybookData["amount"] = $this->input->post("investAmount-fd");
 						$investmentData["oneTimeInvestment"]= $this->input->post("investAmount-fd");
 						$investmentData["meturity"] 		= $this->input->post("meturtyAmount-fd");
@@ -343,6 +365,79 @@ class Customer extends CI_Controller {
 						);
 						$mistotMonth=$mistotMonth-1;
 					$this->db->insert("misDetail",$misinsertdata);	
+				}}
+				
+				elseif($planID == 5):
+				    $dayinc=0;
+				    $totmont = 0;
+						   $totyear = 0;
+						$daybookData["amount"] = $this->input->post("totalAmount-loan");
+						$amt = $this->input->post("totalAmount-loan");
+						$irate =  $this->input->post("appliedInterest-loan");
+						$mistotMonth = $this->input->post("totalInstalment-loan");
+						$dyu =$this->input->post("duration");
+					
+						if($dyu==1){
+						    $dayinc=1;
+						   $totmont =  ($mistotMonth*1)/30;
+						   $totyear =  $totmont/12;
+						}
+						if($dyu==2){
+						        $dayinc=7;
+						    $totmont =  ($mistotMonth*7)/30;
+						   $totyear =  $totmont/12;
+						}
+						if($dyu==3){
+						      $dayinc=15;
+						    $totmont =  ($mistotMonth*15)/30;
+						   $totyear =  $totmont/12;
+						}
+						if($dyu==4){
+						        $dayinc=30;
+						    $totmont =  ($mistotMonth*30)/30;
+						   $totyear =  $totmont/12;
+						}
+							echo $amt;
+						echo "<br>".$irate;
+						echo "<br>".$this->input->post("duration");
+						echo "<br>".$this->input->post("totalInstalment-loan");
+						echo "<br>".$totmont;
+						$irateofv = (($amt*$irate)/100)*$mistotMonth; 
+							echo "<br>".(($amt*$irate*$totmont)/(100*12));;
+						echo "<br>".$irateofv;
+						 $monthlyReturn = $irateofv/$mistotMonth;
+						$investmentData["oneTimeInvestment"] = $amt;
+						$investmentData["durationYear"]=$totyear;
+						$investmentData["durationMonth"]=$totmont;
+						$investmentData["monthlyReturn"] = $monthlyReturn;
+						$investmentData["meturity"] = $irateofv;
+						$investmentData["appliedIntrest"] = $this->input->post("appliedInterest-loan");
+						
+						$joindate	=	$this->input->post("joindate");
+						$datea = date("Y-m-d",strtotime($joindate));
+						
+						for($i=1; $i<13; $i++){
+							if($mistotMonth>0){
+							$datea = date('Y-m-d', strtotime("+$dayinc days", strtotime($datea)));
+						$misinsertdata = array(
+								'customerID'=>$customerID,
+								'policyID'=>$customerID,
+								'premiumAmount'=>$monthlyReturn,
+								'balancePremium'=>0,
+								'paid'=>0,
+								'should_paid'=>$datea,
+								'depositorName'=>"",
+								'payMode'=>"",
+								'lateFee'=>"",
+								'remark'=>"",
+								'paid_date'=>"",
+								'status'=>"Pending",
+								'remaining_months'=>$mistotMonth,
+								'invoice_slip'=>""
+						);
+						$mistotMonth=$mistotMonth-1;
+					$this->db->insert("loanDetail",$misinsertdata);
+					echo $datea;
 				}}
 					endif;
 					$this->db->insert("daybook", $daybookData);

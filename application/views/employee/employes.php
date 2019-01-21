@@ -25,12 +25,13 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>#</th>
-                          <th>Rank</th>
+                         
+                          <th>Employee Code</th>
                           <th>Name</th>
                           <th>Father</th>
                           <th>Status</th>
                           <th>Address</th>
+                           <th>Employee Post</th>
                           <th>Mobile</th>
                           <th>Email</th>
                           <th>Aadhar No</th>
@@ -43,11 +44,12 @@
                         <?php foreach ($employes as $key => $value): ?>
                           <tr>
                             <td><?= $value->id; ?></td>
-                            <td><?= $value->rank; ?></td>
+                           
                             <td><?= $value->name; ?></td>
                             <td><?= $value->fatherName; ?></td>
                             <td><?= $value->activeStatus == 1 ? 'Active' : 'Deactive'; ?></td>
                             <td><?= $value->address; ?></td>
+                            <td><?= $value->emp_designation; ?></td>
                             <td><?= $value->mobile; ?></td>
                             <td><?= $value->email; ?></td>
                             <td><?= $value->aadharNo; ?></td>

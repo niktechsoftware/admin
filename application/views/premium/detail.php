@@ -174,6 +174,11 @@
               	$result = $this->db->get('misDetail');
               	$detail = $result->result();
               }
+               if($planid->planID == 5){
+              	$this->db->where('customerID', $getdata->Customer_ID);
+              	$result = $this->db->get('loanDetail');
+              	$detail = $result->result();
+              }
               
               
               ?>
@@ -193,15 +198,19 @@
               		<td><?php echo $d->customerID;?></td>
               		<td><?php echo $d->premiumAmount;?></td>
               		<td><?php echo $d->should_paid;?></td>
-              		<td><?php if($d->status=="Paid"){?><a href="<?= base_url() ?>premium/printslip/<?= $d->invoice_slip ?>/<?php echo $planid->planID;?>.html" title="Collect Premium" class="btn btn-primary <?= $planid->planID == 5 ? 'disabled' : '' ?>">
+              		<td><?php if($d->status=="Paid"){?><a href="<?= base_url() ?>premium/printslip/<?= $d->invoice_slip ?>/<?php echo $planid->planID;?>.html" title="Collect Premium" class="btn btn-primary <?= $planid->planID == 6 ? 'disabled' : '' ?>">
                               <span class="icon icon-success icon-lg"><?php echo $d->invoice_slip; ?></span>
                             </a><?php }else{ 
                           
                              }?>
                              
                              </td>
-              		<td><?php if($d->status=="Pending"){?><a href="<?= base_url() ?>premium/collectpremium/<?= $d->id ?>/<?= $planid->planID ?>.html" title="Collect Premium" class="btn btn-primary <?= $planid->planID == 5 ? 'disabled' : '' ?>">
-                              <span class="icon icon-rupee icon-lg">Collect</span>
+              		<td><?php if($d->status=="Pending"){?><a href="<?= base_url() ?>premium/collectpremium/<?= $d->id ?>/<?= $planid->planID ?>.html" title="Collect Premium" class="btn btn-primary <?= $planid->planID == 6 ? 'disabled' : '' ?>">
+                              <span class="icon icon-rupee icon-lg"><?php if($planid->planID == 4){
+              echo "Pay";
+              }else{
+              echo "Collect";}?>
+              </span>
                             </a><?php }else{ 
                             echo $d->paid_date;
                              }?>

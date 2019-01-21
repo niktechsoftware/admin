@@ -21,6 +21,11 @@
               	$result = $this->db->get('misDetail');
               	$detail = $result->row();
               }
+              if($planid == 5){
+              	$this->db->where('id', $tableid);
+              	$result = $this->db->get('loanDetail');
+              	$detail = $result->row();
+              }
 			
 		
 		
@@ -69,7 +74,7 @@
                         <td>
                           <?=  $getdata->Customer_ID; ?>  
                           <input type="hidden" name="policyID" value="<?= $getdata->Customer_ID ?>">
-                          <input type="hidden" name="customerID" value="<?= $planid->id ?>">
+                          <input type="hidden" name="customerID" value="<?= $getdata->Customer_ID ?>">
                          
                             <input type="hidden" name="tableid" value="<?= $tableid ?>">
                           <input type="hidden" name="planID" value="<?php echo $planid->planID; ?>">
@@ -173,14 +178,17 @@
                     <option>- Select Code-</option>
                     
                     <?php $this->load->model('Agents');
+                    	
+    
                       foreach ($agents as  $value):
+                          
                         $userrow = $this->Agents->agentUsredata($value->loginID);?>
-                        <option value="<?php echo $value->id;?>"><?php echo $value->name."[".$userrow->username."]";?></option>
+                        <option value="<?php echo $value->id;?>" <?php if($value->id==$getdata->joinerID){echo 'selected="selected"';}?> ><?php echo $value->name."[".$userrow->username."]";?></option>
               <?php 
                       endforeach;
                     ?>
                     </select>
-                    <?= form_error('branchID'); ?>
+                  
                   </div></td>
  
 </tr>

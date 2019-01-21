@@ -204,13 +204,13 @@
 	                  <?= form_error('mother_title'); ?>
 	                </div>
 	                <div class="col-sm-3">
-	                  <input id="form-control-1" class="form-control" name="nominee_name" type="text" required="required" value="<?= set_value('nominee_name'); ?>">
+	                  <input id="form-control-40" class="form-control" name="nominee_name" type="text" required="required" value="<?= set_value('nominee_name'); ?>">
 	                  <?= form_error('nominee_name'); ?>
 	                </div>
 
-	                <label class="col-sm-2 control-label" for="form-control-2">Realtion</label>
+	                <label class="col-sm-2 control-label" for="form-control-2132">Realtion</label>
 	                <div class="col-sm-4">
-	                  <input id="form-control-213" class="form-control" name="nominee_relation" type="text" required="required" value="<?= set_value('nominee_relation'); ?>">
+	                  <input id="form-control-2132" class="form-control" name="nominee_relation" type="text" required="required" ">
 	                  <?= form_error('nominee_relation'); ?>
 	                </div>
 	              </div>
@@ -230,16 +230,16 @@
 	                  	<?= form_error('nominee_gender'); ?>
 	                </div>
 
-	                <label class="col-sm-2 control-label" for="form-control-2">Full Address</label>
+	                <label class="col-sm-2 control-label" for="form-control-42">Full Address</label>
 	                <div class="col-sm-4">
-	                  <input id="form-control-2" class="form-control" name="nominee_full_address" type="text" required="required" value="<?= set_value('nominee_full_address'); ?>">
+	                  <input id="form-control-42" class="form-control" name="nominee_full_address" type="text" required="required" value="<?= set_value('nominee_full_address'); ?>">
 	                  <?= form_error('nominee_full_address'); ?>
 	                </div>
 	              </div>
 
 	              <div class="form-group">
 
-	              	<label class="col-sm-2 control-label" for="form-control-2">Contact</label>
+	              	<label class="col-sm-2 control-label" for="form-control-212">Contact</label>
 	                <div class="col-sm-4">
 	                  <input id="form-control-212" class="form-control" name="nominee_contact" type="text" required="required" value="<?= set_value('nominee_contact'); ?>">
 	                  <?= form_error('nominee_contact'); ?>
@@ -247,7 +247,7 @@
 
 	                <label class="col-sm-2 control-label" for="form-control-18">Signature</label>
 	                <div class="col-sm-4">
-	                  <input id="form-control-18" class="form-control" name="nominee_signature" type="file" required="required">
+	                  <input id="form-control-41" class="form-control" name="nominee_signature" type="file" required="required">
 	                  <?= form_error('nominee_signature'); ?>
 	                </div>
 
@@ -292,15 +292,15 @@
 
 	                  <div class="form-group">
 
-		              	<label class="col-sm-2 control-label" for="form-control-2">Address</label>
+		              	<label class="col-sm-2 control-label" for="form-control-43">Address</label>
 		                <div class="col-sm-4">
-		                  <input id="form-control-2" class="form-control" name="guarantor_address" type="text" required="required" value="<?= set_value('guarantor_address'); ?>">
+		                  <input id="form-control-43" class="form-control" name="guarantor_address" type="text" required="required" value="<?= set_value('guarantor_address'); ?>">
 		                  <?= form_error('guarantor_address'); ?>
 		                </div>
 
 		                <label class="col-sm-2 control-label" for="form-control-18">Aadhar Number</label>
 		                <div class="col-sm-4">
-		                  <input id="form-control-2" class="form-control" name="guarantor_aadhar_no" type="text" required="required" value="<?= set_value('guarantor_aadhar_no'); ?>">
+		                  <input id="form-control-44" class="form-control" name="guarantor_aadhar_no" type="text" required="required" value="<?= set_value('guarantor_aadhar_no'); ?>">
 		                  <?= form_error('guarantor_aadhar_no'); ?>
 		                </div>
 
@@ -309,9 +309,9 @@
 
 
 
-<div class="divider divider-horizontal">
-                  <div class="divider-content text-primary"><h4>AGENT DETAIL</h4></div>
-                </div>
+                    <div class="divider divider-horizontal">
+                      <div class="divider-content text-primary"><h4>AGENT DETAIL</h4></div>
+                    </div>
 
 	              <div class="form-group">
 	                 <label class="col-sm-2 control-label" for="form-control-20">Agent Code</label>
@@ -321,7 +321,7 @@
 	                	<?php $this->load->model('Agents');
 	                		foreach ($agents as  $value):
 	                			$userrow = $this->Agents->agentUsredata($value->loginID);?>
-	                			<option value="<?php echo $value->id;?>"><?php echo $value->name."[".$userrow->username."]";?></option>
+	                			<option value="<?php echo $value->id;?>"><?php echo $value->name."[".$value->agent_id."]";?></option>
 							<?php	
 	                		endforeach;
 	                	?>
@@ -543,15 +543,37 @@
 		              </div>
 		              
 	              </span>
+	              
+	              <span id="loan" style="display: none;">
 
+		              <div class="form-group">
+		                <label class="col-sm-2 control-label" for="planDuration">Total Amount Taken</label>
+		                <div class="col-sm-4">
+			                <input id="totalAmountLoan" class="form-control" name="totalAmount-loan" type="text" />
+		                </div>
 
+		                <label class="col-sm-2 control-label" for="form-control-36">Total Instalment</label>
+		                <div class="col-sm-4">
+			                <!-- <input id="totalInstalmentLoan" readonly="true" class="form-control" name="totlaInstalment" type="text"/> -->
+			                <select id="totalInstalmentLoan" class="form-control" name="totalInstalment-loan" onchange="getInterestValue(this.value)"></select>
+		                </div>
+		              </div>
 
+		              <div class="form-group">
 
-
-  
-
-
-
+		                <label class="col-sm-2 control-label" for="form-control-34">Applied Interest Rate</label>
+		                <div class="col-sm-4">
+		                	<input id="interestLoan" readonly="true" name="appliedInterest-loan" class="form-control" type="text">
+		                </div>
+		                
+		                <label class="col-sm-2 control-label" for="form-control-34">Late Fee</label>
+		                <div class="col-sm-4">
+		                	<input id="lateFeeLoan" readonly="true" name="lateFee" class="form-control" type="text">
+		                </div>
+		                
+		              </div>
+		              
+	              </span>
 
 	              
 	              <div class="divider divider-horizontal">
@@ -612,143 +634,144 @@
 	}
 
 	function getPlan(planID) {
-		if(planID == '5')
-			$("#guarantor").removeAttr("style")
-		else {
-			$("#guarantor").css("display", "none")
+		$.ajax({
+			url: '<?= site_url() ?>plans.html',
+			method: "POST",
+			data: {id: planID},
+			success: function(data){
 
-			$.ajax({
-				url: '<?= site_url() ?>plans.html',
-				method: "POST",
-				data: {id: planID},
-				success: function(data){
+				let durationFlag = false
 
-					let durationFlag = false
+				$(`#planDetail`).val(data)
 
-					$(`#planDetail`).val(data)
+				if(planID == '1')
+					$("#fd").removeAttr("style")
+				else
+					$("#fd").css("display", "none")
 
-					if(planID == '1')
-						$("#fd").removeAttr("style")
-					else
-						$("#fd").css("display", "none")
+				if(planID == '2')
+					$("#rd").removeAttr("style")
+				else
+					$("#rd").css("display", "none")
 
-					if(planID == '2')
-						$("#rd").removeAttr("style")
-					else
-						$("#rd").css("display", "none")
+				if(planID == '3'){
+					$("#nps").removeAttr("style")
+					$("#durationTitle").html("Policy Age")
 
-					if(planID == '3'){
-						$("#nps").removeAttr("style")
-						$("#durationTitle").html("Policy Age")
+					let dob = $("#form-control-4").val()
+					if(dob == ''){
+						alert("Please provide (Date of Birth)-DOB first.")
+						$("#form-control-4").focus()
 
-						let dob = $("#form-control-4").val()
-						if(dob == ''){
-							alert("Please provide (Date of Birth)-DOB first.")
-							$("#form-control-4").focus()
+						$("#nps").css("display", "none")
+						$("#durationTitle").html("Duration")
+						$("#demo-select2-3").val($("#demo-select2-3 option:first").val())
 
+						durationFlag = true
+					}
+					else {
+						dob = dob.split("-")
+						const getAge = birthDate => Math.floor((new Date() - new Date(birthDate).getTime()) / 31556925994)
+						let age = getAge(`${dob[2]}-${dob[1]}-${dob[0]}`)
+						$("#investerAge").val(age) // 23
+
+						if(parseInt(age) < 18) {
+							alert("Candidate must be adult, age grater then 18.")
 							$("#nps").css("display", "none")
 							$("#durationTitle").html("Duration")
 							$("#demo-select2-3").val($("#demo-select2-3 option:first").val())
-
 							durationFlag = true
 						}
-						else {
-							dob = dob.split("-")
-							const getAge = birthDate => Math.floor((new Date() - new Date(birthDate).getTime()) / 31556925994)
-							let age = getAge(`${dob[2]}-${dob[1]}-${dob[0]}`)
-							$("#investerAge").val(age) // 23
-
-							if(parseInt(age) < 18) {
-								alert("Candidate must be adult, age grater then 18.")
-								$("#nps").css("display", "none")
-								$("#durationTitle").html("Duration")
-								$("#demo-select2-3").val($("#demo-select2-3 option:first").val())
-								durationFlag = true
-							}
-						}
-
-					}
-					else{
-						$("#nps").css("display", "none")
-						$("#durationTitle").html("Duration")
-					}
-
-					if(planID == '4')
-						$("#mip").removeAttr("style")
-					else
-						$("#mip").css("display", "none")
-
-					if(planID == '3'){
-						let options = `<option value="">-select Duration-</option>`
-						let age = $("#investerAge").val()
-						age = parseInt(age)
-
-						if(parseInt(age) < 18){
-							options += ``
-						}
-						else if(age >= 18 && age <= 25) {
-							if(age == 25){
-								options += `<option value="35">35</option><option value="42">42</option>`
-							}
-							else {
-								options += `<option value="42">42</option>`
-							}
-						}
-						else if(age >= 25 && age <= 30) {
-							if(age == 30){
-								options += `<option value="30">30</option><option value="35">35</option>`
-							}
-							else {
-								options += `<option value="35">35</option>`
-							}
-						}
-						else if(age >= 30 && age <= 35) {
-							if(age == 35){
-								options += `<option value="25">25</option><option value="30">30</option>`
-							}
-							else {
-								options += `<option value="30">30</option>`
-							}
-						}
-						else if(age >= 35 && age <= 40) {
-							if(age == 40){
-								options += `<option value="20">20</option><option value="25">25</option>`
-							}
-							else {
-								options += `<option value="25">25</option>`
-							}
-						}
-						else if(age >= 40 && age <= 45) {
-							if(age == 45){
-								options += `<option value="10">10</option><option value="20">20</option>`
-							}
-							else {
-								options += `<option value="20">20</option>`
-							}
-						}
-						else if(age >= 45 && age <= 50) {
-								options += `<option value="10">10</option>`
-						}
-						else {
-							options += `<option value="">Not eligble for plan, you are over-age.</option>`
-						}
-
-						let select = `<select id="demo-select2-4" class="form-control" name="duration" onchange='getAppliedInterestRate(this.value);'>${options}</select>`
-						$(`#durationSelect`).html(select)
-
-						if(durationFlag)
-							$(`#durationSelect`).html('')
-					}
-					else {
-						let options = `<option value="">-select Duration-</option>`
-						options += JSON.parse(data).result.map(val => { return `<option value='${val.duration}'>${val.duration} Years</option>` }).join("")
-						let select = `<select id="demo-select2-4" class="form-control" name="duration" onchange='getAppliedInterestRate(this.value);'>${options}</select>`
-						$(`#durationSelect`).html(select)
 					}
 
 				}
-			})
-		}
+				else{
+					$("#nps").css("display", "none")
+					$("#durationTitle").html("Duration")
+				}
+				
+				
+				if(planID == '5')
+					$("#loan").removeAttr("style")
+				else
+					$("#loan").css("display", "none")
+
+				if(planID == '3'){
+					let options = `<option value="">-select Duration-</option>`
+					let age = $("#investerAge").val()
+					age = parseInt(age)
+
+					if(parseInt(age) < 18){
+						options += ``
+					}
+					else if(age >= 18 && age <= 25) {
+						if(age == 25){
+							options += `<option value="35">35</option><option value="42">42</option>`
+						}
+						else {
+							options += `<option value="42">42</option>`
+						}
+					}
+					else if(age >= 25 && age <= 30) {
+						if(age == 30){
+							options += `<option value="30">30</option><option value="35">35</option>`
+						}
+						else {
+							options += `<option value="35">35</option>`
+						}
+					}
+					else if(age >= 30 && age <= 35) {
+						if(age == 35){
+							options += `<option value="25">25</option><option value="30">30</option>`
+						}
+						else {
+							options += `<option value="30">30</option>`
+						}
+					}
+					else if(age >= 35 && age <= 40) {
+						if(age == 40){
+							options += `<option value="20">20</option><option value="25">25</option>`
+						}
+						else {
+							options += `<option value="25">25</option>`
+						}
+					}
+					else if(age >= 40 && age <= 45) {
+						if(age == 45){
+							options += `<option value="10">10</option><option value="20">20</option>`
+						}
+						else {
+							options += `<option value="20">20</option>`
+						}
+					}
+					else if(age >= 45 && age <= 50) {
+							options += `<option value="10">10</option>`
+					}
+					else {
+						options += `<option value="">Not eligble for plan, you are over-age.</option>`
+					}
+
+					let select = `<select id="demo-select2-4" class="form-control" name="duration" onchange='getAppliedInterestRate(this.value);'>${options}</select>`
+					$(`#durationSelect`).html(select)
+
+					if(durationFlag)
+						$(`#durationSelect`).html('')
+				}
+				else if(planID == '5'){
+				    let options = `<option value="">-Select Plan-</option>`;
+				    options += JSON.parse(data).result.map(val => { return `<option value='${val.id}'>${val.name}</option>` }).join("");
+				    let select = `<select id="demo-select2-4" class="form-control" name="duration" onchange='getAppliedInterestRate(this.value);'>${options}</select>`;
+					$(`#durationSelect`).html(select);
+				}
+				else {
+					let options = `<option value="">-select Duration-</option>`
+					options += JSON.parse(data).result.map(val => { return `<option value='${val.duration}'>${val.duration} Years</option>` }).join("")
+					let select = `<select id="demo-select2-4" class="form-control" name="duration" onchange='getAppliedInterestRate(this.value);'>${options}</select>`
+					$(`#durationSelect`).html(select)
+				}
+
+			}
+		})
 	}
 
 	function getperMonthAmount(plan) {
@@ -819,7 +842,31 @@
 				$("#form-control-33").val( ((investAmount * parseFloat(appliedInterest)) / 100) + investAmount )
 			}
 		}
+		
+		if(plan == '5') {
+		    let intrestRate = planData.result.filter(val => { return val.id == duration });
+		    console.log(intrestRate);
+		    $('#lateFeeLoan').val(intrestRate[0].lateFee);
+		    let options = JSON.parse(intrestRate[0].instalments);
+		    
+		    options = options.map(val => { return `<option value='${val.instalment}'>${val.instalment}</option>` });
+		    
+		    $('#totalInstalmentLoan').html(`<option value=''>-select instalment-</option>\n` + options.join('\n'));
+            
+		}
 
+	}
+	
+	function getInterestValue(valu) {
+	    let planData = JSON.parse(document.getElementById(`planDetail`).value);
+	    let duration = $('#demo-select2-4').val();
+	    let intrestRate = planData.result.filter(val => { return val.id == duration });
+	    let options = JSON.parse(intrestRate[0].instalments);
+	    valu = $('#totalInstalmentLoan').val();
+	    let intres = options.filter(val => { 
+	        return val.instalment == valu
+	    });
+	    $('#interestLoan').val(intres[0].interest);
 	}
 
 	function misCalculation(investAmount) {

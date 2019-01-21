@@ -19,6 +19,23 @@
 	          <div class="demo-form-wrapper">
 	            <form  id="demo-inputmask" class="form form-horizontal" method="post" enctype="multipart/form-data">
 
+		<div class="form-group">
+	                <label class="col-sm-2 control-label" for="form-control-1">Employee Post</label>
+	                <div class="col-sm-4">
+	                  <select class="form-control" name="emp_designation" required="required">
+	                  	<option>-Select Post-</option>
+	                  	<?php foreach ($post as $key => $value) {
+	                  		$sel = set_value('category') == $value ? " selected" : "";
+	                  		echo '<option value="'.$value.'" '.$sel.'>'.$value.'</option>';
+	                  	}
+	                  	?>
+	                  </select>
+	                </div>
+
+	                
+	              </div>
+
+
 	              <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-1">Name</label>
 	                <div class="col-sm-4">
@@ -166,19 +183,7 @@
 	                 
 	                </div>
 
-	                <label class="col-sm-2 control-label" for="form-control-1">Rank</label>
-	                <div class="col-sm-4">
-	                  <select class="form-control" name="rank" required="required">
-	                  	<option>-Select Rank-</option>
-	                  	<?php foreach ($rank as $key => $value) {
-	                  		$sel = set_value('rank') == $value->id ? " selected" : "";
-	                  		echo '<option value="'.$value->id.'" '.$sel.'>'.$value->id.'</option>';
-	                  	}
-	                  	?>
-	                  </select>
-	                  <?= form_error('rank'); ?>
-	                </div>
-
+	                
 	                
 	              </div>
 

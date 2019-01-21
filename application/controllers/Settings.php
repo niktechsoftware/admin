@@ -2,6 +2,23 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Settings extends CI_Controller {
+     function __construct()
+	{
+		parent::__construct();
+		$this->is_login();
+		
+	}
+	
+	function is_login(){
+		$is_login = $this->session->userdata('is_login');
+		$is_lock = $this->session->userdata('is_lock');
+		$logtype = $this->session->userdata('login_type');
+		if($is_login){
+			//echo $is_login;
+			redirect('/login/index', 'refresh');
+		}
+	
+	}
 
 	public function financial() {
 		$data['title'] = 'Financial Year';
@@ -184,9 +201,24 @@ class Settings extends CI_Controller {
 				$this->load->view('layout', $data);
 
 		    else:
+		        
+		        
 
 		    	$this->load->model("branch");
 		    	if($this->branch->setBranch($this->input->post())):
+		    	    	$this->load->model("auth/logintable");
+				       $this->db->where("title",$this->input->post("title"));
+				       $st = $this->db->get("branch")->row();
+
+				$loginData = array(
+					"branchID" 	=> $st->id,
+					"roleID" 	=> 1,
+					"isAdmin" 	=> 0,
+					"username" 	=> "branch".$st->id,
+					"password" 	=> sha1(123456)
+				);
+
+				$loginID = $this->logintable->setLogin($loginData);
 		    		redirect(base_url().'branches.html');
 		    	else:
 		    		redirect(base_url().'branches/false');

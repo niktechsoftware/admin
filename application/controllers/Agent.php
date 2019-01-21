@@ -2,6 +2,96 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Agent extends CI_Controller {
+    
+     function __construct()
+	{
+		parent::__construct();
+		$this->is_login();
+		
+	}
+	
+	function is_login(){
+		$is_login = $this->session->userdata('is_login');
+		$is_lock = $this->session->userdata('is_lock');
+		$logtype = $this->session->userdata('login_type');
+		if($is_login){
+			//echo $is_login;
+			redirect('/login/index', 'refresh');
+		}
+	
+	}
+    
+    public	function aCommission(){
+	    	$this->load->model("agents");
+		$data['agents'] = $this->agents->getAllAgents();
+		$data['title'] = 'All Agents';
+		$data['body'] = 'agent/agentDetails';
+		$this->load->view('layout',$data);
+	}
+	
+	function personalAmount(){
+	    $agentID = $this->uri->segment(3);
+	    
+	    $data['comission_id']=$agentID;
+	    	$data['title'] = 'Agents Personal Comission';
+		$data['body'] = 'agent/agentComissionD';
+		$this->load->view('layout',$data);
+	}
+	
+	function personalAmountPay(){
+	    $agentID = $this->uri->segment(3);
+	    $data['comission_id']=$agentID;
+	    	$data['title'] = 'Agents Personal Comission';
+		$data['body'] = 'agent/agentComissionPay';
+		$this->load->view('layout',$data);
+	}
+	function payComission(){
+	   $aid =  $this->input->post("aid");
+	   $dipositorName = $this->input->post("dipositorName");
+	   $source = $dipositorName." Pay Comission";
+	   $amount=$this->input->post("totalAmount");
+	   $paydate = $this->input->post("payDate");
+	   $id =$this->input->post("id");
+	   
+	   $redy = 	$this->db->get("daybook");
+	   $ins = $redy->num_rows();
+	   $invoice_s = $id."PayC".$ins;
+	   
+	   $data = array(
+	       'customer_ID'       =>$aid,
+	       'amount'            =>$amount,
+	       'transactionType'   =>"debit",
+	       'source'            =>$source,
+	       'updated'           =>date ("y-m-d H:i:s",strtotime($paydate)),
+	       'created'           =>date("y-m-s H:i:s"),
+	       'invoice_no'        =>$invoice_s
+	       
+	   );
+	   
+	   if($this->db->insert("daybook",$data)){
+	       redirect(base_url().'agent/printPaySlip/'.$invoice_s);
+	   }else{
+	       echo "wrong";
+	   }
+	   
+	}
+	
+	public function printPaySlip(){
+	    $invoiceno =$this->uri->segment(3);
+	    //echo $invoiceno;
+	    
+	    $invoiceno =$this->uri->segment(3);
+	   // $planID = $this->uri->segment(4);
+	    
+	    
+	    
+	    $data = array(
+	        'invoiceno' => $invoiceno,
+	       // "planID" => $planID,
+	        'title' => 'Policy Slip'
+	    );
+	    $this->load->view('agent/printSlip',$data);
+	}
 
 	public function newAgent() {
 		if ($this->input->server('REQUEST_METHOD') == 'GET') {
@@ -13,6 +103,7 @@ class Agent extends CI_Controller {
 
 			$data['category'] = ['GEN','OBC','SC','ST','OTHER'];
 			$data['gender'] 	= ['MALE','FEMALE','OTHER'];
+				$data['meritalr'] 	= ['Married','Unmarried','OTHER'];
 			$data['isAdmin'] 	= array("NO" => 0, "YES" => 1);
 			$data['branch']		= $branch;
 			$data['rank']	= $rank;
@@ -36,43 +127,16 @@ class Agent extends CI_Controller {
 				);
 
 				$loginID = $this->logintable->setLogin($loginData);
-
+                                $this->db->select('id');
+                                $this->db->from('agent');
+                                $this->db->order_by('id', 'DESC');
+                                $this->db->limit('1');
+                               $tr =  $this->db->get()->row()->id;
+                               $rtyid=5000+$tr+1;
+                               $tryuo = "jmd".$rtyid;
 				$employeData = array(
-					
-<<<<<<< HEAD
-					"loginID" 		=> $loginID,
-					"branchID" 		=> $this->input->post('branchID'),
-					"name" 			=> $this->input->post('name'),
-					"fatherName" 	=> $this->input->post('fatherName'),
-					
-					"dob" 			=> $this->input->post('dob'),
-					"gender" 		=> $this->input->post('gender'),
-					
-					"qualification" => $this->input->post('qualification'),
-					"activeStatus" 	=> 1,
-					"present_address" => $this->input->post('present_address'),
-				    "permanent_address"=> $this->input->post('permanent_address'),
-					"city" 			=> $this->input->post('city'),
-					"state" 		=> $this->input->post('state'),
-					"pin" 			=> $this->input->post('pin'),
-					
-					"nominee_mobile" => $this->input->post('nominee_mobile'),
-					"mobile" 		=> $this->input->post('mobile'),
-					
-					"aadharNo" 		=> $this->input->post('aadharNo'),
-					
-				    "nominee" 		=> $this->input->post('nominee'),
-				    "nominee_age" 	=> $this->input->post('nominee_age'),
-				    "relation" 		=> $this->input->post('relation'),
-				    "rank" 			=> $this->input->post('rank'),
-				    "nationality" 	=> $this->input->post('nationality'),
-				    "experience" 	=> $this->input->post('experience'),
-				    "occupation" 	=> $this->input->post('occupation'),
-				    "marital_status"=> $this->input->post('marital_status'),
-				    "email"=> $this->input->post('email')
-				    
-				    
-=======
+					"agent_id"          =>$tryuo,
+                    "introducer_code"   =>$this->input->post("agentCode"),
 					"loginID" 		    => $loginID,
 					"branchID" 		    => $this->input->post('branchID'),
 					"name" 			    => $this->input->post('name'),
@@ -80,30 +144,30 @@ class Agent extends CI_Controller {
 					"dob" 			    => $this->input->post('dob'),
 					"gender" 		    => $this->input->post('gender'),
 					"marital_status"    => $this->input->post('marital_status'),
-					"category" 		    => $this->input->post('category'),
+				
 					"qualification"     => $this->input->post('qualification'),
 					"occupation"        => $this->input->post('occupation'),
 					"activeStatus" 	    => 1,
 					"present_address"   => $this->input->post('present_address'),
-					"parmanent_address" => $this->input->post('parmanent_address'),
+				"permanent_address"     =>$this->input->post('permanent_address'),
 					"city" 			    => $this->input->post('city'),
 					"state" 		    => $this->input->post('state'),
 					"nationality"       => $this->input->post('nationality'),
-					"religion"          => $this->input->post('religion'),
+					
 					"experience"        => $this->input->post('experience'),
 					"pin" 			    => $this->input->post('pin'),
-					"country" 		    => $this->input->post('country'),					
+							
 					"mobile" 		    => $this->input->post('mobile'),
 					"email" 		    => $this->input->post('email'),
 					"aadharNo" 		    => $this->input->post('aadharNo'),
-					"rank" 			    => $this->input->post('rank'),
+					"rank" 			    => 1,
 					"nominee" 	        => $this->input->post('nominee'),
 					"nominee_age" 	    => $this->input->post('nominee_age'),
 					"nominee_mobile"    => $this->input->post('nominee_mobile'),
-					"relation"          => $this->input->post('relation'),
+				    "relation"              =>$this->input->post('relation'),
 					"nominee_gender"    => $this->input->post('nominee_gender')
 					
->>>>>>> 759d172ddc88269c51b766ad623e3cd762295d28
+
 				);
 				$employeeID = $this->agents->setAgent($employeData);
 				$this->load->library('upload');
@@ -212,7 +276,7 @@ class Agent extends CI_Controller {
 		$loginDetail = $this->logintable->getLogin($employee->loginID);
 	
 	
-	
+		$data['meritalr'] 	= ['Married','Unmarried','OTHER'];
 		$data['employee'] = $employee;
 		//$data['planDetail'] = $planDetail;
 		//$data['commiteeDetail'] = $commiteeDetail;
@@ -237,7 +301,7 @@ class Agent extends CI_Controller {
 		$branchDetail = $this->branch->getBranchID($employee->branchID);
 	
 	
-	
+		$data['meritalr'] 	= ['Married','Unmarried','OTHER'];
 		$this->load->model("auth/logintable");
 		$loginDetail = $this->logintable->getLogin($employee->loginID);
 		
@@ -261,23 +325,35 @@ class Agent extends CI_Controller {
 				
 				"branchID" 		=> $this->input->post('branchID'),
 				"name" 			=> $this->input->post('name'),
-				"fatherName" 	=> $this->input->post('fatherName'),
-				"motherName" 	=> $this->input->post('motherName'),
-				"dob" 			=> $this->input->post('dob'),
-				"gender" 		=> $this->input->post('gender'),
-				"category" 		=> $this->input->post('category'),
-				"qualification" => $this->input->post('qualification'),
-				"activeStatus" 	=> 1,
-				"address" 		=> $this->input->post('address'),
-				"city" 			=> $this->input->post('city'),
-				"state" 		=> $this->input->post('state'),
-				"pin" 			=> $this->input->post('pin'),
-				"country" 		=> $this->input->post('country'),
-				"phone" 		=> $this->input->post('phone'),
-				"mobile" 		=> $this->input->post('mobile'),
-				"email" 		=> $this->input->post('email'),
-				"aadharNo" 		=> $this->input->post('aadharNo'),
-				"rank" 			=> $this->input->post('rank')
+				
+					"fatherName" 	    => $this->input->post('fatherName'),
+					"dob" 			    => $this->input->post('dob'),
+					"gender" 		    => $this->input->post('gender'),
+				
+				
+					"qualification"     => $this->input->post('qualification'),
+					"occupation"        => $this->input->post('occupation'),
+					"activeStatus" 	    => 1,
+					"present_address"   => $this->input->post('present_address'),
+				
+					"city" 			    => $this->input->post('city'),
+					"state" 		    => $this->input->post('state'),
+					"nationality"       => $this->input->post('nationality'),
+					"permanent_address"     =>$this->input->post('permanent_address'),
+					"experience"        => $this->input->post('experience'),
+					"pin" 			    => $this->input->post('pin'),
+							
+					"mobile" 		    => $this->input->post('mobile'),
+					"email" 		    => $this->input->post('email'),
+					"aadharNo" 		    => $this->input->post('aadharNo'),
+					"rank" 			    => 1,
+					"nominee" 	        => $this->input->post('nominee'),
+					"nominee_age" 	    => $this->input->post('nominee_age'),
+					"nominee_mobile"    => $this->input->post('nominee_mobile'),
+				    "relation"              =>$this->input->post('relation')
+				
+				
+				
 		);
 		
 		$employeeID=$this->input->post("employeeID");
@@ -312,7 +388,7 @@ class Agent extends CI_Controller {
 					"signature"	=> $siganture
 			);
 			
-			$ft = $this->employe->updateEmployee($employeeID, $dataImage);
+			$ft = $this->agents->updateAgent($employeeID, $dataImage);
 		}
 		if($_FILES['idProof']['name'] !=""){
 		$config['file_name'] = "PROOF".$employeeID.'.'.substr(strrchr($_FILES['idProof']['name'],'.'),1);
@@ -327,9 +403,9 @@ class Agent extends CI_Controller {
 		}
 		
 		if($ft):
-		redirect(base_url().'employes.html');
+		redirect(base_url().'agents.html');
 		else :
-		redirect(base_url().'employes/false');
+		redirect(base_url().'agents/false');
 		endif;
 	}
 

@@ -39,6 +39,9 @@
               <input id="password" class="form-control" type="password" name="password" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Please enter your password." required>
             </div>
             <div class="form-group">
+                <?php if(!$this->session->flashdata('isAuth')): ?>
+                    <strong class="text-danger">Wrong userID or password.</strong>
+                <?php endif; ?>
               <a href="<?= base_url() ?>login/forget.html">Forgot password?</a>
             </div>
             <button class="btn btn-primary btn-block" type="submit">Sign in</button>

@@ -12,7 +12,7 @@
 	              Back
 	            </a>
 	          </div>
-	          <strong>New Employee</strong>
+	          <strong>New Agent</strong>
 	        </div>
 	        <div class="card-body">
 	          
@@ -25,12 +25,12 @@
 	                <div class="col-sm-4">
 	                      <?php $agentl = $this->db->get("agent");
 	                    if($agentl->num_rows()>0){?>
-	                           <select class="form-control" name="gender" required="required">
+	                           <select class="form-control" name="agentCode" required="required">
 	                  	<option>-Select Agent Code-</option>
 	                  	<?php foreach ($agentl->result() as $key ) :
 	                  	$this->db->where("id",$key->id);
 	                  $row = 	$this->db->get("login")->row();?>
-	                  	<option value="<?php echo $key->id;?>" ><?php echo $key->name."[".$row->username."]"; ?></option>
+	                  	<option value="<?php echo $key->id;?>" ><?php echo $key->name."[".$key->agent_id."]"; ?></option>
 	                  <?php endforeach;
 	                  	?>
 	                  </select>
@@ -43,11 +43,12 @@
 	                  
 	                </div>
 
-	                <label class="col-sm-2 control-label" for="form-control-1">Rank</label>
+	               <!-- <label class="col-sm-2 control-label" for="form-control-1">Rank</label>
 	                <div class="col-sm-4">
-	                  <input id="form-control-1" class="form-control" name="fatherName" type="text" required="required" value="<?= set_value('fatherName'); ?>">
+	                  <input id="form-control-1" class="form-control" name="fatherName" type="hidden" required="required" value="<?= set_value('fatherName'); ?>">
 	                  
 	                </div>
+	                -->
 	              </div>
 	              
 	              
@@ -95,7 +96,7 @@
                     <div class="col-sm-4">
 	                  <select class="form-control" name="marital_status" required="required">
 	                  	<option>-Select Marital Status-</option>
-	                  	<?php foreach ($gender as $key => $value) {
+	                  	<?php foreach ($meritalr as $key => $value) {
 	                  		$sel = set_value('marital_status') == $value ? " selected" : "";
 	                  		echo '<option value="'.$value.'" '.$sel.'>'.$value.'</option>';
 	                  	}
@@ -104,11 +105,6 @@
 	                  <?= form_error('marital_status'); ?>
 	                </div>
 
-	                
-	                
-	             
-
-	             
 	                <label class="col-sm-2 control-label" for="form-control-1">Educational Qualification</label>
 	                <div class="col-sm-4">
 	                  <input id="form-control-1" class="form-control" name="qualification" type="text" required="required" value="<?= set_value('qualification'); ?>">
@@ -207,14 +203,14 @@
 	                </div>
 	                 <label class="col-sm-2 control-label" for="form-control-1">Nominee Contact no.</label>
 	                <div class="col-sm-4">
-	                  <input id="form-control-1" class="form-control" type="text" name="nominee_mobile" minlength="10" maxlength="10" required="required" title="Phone Number accepts 10 Numbers." pattern="[0-9]{10}" value="<?= set_value('mobile'); ?>">
-	                  <?= form_error('nominee_mobile'); ?>
+	                  <input id="form-control-1" class="form-control" type="text" name="nominee_mobile" >
+	                  
 	                </div>
 	               </div>
 	                <div class="form-group">
 	                 <label class="col-sm-2 control-label" for="form-control-1">Relation</label>
 	                <div class="col-sm-4">
-	                  <input id="form-control-1" class="form-control" type="text" name="relation" required="required" title="Phone Number accepts 10 Numbers." pattern="[0-9]{10}" value="<?= set_value('mobile'); ?>">
+	                  <input id="form-control-1" class="form-control" type="text" name="relation" required="required"  >
 	                  <?= form_error('relation'); ?>
 	                </div>
 	        

@@ -35,8 +35,10 @@
                           <th>Fax</th>
                           <th>Mobile</th>
                           <th>Email</th>
+                            <th>Username</th>
                           <!-- <th>FSD</th> -->
                           <th>Created</th>
+                          
                         </tr>
                       </thead>
                       <tbody>
@@ -52,6 +54,9 @@
                             <td><?= $value->fax; ?></td>
                             <td><?= $value->mobile; ?></td>
                             <td><?= $value->email; ?></td>
+                            <?php $this->db->where("branchID",$value->id);
+                            $uname = $this->db->get("login")->row();?>
+                              <td><?= $uname->username; ?></td>
                             <td><?= $value->created; ?></td>
                           </tr>
                         <?php endforeach; ?>
