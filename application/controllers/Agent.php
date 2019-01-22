@@ -214,7 +214,13 @@ class Agent extends CI_Controller {
 				);
 				$this->agents->updateAgent($employeeID, $dataImage);
 				if ($employeeID):
-			        redirect(base_url().'agents.html');
+				$username 	= $this->input->post('username');
+				$password 	= $this->input->post('password');
+				$mobile = $this->input->post('mobile');
+				$msg = "Welcome to JMD Finance Pvt. Ltd. Your Agent Userid=".$username." And Password = ".$password." Please Keep Your LoginID and Password secret.";
+			    $this->load->helper("sms");
+			    sms($mobile,$msg);
+				redirect(base_url().'agents.html');
 				else :
 			        redirect(base_url().'agents/false');
 				endif;

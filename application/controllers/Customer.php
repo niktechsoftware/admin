@@ -443,6 +443,12 @@ class Customer extends CI_Controller {
 					$this->db->insert("daybook", $daybookData);
 					$this->load->model("investmentDetail");
 					if ($this->investmentDetail->setDetail($investmentData)):
+					$username 	= $this->input->post('username');
+					$password 	= $this->input->post('password');
+					$mobile = $this->input->post('mobile');
+					$msg = "Welcome to JMD Finance Pvt. Ltd. Your Customer Userid=".$username." And Password = ".$password." Please Keep Your LoginID and Password secret.";
+					$this->load->helper("sms");
+					sms($mobile,$msg);
 				        redirect(base_url().'customers.html');
 					else :
 				        redirect(base_url().'customers/false');
