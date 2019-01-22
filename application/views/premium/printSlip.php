@@ -52,7 +52,7 @@
 	<body>
 	    	<?php     
 	    		
-	    	
+	    	$nextInstall='0000-00-00';
 	    	 if($planID == 1){
               	$this->db->where('invoice_slip', $invoiceno);
               	$result = $this->db->get('fdDetail');
@@ -66,7 +66,12 @@
               	$result = $this->db->get('rdDetail');
               	$detail = $result->row();
               	
-              	
+              	$this->db->where('customerID', $getdata->Customer_ID);
+              	$this->db->where('status', 'Pending');
+              	$this->db->order_by('id', 'ASC');
+              	$this->db->limit('1');
+              	$nextInstall = $this->db->get("rdDetail")->row();
+              	$nextInstall = $nextInstall->should_paid;
               }
               
               if($planID == 3){
@@ -74,7 +79,12 @@
               	$result = $this->db->get('npsDetail');
               	$detail = $result->row();
               	
-              	
+              	$this->db->where('customerID', $getdata->Customer_ID);
+              	$this->db->where('status', 'Pending');
+              	$this->db->order_by('id', 'ASC');
+              	$this->db->limit('1');
+              	$nextInstall = $this->db->get("npsDetail")->row();
+              	$nextInstall = $nextInstall->should_paid;
               } 
               
               if($planID == 4){
@@ -82,13 +92,24 @@
               	$result = $this->db->get('misDetail');
               	$detail = $result->row();
               	
-              	
+              	$this->db->where('customerID', $getdata->Customer_ID);
+              	$this->db->where('status', 'Pending');
+              	$this->db->order_by('id', 'ASC');
+              	$this->db->limit('1');
+              	$nextInstall = $this->db->get("misDetail")->row();
+              	$nextInstall = $nextInstall->should_paid;
               }
                if($planID == 5){
               	$this->db->where('invoice_slip', $invoiceno);
               	$result = $this->db->get('loanDetail');
               	$detail = $result->row();
               	
+              	$this->db->where('customerID', $getdata->Customer_ID);
+              	$this->db->where('status', 'Pending');
+              	$this->db->order_by('id', 'ASC');
+              	$this->db->limit('1');
+              	$nextInstall = $this->db->get("loanDetail")->row();
+              	$nextInstall = $nextInstall->should_paid;
               	
               }
 	    	
@@ -140,14 +161,14 @@
                   </tr>
                   <tr>
                     <td colspan="4"><strong>Receipt with thanks from:</strong><?= $detail->depositorName ?> </td>
-                    <td colspan="2"><strong>DOC:</strong> <?= date("d-M-Y", strtotime($planDetail->created)) ?></td>
+                    <td colspan="2"><strong>Last Deposite date:</strong> <?= date("d-M-Y", strtotime($detail->should_paid)) ?></td>
                   </tr>
                   <tr>
                     <td colspan="4"><strong>Address:</strong> <?= $getdata->address . " " . $getdata->city . "-" .$getdata->pin; ?></td>
-                    <td colspan="2"><strong>Document Date:</strong> <?= date("d-M-Y"); ?></td>
+                    <td colspan="2"><strong>Paid Date:</strong> <?= date("d-M-Y", strtotime($detail->paid_date)); ?></td>
                   </tr>
                   <tr>
-                    <td colspan="2"><strong>Application No.:</strong> <?= 200 ?></td>
+                    <td colspan="2"><strong>Application No.:</strong> <?php echo "Doc-".$getdata->id ; ?></td>
                     <td colspan="2"><strong>Customer No:</strong> <?= $getdata->Customer_ID ?></td>
                     <td colspan="2" rowspan="4">
                       <table id="innerTable" width="150">
@@ -200,8 +221,8 @@
                   </tr>
                   <tr>
                     <td colspan="4">
-                        <strong>Total Amount:</strong> 
-                        <?= $planDetail->meturity ?> (<script> document.write(convert_number(<?= $planDetail->meturity ?>));</script> rupee only/-)
+                        <strong>Investment Amount:</strong> 
+                        <?= $planDetail->oneTimeInvestment;?> (<script> document.write(convert_number(<?= $planDetail->oneTimeInvestment ?>));</script> rupee only/-)
                     </td>
                   </tr>
 
@@ -314,7 +335,7 @@
                       
                       ?>
                     <td colspan="2"><strong>Installment Paid:</strong> <?= $planDetail->durationMonth; ?> to <?= $noro; ?></td>
-                    <td colspan="2"><strong>Installment Date:</strong> <?= date('d-M-Y') ?> to <?= date('d-M-Y') ?></td>
+                    <td colspan="2"><strong>Installment Date:</strong> <?= date('d-M-Y',strtotime($planDetail->created)) ?> to <?= date('d-M-Y',strtotime($planDetail->created . "+$planDetail->durationMonth months")) ?></td>
                   </tr>
 
                   <tr>
@@ -325,7 +346,7 @@
 
                   <tr>
                     <td colspan="2"><strong>Next Due Installment No.:</strong> <?= $noro+1; ?></td>
-                    <td colspan="2"><strong>Next Due Installment Date:</strong> <?= date('d-M-Y') ?></td>
+                    <td colspan="2"><strong>Next Due Installment Date:</strong> <?php if($planID == 1){echo $nextInstall;}else{ date('d-M-Y',strtotime($nextInstall)); }?></td>
                   </tr>
 
                   <tr>
