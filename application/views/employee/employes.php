@@ -55,7 +55,23 @@
                             <td><?= $value->aadharNo; ?></td>
                             <td><?= date("d-M-Y (H:i:s A)", strtotime($value->created)); ?></td>
                            <td><a class="btn btn-primary" href="<?= base_url() ?>employee/<?= $value->id ?>">Detail</a></td>
-                            <td><a class="btn btn-primary" href="<?= base_url() ?>employeeEdit/<?= $value->id ?>">Edit</a></td>
+                            <td width ="20%"><a class="btn btn-primary" href="<?= base_url() ?>employeeEdit/<?= $value->id ?>">Edit</a>
+                            <button type="submit" class="btn btn-success" id = "<?php echo $value->id;?>" value ="<?php echo $value->id;?>">Delete</button>
+                           <script>
+
+                           $("#<?php echo $value->id?>").click(function(){
+                       		var delid = $('#<?php echo $value->id?>').val();	
+                       		alert(delid);
+                       		$.post("<?php echo site_url('employee/employeeDelete') ?>", {delid : delid}, function(data){
+                                   $("#<?php echo $value->id?>").html(data);
+                                   //alert(data);
+                       		});
+                       		
+                           });
+
+
+                           </script>
+                            </td>
                           </tr>
                         <?php endforeach; ?>
                       </tbody>
