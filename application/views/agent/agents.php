@@ -37,7 +37,8 @@
                          
                           <th>Created</th>
                            <th>Detail</th>
-                            <th> Edit OR Delete</th>
+                            <th> Edit </th>
+                            <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -56,9 +57,9 @@
                             <td><?= $value->mobile; ?></td>
                 
                             <td><?= date("d-M-Y)", strtotime($value->created)); ?></td>
-                           <td><a class="btn btn-primary" href="<?= base_url() ?>agent/<?= $value->id ?>">Detail</a></td>
-                            <td width="20%"><a class="btn btn-primary" href="<?= base_url() ?>agentEdit/<?= $value->id ?>">Edit</a>
-                            <a class="btn btn-success" href="<?= base_url() ?>agent/agentDelete/<?= $value->id ?>">Delete</a>
+                            <td><a class="btn btn-primary" href="<?= base_url() ?>agent/<?= $value->id ?>">Detail</a></td>
+                            <td><a class="btn btn-primary" href="<?= base_url() ?>agentEdit/<?= $value->id ?>">Edit</a></td>
+                            <td><a class="btn btn-success" href="<?= base_url() ?>agent/agentDelete/<?= $value->id ?>">Delete</a></td>
                             </td>
                           </tr>
                         <?php endforeach; }?>

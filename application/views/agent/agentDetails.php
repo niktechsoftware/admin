@@ -41,17 +41,18 @@
                         <?php 
                         
                         if( $agents->num_rows()>0)
-                        {foreach ($agents->result() as $key => $value): ?>
+                          {foreach ($agents->result() as $key => $value): ?>
                           <tr>
                             <td><?= $value->id; ?></td>
                             <td><?= $value->rank; ?></td>
                             <td><?= $value->name; ?></td>
-                            <td><?= $value->fatherName; ?></td>
+                            <td><?= $value->fatherName; ?>
+                          </td>
                            <?php  
                            $this->db->select_sum('amount');   
                             $this->db->where("a_id",$value->id)  ;
                             $query=$this->db->get("agent_comission")->row();
-        	              ?>
+        	                 ?>
                             <td><?= $query->amount; ?></td>
                             <?php  $this->db->select_sum('amount');   
                             $this->db->where("customer_ID",$value->agent_id);
@@ -59,7 +60,7 @@
                              <td><?= $query1d->amount; ?></td>
                               <td><?php echo $query->amount - $query1d->amount; ?></td>
                             <?php  $this->db->where("id",$value->introducer_code);
-		   $rdft =  $this->db->get("agent");?>
+		                         $rdft =  $this->db->get("agent");?>
                             <td><?php if($rdft->num_rows()>0){$rty =$rdft->row();  echo $rty->name."[".$rty->id."]";} ?></td>
                             <td><?= date("d-M-Y (H:i:s A)", strtotime($value->created)); ?></td>
                            <td><a class="btn btn-primary" href="<?= base_url() ?>agent/personalAmount/<?= $value->id ?>">Detail</a></td>
