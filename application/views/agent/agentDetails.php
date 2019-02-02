@@ -63,8 +63,8 @@
 		                         $rdft =  $this->db->get("agent");?>
                             <td><?php if($rdft->num_rows()>0){$rty =$rdft->row();  echo $rty->name."[".$rty->id."]";} ?></td>
                             <td><?= date("d-M-Y (H:i:s A)", strtotime($value->created)); ?></td>
-                           <td><a class="btn btn-primary" href="<?= base_url() ?>agent/personalAmount/<?= $value->id ?>">Detail</a></td>
-                            <td><a class="btn btn-primary" href="<?= base_url() ?>agent/personalAmountPay/<?= $value->id ?>">Pay</a></td>
+                            <td><a class="btn btn-primary" href="<?= base_url() ?>agent/personalAmount/<?= $value->id ?>">Detail</a></td>
+                            <td><a class="btn btn-success" href="<?= base_url() ?>agent/personalAmountPay/<?= $value->id ?>">Pay</a></td>
                           </tr>
                         <?php endforeach; }?>
                       </tbody>

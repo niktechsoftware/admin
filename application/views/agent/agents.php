@@ -58,8 +58,8 @@
                 
                             <td><?= date("d-M-Y)", strtotime($value->created)); ?></td>
                             <td><a class="btn btn-primary" href="<?= base_url() ?>agent/<?= $value->id ?>">Detail</a></td>
-                            <td><a class="btn btn-primary" href="<?= base_url() ?>agentEdit/<?= $value->id ?>">Edit</a></td>
-                            <td><a class="btn btn-success" href="<?= base_url() ?>agent/agentDelete/<?= $value->id ?>">Delete</a></td>
+                            <td><a class="btn btn-success" href="<?= base_url() ?>agentEdit/<?= $value->id ?>">Edit</a></td>
+                            <td><a class="btn btn-danger"  href="<?= base_url() ?>agent/agentDelete/<?= $value->id ?>" onclick="return confirm('Are you sure')">Delete</a></td>
                             </td>
                           </tr>
                         <?php endforeach; }?>

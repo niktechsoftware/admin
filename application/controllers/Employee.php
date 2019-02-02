@@ -22,12 +22,10 @@ class Employee extends CI_Controller {
 	}
 	
 	public function employeeDelete(){
-	    $empid = $this->input->post("delid");
-	    echo $empid;
-	    ?><script>
-	    	
-	    	var result = confirm("Want to delete?");
-	    	if (!result) {
+	    $empid = $this->uri->segment(3);
+	   // echo $empid;
+	    ?><script>   	
+	    	if (result) {
 	    	   
 	    	}else{
 	    		<?php $this->db->where("id",$empid);
@@ -36,7 +34,7 @@ class Employee extends CI_Controller {
 	    	}
 	    	
 	    </script>
-	  <?php // redirect(base_url().'agents.html','refresh');
+	  <?php redirect(base_url().'employes.html','refresh');
 	 }
 	
 

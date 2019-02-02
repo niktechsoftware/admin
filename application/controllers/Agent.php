@@ -80,8 +80,6 @@ class Agent extends CI_Controller {
 	    $agentid = $this->uri->segment(3);
 	    //echo $agentid;
 	    ?><script>
-	    	
-	    	var result = confirm("Want to delete?");
 	    	if (result) {
 	    	   <?php $this->db->where("id",$agentid);
 	    	   $this->db->delete("agent");?>
