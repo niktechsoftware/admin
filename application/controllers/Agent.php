@@ -76,6 +76,20 @@ class Agent extends CI_Controller {
 	   
 	}
 	
+	public function agentDelete(){
+	    $agentid = $this->uri->segment(3);
+	    //echo $agentid;
+	    ?><script>
+	    	if (result) {
+	    	   <?php $this->db->where("id",$agentid);
+	    	   $this->db->delete("agent");?>
+	    	}
+	    	
+	    </script>
+	  <?php  redirect(base_url().'agents.html','refresh');
+	 }
+	
+	
 	public function printPaySlip(){
 	    $invoiceno =$this->uri->segment(3);
 	    //echo $invoiceno;

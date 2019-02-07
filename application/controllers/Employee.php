@@ -20,6 +20,23 @@ class Employee extends CI_Controller {
 		}
 	
 	}
+	
+	public function employeeDelete(){
+	    $empid = $this->uri->segment(3);
+	   // echo $empid;
+	    ?><script>   	
+	    	if (result) {
+	    	   
+	    	}else{
+	    		<?php $this->db->where("id",$empid);
+		    	   $this->db->delete("employee");?>
+		    	
+	    	}
+	    	
+	    </script>
+	  <?php redirect(base_url().'employes.html','refresh');
+	 }
+	
 
 	public function newemploye() {
 		if ($this->input->server('REQUEST_METHOD') == 'GET') {

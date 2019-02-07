@@ -53,7 +53,7 @@
 					<div class="col-sm-2">
 					
 					</div>
-					<button class="btn btn-primary col-sm-2">Please Enter a valid id and password!!!!</button>
+					<h2 color="red">Please Enter a valid id and password!!</h2>
 				  </div>
 			  </div>
     		

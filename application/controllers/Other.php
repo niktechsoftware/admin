@@ -21,7 +21,7 @@ class Other extends CI_Controller {
 	
 	}
 
-	public function message() {
+	public function sms() {
 		log_message('debug', 'sql query fail in... ', false);
 		$data['body'] = 'home/dashboard';
 		$this->load->view('layout',$data);

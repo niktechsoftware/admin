@@ -50,10 +50,7 @@ class Customer extends CI_Controller {
 			$data['title'] 		= 'New Customer';
 			$data['body'] 		= 'customer/newCustomer';
 			$this->load->view('layout',$data);
-
-
-            
-
+         
 
 
 		}
@@ -631,6 +628,21 @@ class Customer extends CI_Controller {
 		redirect(base_url().'customers/false');
 		endif;
 	}
+
+	public function customerDelete(){
+	    $empid = $this->uri->segment(3);
+	   // echo $empid;
+	    ?><script>   	
+	    	if (result) {
+	    	   
+	    	}else{
+	    		<?php $this->db->where("Customer_ID",$empid);
+		    	      $this->db->delete("customer");?>
+		    	
+	    	}
+	    </script>
+	  <?php redirect(base_url().'customers.html','refresh');
+	 }
 	
 	function getmonthAmount(){
 		$duration	=	$this->input->post("durationTitle");
