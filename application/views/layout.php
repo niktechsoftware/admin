@@ -280,7 +280,7 @@
                   </a>
                   <ul class="sidenav level-2 collapse">
                     <li class="sidenav-heading">Other</li>
-                    <li><a href="<?= base_url() ?>message.html">Message</a></li>
+                    <li><a href="<?= base_url() ?>message.html">Sms</a></li>
                     <li><a href="<?= base_url() ?>expences.html">Daily Expences</a></li>
                     <li><a href="<?= base_url() ?>daybook.html">Day-Book</a></li>
                   </ul>
@@ -294,7 +294,7 @@
       <div class="layout-footer">
         <div class="layout-footer-body">
           <small class="version">Version 0.0.1</small>
-          <small class="copyright">2017 &copy; JMDF <a href="http://gfinch.co.in/">Made by Niktech Software Solutions</a></small>
+          <small class="copyright">2017 &copy; JMDF <a href="http://gfinch.in/">Made by Niktech Software Solutions</a></small>
         </div>
       </div>
     </div>
