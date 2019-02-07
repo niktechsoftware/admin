@@ -33,11 +33,12 @@
                           <th>Status</th>
                           <th>Address</th>
                           <th>Mobile</th>
-                          <th>Email</th>
-                          <th>Aadhar No</th>
+                         
+                         
                           <th>Created</th>
                            <th>Detail</th>
-                            <th>Detail Edit</th>
+                            <th> Edit </th>
+                            <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -54,11 +55,12 @@
                             <td><?= $value->activeStatus == 1 ? 'Active' : 'Deactive'; ?></td>
                             <td><?= $value->present_address; ?></td>
                             <td><?= $value->mobile; ?></td>
-                            <td><?= $value->email; ?></td>
-                            <td><?= $value->aadharNo; ?></td>
-                            <td><?= date("d-M-Y (H:i:s A)", strtotime($value->created)); ?></td>
-                           <td><a class="btn btn-primary" href="<?= base_url() ?>agent/<?= $value->id ?>">Detail</a></td>
-                            <td><a class="btn btn-primary" href="<?= base_url() ?>agentEdit/<?= $value->id ?>">Edit</a></td>
+                
+                            <td><?= date("d-M-Y)", strtotime($value->created)); ?></td>
+                            <td><a class="btn btn-primary" href="<?= base_url() ?>agent/<?= $value->id ?>">Detail</a></td>
+                            <td><a class="btn btn-success" href="<?= base_url() ?>agentEdit/<?= $value->id ?>">Edit</a></td>
+                            <td><a class="btn btn-danger"  href="<?= base_url() ?>agent/agentDelete/<?= $value->id ?>" onclick="return confirm('Are you sure')">Delete</a></td>
+                            </td>
                           </tr>
                         <?php endforeach; }?>
                       </tbody>

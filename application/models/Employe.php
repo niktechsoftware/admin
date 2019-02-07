@@ -9,12 +9,8 @@ class Employe extends CI_Model {
 
 	
 	function getAllEmployee() {
-	      if($this->session->userdata("loginType")==1){
+
 		$result = $this->db->get('employee');
-	      }else{
-	           $this->db->where("branchID",$this->session->userdata("branchID"));
-	           	$result = $this->db->get('employee');
-	      }
 		
 		/**
 		 * 	return employee table Data getting from database.

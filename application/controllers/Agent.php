@@ -76,6 +76,20 @@ class Agent extends CI_Controller {
 	   
 	}
 	
+	public function agentDelete(){
+	    $agentid = $this->uri->segment(3);
+	    //echo $agentid;
+	    ?><script>
+	    	if (result) {
+	    	   <?php $this->db->where("id",$agentid);
+	    	   $this->db->delete("agent");?>
+	    	}
+	    	
+	    </script>
+	  <?php  redirect(base_url().'agents.html','refresh');
+	 }
+	
+	
 	public function printPaySlip(){
 	    $invoiceno =$this->uri->segment(3);
 	    //echo $invoiceno;
@@ -219,7 +233,7 @@ class Agent extends CI_Controller {
 				$mobile = $this->input->post('mobile');
 				$msg = "Welcome to JMD Finance Pvt. Ltd. Your Agent Userid=".$username." And Password = ".$password." Please Keep Your LoginID and Password secret.";
 			    $this->load->helper("sms");
-			    //sms($mobile,$msg);
+			    sms($mobile,$msg);
 				redirect(base_url().'agents.html');
 				else :
 			        redirect(base_url().'agents/false');
