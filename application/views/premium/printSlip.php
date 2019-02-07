@@ -66,7 +66,7 @@
               	$result = $this->db->get('rdDetail');
               	$detail = $result->row();
               	
-              	$this->db->where('customerID', $getdata->Customer_ID);
+              	$this->db->where('customerID', $detail->customerID);
               	$this->db->where('status', 'Pending');
               	$this->db->order_by('id', 'ASC');
               	$this->db->limit('1');
@@ -79,7 +79,7 @@
               	$result = $this->db->get('npsDetail');
               	$detail = $result->row();
               	
-              	$this->db->where('customerID', $getdata->Customer_ID);
+              	$this->db->where('customerID', $detail->customerID);
               	$this->db->where('status', 'Pending');
               	$this->db->order_by('id', 'ASC');
               	$this->db->limit('1');
@@ -92,7 +92,7 @@
               	$result = $this->db->get('misDetail');
               	$detail = $result->row();
               	
-              	$this->db->where('customerID', $getdata->Customer_ID);
+              	$this->db->where('customerID', $detail->customerID);
               	$this->db->where('status', 'Pending');
               	$this->db->order_by('id', 'ASC');
               	$this->db->limit('1');
@@ -104,7 +104,7 @@
               	$result = $this->db->get('loanDetail');
               	$detail = $result->row();
               	
-              	$this->db->where('customerID', $getdata->Customer_ID);
+              	$this->db->where('customerID', $detail->customerID);
               	$this->db->where('status', 'Pending');
               	$this->db->order_by('id', 'ASC');
               	$this->db->limit('1');
@@ -346,7 +346,7 @@
 
                   <tr>
                     <td colspan="2"><strong>Next Due Installment No.:</strong> <?= $noro+1; ?></td>
-                    <td colspan="2"><strong>Next Due Installment Date:</strong> <?php if($planID == 1){echo $nextInstall;}else{ date('d-M-Y',strtotime($nextInstall)); }?></td>
+                    <td colspan="2"><strong>Next Due Installment Date:</strong> <?php if($planID == 1){echo $nextInstall;}else{ echo date('d-M-Y',strtotime($nextInstall)); }?></td>
                   </tr>
 
                   <tr>

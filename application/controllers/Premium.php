@@ -408,7 +408,9 @@ $days_between = ceil(abs($end - $start) / 86400);
 		    "amount"        =>$currentAgentC,
 		    "invoice_num"   =>$invoice_s
 		    );
-		    $this->db->insert("agent_comission",$cucdata);
+		   
+		   
+		  
 		    
 		    $this->db->select_sum('amount');   
         $this->db->where("a_id",$cudetail->joinerID)  ;
@@ -467,22 +469,27 @@ $days_between = ceil(abs($end - $start) / 86400);
 		if($planID == 1){
 			$this->db->where('id', $tableID);
               	$result = $this->db->update('fdDetail',$data);
+              	 $this->db->insert("agent_comission",$cucdata);
 }
 		if($planID == 2){
 			$this->db->where('id', $tableID);
               	$result = $this->db->update('rdDetail',$data);
+              	 $this->db->insert("agent_comission",$cucdata);
 }
 		if($planID == 3){
 			$this->db->where('id', $tableID);
               	$result = $this->db->update('npsDetail',$data);
+              	 $this->db->insert("agent_comission",$cucdata);
 }
 		if($planID == 4){
 		$this->db->where('id', $tableID);
               	$result = $this->db->update('misDetail',$data);
+              	 $this->db->insert("agent_comission",$cucdata);
 }
 if($planID == 5){
 		$this->db->where('id', $tableID);
               	$result = $this->db->update('loanDetail',$data);
+              	 
 }
 		$this->db->insert("daybook", $daybookData);
 

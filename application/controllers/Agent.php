@@ -219,7 +219,7 @@ class Agent extends CI_Controller {
 				$mobile = $this->input->post('mobile');
 				$msg = "Welcome to JMD Finance Pvt. Ltd. Your Agent Userid=".$username." And Password = ".$password." Please Keep Your LoginID and Password secret.";
 			    $this->load->helper("sms");
-			    sms($mobile,$msg);
+			    //sms($mobile,$msg);
 				redirect(base_url().'agents.html');
 				else :
 			        redirect(base_url().'agents/false');
