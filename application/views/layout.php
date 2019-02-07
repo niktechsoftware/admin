@@ -65,7 +65,7 @@
             </button>
             <ul class="nav navbar-nav navbar-right">
               <li class="visible-xs-block">
-                <h4 class="navbar-text text-center">Hello, Admin</h4>
+                <h4 class="navbar-text text-center">Hi, Teddy Wilson</h4>
               </li>
               <li class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true">
@@ -95,7 +95,7 @@
                             <small class="notification-timestamp">Sep 15</small>
                             <h5 class="notification-heading">Eliot Morgan</h5>
                             <p class="notification-text">
-                              <small class="truncate">Dear Admin, Please accept this message as notification that I was unable to work yesterday, due to personal illness.m</small>
+                              <small class="truncate">Dear Teddy, Please accept this message as notification that I was unable to work yesterday, due to personal illness.m</small>
                             </p>
                           </div>
                         </div>
@@ -133,9 +133,9 @@
                           </div>
                           <div class="notification-content">
                             <small class="notification-timestamp">9 hr</small>
-                            <h5 class="notification-heading">Admin</h5>
+                            <h5 class="notification-heading">Teddy Wilson</h5>
                             <p class="notification-text">
-                              <small class="truncate">Published a new post: "Everything you know about JMDF".</small>
+                              <small class="truncate">Published a new post: "Everything you know about Bootstrap is wrong".</small>
                             </p>
                           </div>
                         </div>
@@ -149,7 +149,7 @@
               </li>
               <li class="dropdown hidden-xs">
                 <button class="navbar-account-btn" data-toggle="dropdown" aria-haspopup="true">
-                  <img class="circle" width="36" height="36" src="<?= base_url(); ?>assets/img/0180441436.jpg" alt="Teddy Wilson"> Admin
+                  <img class="circle" width="36" height="36" src="<?= base_url(); ?>assets/img/0180441436.jpg" alt="Teddy Wilson"> Teddy Wilson
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
@@ -280,7 +280,7 @@
                   </a>
                   <ul class="sidenav level-2 collapse">
                     <li class="sidenav-heading">Other</li>
-                    <li><a href="<?= base_url() ?>message.html">Sms</a></li>
+                    <li><a href="<?= base_url() ?>message.html">Message</a></li>
                     <li><a href="<?= base_url() ?>expences.html">Daily Expences</a></li>
                     <li><a href="<?= base_url() ?>daybook.html">Day-Book</a></li>
                   </ul>
@@ -294,7 +294,7 @@
       <div class="layout-footer">
         <div class="layout-footer-body">
           <small class="version">Version 0.0.1</small>
-          <small class="copyright">2017 &copy; JMDF <a href="http://gfinch.in/">Made by Niktech Software Solutions</a></small>
+          <small class="copyright">2017 &copy; JMDF <a href="http://gfinch.co.in/">Made by Niktech Software Solutions</a></small>
         </div>
       </div>
     </div>

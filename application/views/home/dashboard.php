@@ -1,7 +1,7 @@
 			<div class="layout-content">
 				<div class="layout-content-body">
 					<div class="row gutter-xs">
-						<!--<div class="col-xs-6 col-md-3">
+						<div class="col-xs-6 col-md-3">
 							<div class="card">
 								<div class="card-values">
 									<div class="p-x">
@@ -53,7 +53,7 @@
 								</div>
 							</div>
 						</div>
-					--></div>
+					</div>
 					<div class="row gutter-xs">
 						<div class="col-xs-12 col-md-6">
 							<div class="card">
@@ -94,7 +94,7 @@
 						</div>
 					</div>
 					<div class="row gutter-xs">
-	<!--	             <div class="col-md-4">
+						<div class="col-md-4">
 							<div class="card">
 								<div class="card-body">
 									<div class="media">
@@ -117,7 +117,7 @@
 								</div>
 							</div>
 						</div>
-	--><!--					<div class="col-md-4">
+						<div class="col-md-4">
 							<div class="card">
 								<div class="card-body">
 									<div class="media">
@@ -158,7 +158,7 @@
 							</div>
 						</div>
 					</div>
-		-->			<div class="row gutter-xs">
+					<div class="row gutter-xs">
 						<div class="col-md-8 col-md-push-4">
 							<div class="row gutter-xs">
 								<div class="col-md-6">
@@ -335,6 +335,44 @@
 													</tr>
 												</tbody>
 											</table>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-body">
+											<div class="card-heading">
+												<strong>Top Search Terms</strong>
+												<span aria-hidden="true"> · </span>
+												<a href="#">Refresh</a>
+												<span aria-hidden="true"> · </span>
+												<a href="#">Settings</a>
+											</div>
+											<div class="card-phrases">
+												<div class="text-justify">
+													<a class="link-muted" href="#" title="Search nodejs" style="font-size: 11px">nodejs</a>
+													<a class="link-muted" href="#" title="Search modernizr" style="font-size: 9px">modernizr</a>
+													<a class="link-muted" href="#" title="Search babel" style="font-size: 14px">babel</a>
+													<a class="link-muted" href="#" title="Search elephant" style="font-size: 36px">elephant</a>
+													<a class="link-muted" href="#" title="Search admin" style="font-size: 13px">admin</a>
+													<a class="link-muted" href="#" title="Search package" style="font-size: 9px">package</a>
+													<a class="link-muted" href="#" title="Search gruntjs" style="font-size: 12px">gruntjs</a>
+													<a class="link-muted" href="#" title="Search underscore" style="font-size: 9px">underscore</a>
+													<a class="link-muted" href="#" title="Search jquery" style="font-size: 20px">jquery</a>
+													<a class="link-muted" href="#" title="Search material" style="font-size: 9px">material</a>
+													<a class="link-muted" href="#" title="Search material-design" style="font-size: 11px">material-design</a>
+													<a class="link-muted" href="#" title="Search validation" style="font-size: 11px">validation</a>
+													<a class="link-muted" href="#" title="Search angularjs" style="font-size: 24px">angularjs</a>
+													<a class="link-muted" href="#" title="Search react" style="font-size: 14px">react</a>
+													<a class="link-muted" href="#" title="Search requirejs" style="font-size: 9px">requirejs</a>
+													<a class="link-muted" href="#" title="Search form" style="font-size: 9px">form</a>
+													<a class="link-muted" href="#" title="Search widgets" style="font-size: 14px">widgets</a>
+													<a class="link-muted" href="#" title="Search sass" style="font-size: 23px">sass</a>
+													<a class="link-muted" href="#" title="Search chartjs" style="font-size: 9px">chartjs</a>
+													<a class="link-muted" href="#" title="Search theme" style="font-size: 14px">theme</a>
+													<a class="link-muted" href="#" title="Search api" style="font-size: 33px">api</a>
+													<a class="link-muted" href="#" title="Search gulp" style="font-size: 10px">gulp</a>
+													<a class="link-muted" href="#" title="Search bootstrap" style="font-size: 23px">bootstrap</a>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>

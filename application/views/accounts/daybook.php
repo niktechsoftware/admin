@@ -19,7 +19,6 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Customer_ID</th>
                                     <th>Amount</th>
                                     <th>Debit/Credit</th>
                                     <td>Source</td>
@@ -30,9 +29,7 @@
                                 <?php 
                                     foreach ($daybook as $key => $value):
                                         echo "<tr>";
-
                                         echo "<td>".$value->id."</td>";
-                                        echo "<td>".$value->customer_ID."</td>";
                                         echo "<td>".$value->amount."</td>";
                                         echo "<td>".$value->transactionType."</td>";
                                         echo "<td>".$value->source."</td>";

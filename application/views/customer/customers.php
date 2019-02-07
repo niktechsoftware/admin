@@ -35,8 +35,7 @@
                           <th>Aadhar No</th>
                           <th>Created</th>
                           <th>Detail</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
+                          <th>Detail Activity</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -52,8 +51,7 @@
                             <td><?= $value->adhaarNo; ?></td>
                             <td><?= date("d-M-Y (H:i:s A)", strtotime($value->created)); ?></td>
                              <td><a class="btn btn-primary" href="<?= base_url() ?>customer/customerdetail/<?= $value->Customer_ID ?>">Detail</a></td>
-                             <td><a class="btn btn-success" href="<?= base_url() ?>customer/customerEdit/<?= $value->Customer_ID ?>">Edit</a></td>
-                             <td><a class="btn btn-danger"  href="<?= base_url() ?>customer/customerDelete/<?= $value->Customer_ID ?>" onclick="return confirm('Are you Sure')">Delete</a></td>
+                            <td><a class="btn btn-primary" href="<?= base_url() ?>customer/customerEdit/<?= $value->Customer_ID ?>">Edit</a></td>
                           </tr>
                         <?php endforeach; ?>
                       </tbody>

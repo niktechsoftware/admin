@@ -83,6 +83,7 @@ public function logout(){
             	 $this->db->where("loginID",$loginData[0]->id);
             	 $empID = $this->db->get("employee")->row();
             	$sessionData = array(
+            	    "loginType" => $loginData[0]->isAdmin,
             		"branchID" 	=> $loginData[0]->branchID,
             		"role" 	    => $loginData[0]->roleID,
             		"username" 	=> $loginData[0]->username,
@@ -96,6 +97,8 @@ public function logout(){
             		"email"  =>$branchD->email,
             		"empName"  =>$empID->name,
             	);
+            	
+            
 
                 // print_r($this->router->routes);
 

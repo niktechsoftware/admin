@@ -25,25 +25,26 @@
                     <table class="table">
                       <thead>
                         <tr>
+                         
                           <th>Employee Code</th>
                           <th>Name</th>
                           <th>Father</th>
                           <th>Status</th>
                           <th>Address</th>
-                          <th>Employee Post</th>
+                           <th>Employee Post</th>
                           <th>Mobile</th>
                           <th>Email</th>
                           <th>Aadhar No</th>
                           <th>Created</th>
-                          <th>Detail</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
+                           <th>Detail</th>
+                            <th>Detail Edit</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php foreach ($employes as $key => $value): ?>
                           <tr>
                             <td><?= $value->id; ?></td>
+                           
                             <td><?= $value->name; ?></td>
                             <td><?= $value->fatherName; ?></td>
                             <td><?= $value->activeStatus == 1 ? 'Active' : 'Deactive'; ?></td>
@@ -53,9 +54,8 @@
                             <td><?= $value->email; ?></td>
                             <td><?= $value->aadharNo; ?></td>
                             <td><?= date("d-M-Y (H:i:s A)", strtotime($value->created)); ?></td>
-                            <td><a class="btn btn-primary" href="<?= base_url() ?>employee/<?= $value->id ?>">Detail</a></td>
-                            <td><a class="btn btn-success" href="<?= base_url() ?>employeeEdit/<?= $value->id ?>">Edit</a></td>
-                            <td><a class="btn btn-danger"  href="<?= base_url() ?>employee/employeeDelete/<?= $value->id ?>" onclick="return confirm('Are you sure')">Delete</a></td>
+                           <td><a class="btn btn-primary" href="<?= base_url() ?>employee/<?= $value->id ?>">Detail</a></td>
+                            <td><a class="btn btn-primary" href="<?= base_url() ?>employeeEdit/<?= $value->id ?>">Edit</a></td>
                           </tr>
                         <?php endforeach; ?>
                       </tbody>
@@ -67,4 +67,3 @@
           </div>
         </div>
       </div>
-    

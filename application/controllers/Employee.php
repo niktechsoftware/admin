@@ -20,23 +20,6 @@ class Employee extends CI_Controller {
 		}
 	
 	}
-	
-	public function employeeDelete(){
-	    $empid = $this->uri->segment(3);
-	   // echo $empid;
-	    ?><script>   	
-	    	if (result) {
-	    	   
-	    	}else{
-	    		<?php $this->db->where("id",$empid);
-		    	   $this->db->delete("employee");?>
-		    	
-	    	}
-	    	
-	    </script>
-	  <?php redirect(base_url().'employes.html','refresh');
-	 }
-	
 
 	public function newemploye() {
 		if ($this->input->server('REQUEST_METHOD') == 'GET') {
@@ -146,7 +129,7 @@ class Employee extends CI_Controller {
 				$mobile = $this->input->post('mobile');
 				$msg = "Welcome to JMD Finance Pvt. Ltd. Your Employee Userid=".$username." And Password = ".$password." Please Keep Your LoginID and Password secret.";
 				$this->load->helper("sms");
-				sms($mobile,$msg);
+			//	sms($mobile,$msg);
 			        redirect(base_url().'employes.html');
 				else :
 			        redirect(base_url().'employes/false');
