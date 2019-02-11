@@ -20,6 +20,7 @@ class Accounts extends CI_Controller {
 		}
 	
 	}
+	
 
 	public function getdabook() {
 		$daybook = $this->db->get("daybook")->result();

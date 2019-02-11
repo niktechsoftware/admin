@@ -1,8 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+		
+ 
 class Customer extends CI_Controller {
-    
     function __construct()
 	{
 		parent::__construct();
@@ -20,6 +21,26 @@ class Customer extends CI_Controller {
 		}
 	
 	}	
+
+	function csDetail()
+	{
+
+
+		$dt1 = date("Y-m-d", strtotime($this->input->post("sdt")));
+		$dt2 =  date("Y-m-d", strtotime($this->input->post("edt")));
+		$this->db->where('updated >=',$dt1);
+		$this->db->where('updated <=',$dt2);
+		$data['abc']=$this->db->get('customer')->result();
+						//$data['a'] = $this->db->query("select * from customer where updated >= '$dt1' AND updated <= '$dt2'");
+						//$this->load->view('csdetail',$a);
+						//$this->load->view("csdetail");
+							//$data['employes'] = $this->customers->getAllCustomers();
+		$data['title'] = 'Searched Customers';
+		$data['body'] = 'customer/csdetail';
+		$this->load->view('layout',$data);
+	
+		
+	}
     
     
 

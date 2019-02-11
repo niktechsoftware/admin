@@ -21,6 +21,27 @@ class Employee extends CI_Controller {
 	
 	}
 	
+function empDetail()
+	{
+
+
+		$dt1 = date("Y-m-d", strtotime($this->input->post("sdt")));
+		$dt2 =  date("Y-m-d", strtotime($this->input->post("edt")));
+		$this->db->where('updated >=',$dt1);
+		$this->db->where('updated <=',$dt2);
+		$data['abc']=$this->db->get('employee')->result();
+						//$data['a'] = $this->db->query("select * from customer where updated >= '$dt1' AND updated <= '$dt2'");
+						//$this->load->view('csdetail',$a);
+						//$this->load->view("csdetail");
+							//$data['employes'] = $this->customers->getAllCustomers();
+		$data['title'] = 'Searched Employee';
+		$data['body'] = 'employee/empdetail';
+		$this->load->view('layout',$data);
+	
+		
+	}
+    
+
 	public function employeeDelete(){
 	    $empid = $this->uri->segment(3);
 	   // echo $empid;
