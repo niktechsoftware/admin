@@ -28,13 +28,9 @@ class Customer extends CI_Controller {
 
 		$dt1 = date("Y-m-d", strtotime($this->input->post("sdt")));
 		$dt2 =  date("Y-m-d", strtotime($this->input->post("edt")));
-		$this->db->where('updated >=',$dt1);
-		$this->db->where('updated <=',$dt2);
-		$data['abc']=$this->db->get('customer')->result();
-						//$data['a'] = $this->db->query("select * from customer where updated >= '$dt1' AND updated <= '$dt2'");
-						//$this->load->view('csdetail',$a);
-						//$this->load->view("csdetail");
-							//$data['employes'] = $this->customers->getAllCustomers();
+		
+		$this->load->model('Customers');
+		$data['abc']=$this->Customers->searchcus($dt1,$dt2);
 		$data['title'] = 'Searched Customers';
 		$data['body'] = 'customer/csdetail';
 		$this->load->view('layout',$data);

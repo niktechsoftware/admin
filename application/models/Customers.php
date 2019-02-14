@@ -24,6 +24,15 @@ class Customers extends CI_Model {
 		return $result->result();
 	}
 
+	public function searchcus($dt1,$dt2)
+	{
+
+		$this->db->where('DATE(updated) >=',$dt1);
+		$this->db->where('DATE(updated) <=',$dt2);
+		$data=$this->db->get('customer')->result();
+		return $data;
+	}
+
 	function getCustomer($customerID) {
 		$this->db->where('Customer_ID', $customerID);
 		return $this->db->get('customer')->row();

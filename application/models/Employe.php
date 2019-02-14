@@ -22,6 +22,16 @@ class Employe extends CI_Model {
 		return $result->result();
 	}
 
+	public function empsearch($dt1,$dt2)
+	{
+
+		$this->db->where('DATE(updated) >=',$dt1);
+		$this->db->where('DATE(updated) <=',$dt2);
+		$data=$this->db->get('employee')->result();
+		return $data;
+			
+	}
+
 	function setEmploye($employe) {
 
 		if($this->db->insert('employee', $employe)):

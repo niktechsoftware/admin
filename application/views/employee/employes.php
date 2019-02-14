@@ -5,7 +5,8 @@
                                                         <div class="panel panel-white">
                                 <div class="panel-body">
                                     <form class="form-horizontal" action="<?php echo base_url()?>Employee/empDetail" method="post" enctype="multipart/form-data">
-                                        <div class="form-group">
+                                      <div class="row">
+                                        <div class="form-group col-sm-10">
                                             <label for="inputEmail3" class="col-sm-2 control-label">Start Date</label>
                                             <div class="col-sm-4">
                                                 <input type="date" name="sdt" class="form-control date-picker" placeholder="Start Date" required="required">
@@ -15,7 +16,7 @@
                                                 <input type="date" name="edt" class="form-control date-picker" placeholder="End Date" required="required">
                                             </div>
                                         </div>
-                                         <div class="form-group">
+                                         <div class="form-group col-sm-2">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <button type="submit" id="btn1" class="btn btn-success">Get Detail</button>
                                             </div>
@@ -44,7 +45,8 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
-                    <table class="table">
+                   <div class="panel-scroll table-responsive">
+                    <table class="table table-striped table-hover center" id="employes">
                       <thead>
                         <tr>
                           <th>Employee Code</th>
@@ -81,7 +83,7 @@
                           </tr>
                         <?php endforeach; ?>
                       </tbody>
-                    </table>
+                    </table></div>
                   </div>
                 </div>
               </div>
