@@ -44,7 +44,8 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
-                    <table class="table">
+                     <div class=" panel-scroll table-reponsive">
+                    <table class="table table-striped table-hover center" id="customers">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -80,6 +81,7 @@
                         <?php endforeach; ?>
                       </tbody>
                     </table>
+                  </div>
                   </div>
                 </div>
               </div>

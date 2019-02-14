@@ -79,6 +79,8 @@ $db['default'] = array(
 	'username' => 'root',
 	'password' => '',
 	'database' => 'jmdf',
+
+	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
