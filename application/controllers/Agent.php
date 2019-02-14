@@ -20,6 +20,26 @@ class Agent extends CI_Controller {
 		}
 	
 	}
+
+	function agentDetail()
+	{
+		$dt1=$this->input->post("sdt");
+		$dt2=$this->input->post("edt");
+
+		// $dt1 = date("d-m-y", strtotime($this->input->post("sdt")));
+		// $dt2 =  date("d-m-y", strtotime($this->input->post("edt")));
+		//echo $dt1.$dt2;
+		// $this->db->where('created >=',$dt1);
+		// $this->db->where('created <=',$dt2);
+
+		$this->db->where('created BETWEEN "'. date('Y-m-d', strtotime($dt1)). '" and "'. date('Y-m-d', strtotime($dt2)).'"');
+		$data['abc']=$this->db->get('agent')->result();
+		$data['title'] = 'Searched Agent';
+		$data['body'] = 'agent/agDetails';
+		$this->load->view('layout',$data);
+	
+		
+	}
     
     public	function aCommission(){
 	    	$this->load->model("agents");
