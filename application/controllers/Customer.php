@@ -139,8 +139,14 @@ class Customer extends CI_Controller {
 					"adhaarNo" 		=> $this->input->post('aadharNo')
 				);
 				$customerno = $this->customers->setCustomer($customerData);
+                  print_r($customerno);
+
 				$customerID = date("ymd", strtotime($this->input->post("joindate"))).'C'.$customerno;
 				$policy_No = date("ymd", strtotime($this->input->post("joindate"))).'P'.$customerno;
+                 print_r($customerID);
+                  print_r($policy_No);
+
+
 				$cusdata = array(
 						'policy_No' =>	$policy_No,
 						'Customer_ID' => $customerID
@@ -148,7 +154,7 @@ class Customer extends CI_Controller {
 				);
 				
 				$this->db->where("id",$customerno);
-				$this->db->update("customer",$cusdata);
+			    $update=$this->db->update("customer",$cusdata);
 				
 				$this->load->library('upload');
 				$config['upload_path'] = realpath(APPPATH . '../assets/images/customer');
@@ -558,8 +564,10 @@ class Customer extends CI_Controller {
 				"adhaarNo" 		=> $this->input->post('aadharNo')
 		);
 		//$customerID = $this->customers->setCustomer($customerData);
-		$this->db->where("id",$customerID);
-		$ft=$this->db->update("customer",$customerData);
+		$this->load->model('customer');
+
+		$ft['ft']=$this->employe->customeredt($employeeID,$employeData);
+		
 		$this->load->library('upload');
 		$config['upload_path'] = realpath(APPPATH . '../assets/images/customer');
 		// $config['allowed_types'] = 'gif|jpg|jpeg|png';
@@ -610,14 +618,23 @@ class Customer extends CI_Controller {
 	}
 
 	public function customerDelete(){
-	    $empid = $this->uri->segment(3);
-	   // echo $empid;
+	    $customerid = $this->uri->segment(3);
 	    ?><script>   	
 	    	if (result) {
 	    	   
-	    	}else{
-	    		<?php $this->db->where("Customer_ID",$empid);
-		    	      $this->db->delete("customer");?>
+	    	}
+	    	else{
+	    		<?php
+                    $this->load->helper('sms');
+                   $this->db->where('id',$customerid);
+                   $ab=$this->db->get('customer')->row();
+                   $a=$ab->mobile;
+                   $b=$ab->name;
+                   $bcc="Dear customer "."". $b." your customer Profile from JMDF has been successfully deleted";    	
+                   sms($a,$bcc);
+	    		     $this->db->where("Customer_ID",$customerid);
+		    	      $this->db->delete("customer");
+		       ?>
 		    	
 	    	}
 	    </script>

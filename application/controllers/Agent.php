@@ -81,8 +81,23 @@ class Agent extends CI_Controller {
 	    //echo $agentid;
 	    ?><script>
 	    	if (result) {
-	    	   <?php $this->db->where("id",$agentid);
-	    	   $this->db->delete("agent");?>
+
+	    	}
+
+	    	else
+	    	{
+	    		<?php 
+		    	    $this->load->helper('sms');
+                   $this->db->where('id',$agentid);
+                   $ab=$this->db->get('agent')->row();
+                   $a=$ab->mobile;
+                  $b=$ab->name;
+                   $bcc="Dear Agent "."". $b." your Agent Profile from JMDF has been successfully deleted";    	
+                sms($a,$bcc);
+                $this->db->where("id",$empid);
+		    	$this->db->delete("agent");
+                         ?>
+		    	
 	    	}
 	    	
 	    </script>
@@ -377,8 +392,8 @@ class Agent extends CI_Controller {
 		);
 		
 		$employeeID=$this->input->post("employeeID");
-		$this->db->where("id",$this->input->post("employeeID"));
-		$ft = $this->db->update("agent",$employeData);
+		$this->load->model('agents');
+		$ft['ft']=$this->agents->savaEditagent($employeeID,$employeData);
 		$this->load->model('agents');
 		$this->load->library('upload');
 		$config['upload_path'] = realpath(APPPATH . '../assets/images/agents');
