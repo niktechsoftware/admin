@@ -21,6 +21,30 @@ class Employee extends CI_Controller {
 	
 	}
 	
+function empDetail()
+	{
+
+
+		$dt1 = date("Y-m-d", strtotime($this->input->post("sdt")));
+		$dt2 =  date("Y-m-d", strtotime($this->input->post("edt")));
+		// $this->db->where('DATE(updated) >=',$dt1);
+		// $this->db->where('DATE(updated) <=',$dt2);
+		// $data['abc']=$this->db->get('employee')->result();
+		// 				//$data['a'] = $this->db->query("select * from customer where updated >= '$dt1' AND updated <= '$dt2'");
+						//$this->load->view('csdetail',$a);
+						//$this->load->view("csdetail");
+							//$data['employes'] = $this->customers->getAllCustomers();
+
+		$this->load->model('Employe');
+		$data['abc']=$this->Employe->empsearch($dt1,$dt2);
+		$data['title'] = 'Searched Employee';
+		$data['body'] = 'employee/empdetail';
+		$this->load->view('layout',$data);
+	
+		
+	}
+    
+
 	public function employeeDelete(){
 	    $empid = $this->uri->segment(3);
 	   // echo $empid;
@@ -158,7 +182,7 @@ class Employee extends CI_Controller {
 				$mobile = $this->input->post('mobile');
 				$msg = "Welcome to JMD Finance Pvt. Ltd. Your Employee Userid=".$username." And Password = ".$password." Please Keep Your LoginID and Password secret.";
 				$this->load->helper("sms");
-				sms($mobile,$msg);
+			//	sms($mobile,$msg);
 			        redirect(base_url().'employes.html');
 				else :
 			        redirect(base_url().'employes/false');

@@ -1,30 +1,8 @@
-      <div class="layout-content">
+ <div class="layout-content">
         <div class="layout-content-body">
           <div class="row gutter-xs">
             <div class="col-md-12">
-                              <div class="panel panel-white">
-                                <div class="panel-body">
-                                    <form class="form-horizontal" action="<?php echo base_url()?>Agent/agentDetail" method="post" enctype="multipart/form-data">
-                                        <div class="form-group col-sm-10">
-                                            <label for="inputEmail3" class="col-sm-2 control-label">Start Date</label>
-                                            <div class="col-sm-4">
-                                                <input type="date" name="sdt" class="form-control date-picker" placeholder="Start Date" required="required">
-                                            </div>
-                                            <label for="inputEmail3" class="col-sm-2 control-label">End Date</label>
-                                            <div class="col-sm-4">
-                                                <input type="date" name="edt" class="form-control date-picker" placeholder="End Date" required="required">
-                                            </div>
-                                        </div>
-                                         <div class="form-group col-sm-2">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" id="btn1" class="btn btn-success">Get Detail</button>
-                                            </div>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                            
-              <div class="card">
+            	  <div class="card">
                 <div class="card-header">
                   <div class="card-actions" style="top: 35%;">
                     <a class="btn btn-sm btn-labeled arrow-primary" href="<?= base_url() ?>newagent.html">
@@ -44,8 +22,7 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
-                    <div class="panel-scroll table-responsive">
-                    <table class="table table-striped table-hover center" id="agent">
+                    <table class="table">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -67,8 +44,8 @@
                       <tbody>
                         <?php 
                         
-                        if( $employes->num_rows()>0)
-                        {foreach ($employes->result() as $key => $value): ?>
+                      
+                        foreach ($abc as $value): ?>
                           <tr>
                             <td><?= $value->id; ?></td>
                             <td><?= $value->rank; ?></td>
@@ -85,10 +62,9 @@
                             <td><a class="btn btn-danger"  href="<?= base_url() ?>agent/agentDelete/<?= $value->id ?>" onclick="return confirm('Are you sure')">Delete</a></td>
                             </td>
                           </tr>
-                        <?php endforeach; }?>
+                        <?php endforeach; ?>
                       </tbody>
                     </table>
-                  </div>
                   </div>
                 </div>
               </div>

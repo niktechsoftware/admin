@@ -22,7 +22,8 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
-                    <table class="table">
+                    <div class="panel-scroll table-responsive">
+                    <table class="table table-striped table-hover center" id="agentdetail">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -69,6 +70,7 @@
                         <?php endforeach; }?>
                       </tbody>
                     </table>
+                  </div>
                   </div>
                 </div>
               </div>

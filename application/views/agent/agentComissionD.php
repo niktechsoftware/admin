@@ -70,7 +70,8 @@
             		</div>
             		<div class="col-sm-2" ></div>
             	</div>
-              <table class="table table-hover table-bordered">
+                    <div class="panel-scroll table-responsive">
+                    <table class="table table-striped table-hover center" id="agentcomm">
                 <thead>
                   <tr>
                       <th class="text-left">#</th>
@@ -108,7 +109,7 @@
                 </tbody>
               </table>
              
-             
+             </div>
               
             </div>
        

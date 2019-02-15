@@ -8,13 +8,29 @@ class Customers extends CI_Model {
 	}
 
 	function getAllCustomers() {
+	    
+	       if($this->session->userdata("loginType")==1){
+	           	$result = $this->db->get('customer');
+	       }else{
+	             $this->db->where("branchID",$this->session->userdata("branchID"));
+	            $result = $this->db->get('customer');
+	       }
 
-		$result = $this->db->get('customer');
+	
 		
 		/**
 		 * 	return employee table Data getting from database.
 		 */
 		return $result->result();
+	}
+
+	public function searchcus($dt1,$dt2)
+	{
+
+		$this->db->where('DATE(updated) >=',$dt1);
+		$this->db->where('DATE(updated) <=',$dt2);
+		$data=$this->db->get('customer')->result();
+		return $data;
 	}
 
 	function getCustomer($customerID) {

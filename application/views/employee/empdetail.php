@@ -2,30 +2,7 @@
         <div class="layout-content-body">
           <div class="row gutter-xs">
             <div class="col-md-12">
-                                                        <div class="panel panel-white">
-                                <div class="panel-body">
-                                    <form class="form-horizontal" action="<?php echo base_url()?>Employee/empDetail" method="post" enctype="multipart/form-data">
-                                      <div class="row">
-                                        <div class="form-group col-sm-10">
-                                            <label for="inputEmail3" class="col-sm-2 control-label">Start Date</label>
-                                            <div class="col-sm-4">
-                                                <input type="date" name="sdt" class="form-control date-picker" placeholder="Start Date" required="required">
-                                            </div>
-                                            <label for="inputEmail3" class="col-sm-2 control-label">End Date</label>
-                                            <div class="col-sm-4">
-                                                <input type="date" name="edt" class="form-control date-picker" placeholder="End Date" required="required">
-                                            </div>
-                                        </div>
-                                         <div class="form-group col-sm-2">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" id="btn1" class="btn btn-success">Get Detail</button>
-                                            </div>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                            
-              <div class="card">
+        <div class="card">
                 <div class="card-header">
                   <div class="card-actions" style="top: 35%;">
                     <a class="btn btn-sm btn-labeled arrow-primary" href="<?= base_url() ?>newemploye.html">
@@ -45,8 +22,7 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
-                   <div class="panel-scroll table-responsive">
-                    <table class="table table-striped table-hover center" id="employes">
+                    <table class="table">
                       <thead>
                         <tr>
                           <th>Employee Code</th>
@@ -65,7 +41,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($employes as $key => $value): ?>
+                        <?php foreach ($abc as $value): ?>
                           <tr>
                             <td><?= $value->id; ?></td>
                             <td><?= $value->name; ?></td>
@@ -83,7 +59,7 @@
                           </tr>
                         <?php endforeach; ?>
                       </tbody>
-                    </table></div>
+                    </table>
                   </div>
                 </div>
               </div>
