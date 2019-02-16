@@ -44,7 +44,7 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
-                     <div class=" panel-scroll table-reponsive">
+                     <div class=" panel-scroll table-responsive">
                     <table class="table table-striped table-hover center" id="customers">
                       <thead>
                         <tr>
