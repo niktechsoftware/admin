@@ -22,6 +22,34 @@
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/application.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/demo.min.css">
     <script src="<?= base_url(); ?>assets/js/custom.js"></script>
+     <!--start datatable-->
+ <link rel="stylesheet" href="<?= base_url(); ?>assets/css/datatable/dataTables.bootstrap4.min.css">
+ <!--<script src="<?= base_url(); ?>assets/js/datatable/jquery-3.3.1.js"></script>-->
+ <script src="<?= base_url(); ?>assets/js/datatable/jquery.dataTables.min.js"></script>
+  <script src="<?= base_url(); ?>assets/js/datatable/dataTables.bootstrap4.min.js"></script>
+ <!--end datatable-->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#customers').DataTable();
+} );
+ $(document).ready(function() {
+    $('#agent').DataTable();
+} );
+ $(document).ready(function() {
+    $('#agentdetail').DataTable();
+} );
+ $(document).ready(function() {
+    $('#agentcomm').DataTable();
+} );
+ $(document).ready(function() {
+    $('#employes').DataTable();
+} );
+
+
+</script>
+
+
+
   </head>
   <body class="layout layout-header-fixed layout-footer-fixed">
     <div class="layout-header">

@@ -1,8 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+		
+ 
 class Customer extends CI_Controller {
-    
     function __construct()
 	{
 		parent::__construct();
@@ -20,6 +21,22 @@ class Customer extends CI_Controller {
 		}
 	
 	}	
+
+	function csDetail()
+	{
+
+
+		$dt1 = date("Y-m-d", strtotime($this->input->post("sdt")));
+		$dt2 =  date("Y-m-d", strtotime($this->input->post("edt")));
+		
+		$this->load->model('Customers');
+		$data['abc']=$this->Customers->searchcus($dt1,$dt2);
+		$data['title'] = 'Searched Customers';
+		$data['body'] = 'customer/csdetail';
+		$this->load->view('layout',$data);
+	
+		
+	}
     
     
 
@@ -139,8 +156,14 @@ class Customer extends CI_Controller {
 					"adhaarNo" 		=> $this->input->post('aadharNo')
 				);
 				$customerno = $this->customers->setCustomer($customerData);
+                  print_r($customerno);
+
 				$customerID = date("ymd", strtotime($this->input->post("joindate"))).'C'.$customerno;
 				$policy_No = date("ymd", strtotime($this->input->post("joindate"))).'P'.$customerno;
+                 print_r($customerID);
+                  print_r($policy_No);
+
+
 				$cusdata = array(
 						'policy_No' =>	$policy_No,
 						'Customer_ID' => $customerID
@@ -148,7 +171,7 @@ class Customer extends CI_Controller {
 				);
 				
 				$this->db->where("id",$customerno);
-				$this->db->update("customer",$cusdata);
+			    $update=$this->db->update("customer",$cusdata);
 				
 				$this->load->library('upload');
 				$config['upload_path'] = realpath(APPPATH . '../assets/images/customer');
@@ -235,7 +258,7 @@ class Customer extends CI_Controller {
 					$planID = $this->input->post('planID');
 
 					if($planID == 1):
-					    
+					     $smsAmount=$this->input->post("investAmount-fd");
 						$daybookData["amount"] = $this->input->post("investAmount-fd");
 						$investmentData["oneTimeInvestment"]= $this->input->post("investAmount-fd");
 						$investmentData["meturity"] 		= $this->input->post("meturtyAmount-fd");
@@ -263,6 +286,7 @@ class Customer extends CI_Controller {
 						$this->db->insert("fdDetail",$fdinsertData);
 
 					elseif($planID == 2):
+					    $smsAmount=$this->input->post("monthInvestAmount-rd");
 						$daybookData["amount"] = $this->input->post("monthInvestAmount-rd");
 						$investmentData["monthlyInvestment"] = $this->input->post("monthInvestAmount-rd");
 					    $investmentData["totalInvestment"] = $this->input->post("investAmount-rd");
@@ -297,6 +321,7 @@ class Customer extends CI_Controller {
 					    
 
 					elseif($planID == 3):
+					    $smsAmount=$this->input->post("monthAmount");
 						$daybookData["amount"] = $this->input->post("monthAmount");
 						$investmentData["pensionAmount"] = $this->input->post("planAMount-nps");
 						$investmentData["totalInvestment"] = $this->input->post("totalAmount-nps");
@@ -332,6 +357,7 @@ class Customer extends CI_Controller {
 						}}
 
 					elseif($planID == 4):
+					    $smsAmount=$this->input->post("investAmount-mip");
 						$daybookData["amount"] = $this->input->post("investAmount-mip");
 						$investmentData["oneTimeInvestment"] = $this->input->post("investAmount-mip");
 						$investmentData["monthlyReturn"] = $this->input->post("monthlyReturn-mip");
@@ -363,12 +389,19 @@ class Customer extends CI_Controller {
 						$mistotMonth=$mistotMonth-1;
 					$this->db->insert("misDetail",$misinsertdata);	
 				}}
+					$redy = 	$this->db->get("daybook");
+		                $ins = $redy->num_rows();
+		                $invoice_s = "JMDF".$ins;
+		                $daybookData['customer_ID'] =$customerID;
+		                  $daybookData['invoice_no'] = $invoice_s;
+					$this->db->insert("daybook", $daybookData);
 				
 				elseif($planID == 5):
 				    $dayinc=0;
 				    $totmont = 0;
 						   $totyear = 0;
 						$daybookData["amount"] = $this->input->post("totalAmount-loan");
+						$smsAmount=$this->input->post("totalAmount-loan");;
 						$amt = $this->input->post("totalAmount-loan");
 						$irate =  $this->input->post("appliedInterest-loan");
 						$mistotMonth = $this->input->post("totalInstalment-loan");
@@ -434,16 +467,26 @@ class Customer extends CI_Controller {
 						);
 						$mistotMonth=$mistotMonth-1;
 					$this->db->insert("loanDetail",$misinsertdata);
-					echo $datea;
+					//echo $datea;
+					
 				}}
-					endif;
+					$redy = 	$this->db->get("daybook");
+		                $ins = $redy->num_rows();
+		                $invoice_s = "JMDF".$ins;
+		                $daybookData['customer_ID'] =$customerID;
+		                  $daybookData['invoice_no'] = $invoice_s;
 					$this->db->insert("daybook", $daybookData);
+					endif;
+					
 					$this->load->model("investmentDetail");
 					if ($this->investmentDetail->setDetail($investmentData)):
 					$username 	= $this->input->post('username');
 					$password 	= $this->input->post('password');
 					$mobile = $this->input->post('mobile');
-					$msg = "Welcome to JMD Finance Pvt. Ltd. Your Customer Userid=".$username." And Password = ".$password." Please Keep Your LoginID and Password secret.";
+						$name			= $this->input->post('name');
+						$date5 = date("Y-m-d");
+					$msg="Congratulations Dear ".$name." Your A/C No. ".$customerID." is created for Rs. ".$smsAmount." on ".$date5." JMD Finance Pvt.Ltd.";
+					//$msg = "Welcome to JMD Finance Pvt. Ltd. Your Customer Userid=".$username." And Password = ".$password." Please Keep Your LoginID and Password secret.";
 					$this->load->helper("sms");
 					sms($mobile,$msg);
 				        redirect(base_url().'customers.html');
@@ -558,8 +601,10 @@ class Customer extends CI_Controller {
 				"adhaarNo" 		=> $this->input->post('aadharNo')
 		);
 		//$customerID = $this->customers->setCustomer($customerData);
-		$this->db->where("id",$customerID);
-		$ft=$this->db->update("customer",$customerData);
+		$this->load->model('customer');
+
+		$ft['ft']=$this->employe->customeredt($employeeID,$employeData);
+		
 		$this->load->library('upload');
 		$config['upload_path'] = realpath(APPPATH . '../assets/images/customer');
 		// $config['allowed_types'] = 'gif|jpg|jpeg|png';
@@ -610,14 +655,23 @@ class Customer extends CI_Controller {
 	}
 
 	public function customerDelete(){
-	    $empid = $this->uri->segment(3);
-	   // echo $empid;
+	    $customerid = $this->uri->segment(3);
 	    ?><script>   	
 	    	if (result) {
 	    	   
-	    	}else{
-	    		<?php $this->db->where("Customer_ID",$empid);
-		    	      $this->db->delete("customer");?>
+	    	}
+	    	else{
+	    		<?php
+                    $this->load->helper('sms');
+                   $this->db->where('id',$customerid);
+                   $ab=$this->db->get('customer')->row();
+                   $a=$ab->mobile;
+                   $b=$ab->name;
+                   $bcc="Dear customer "."". $b." your customer Profile from JMDF has been successfully deleted";    	
+                   sms($a,$bcc);
+	    		     $this->db->where("Customer_ID",$customerid);
+		    	      $this->db->delete("customer");
+		       ?>
 		    	
 	    	}
 	    </script>
