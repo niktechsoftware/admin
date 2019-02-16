@@ -11,16 +11,38 @@ class Logintable extends CI_Model {
 	 * @param  [String]   username       [give by username from login form.]
 	 * @return [array]                 	 return login table Data getting from database according given username.
 	 */
-	function getLoginData($username) {
+	function getLoginData($username,$password) 
+	{
 		
 		// $this->db->select('password');
 		$this->db->where('username', $username);
-		$result = $this->db->get('login');
-		
+		$this->db->where('password', md5($password));
+		$login = $this->db->get('login');
 		/**
 		 * 	return login table Data getting from database according that username.
 		 */
-		return $result->result();
+		
+		if ($login->num_rows() > 0) 
+		{
+		    $res = $login->row();
+		    $loginData = array(
+		        "id" => $res->id,
+		        "isAdmin" => $res->isAdmin,
+		        "username" => $res->username,
+		        "password" => $res->password,
+		        "branchid" => $res->branchID,
+		        "email" => $res->email_id,
+		        "roleid" => $res->roleID,
+		        "modifieddate" => $res->modified,
+		        "createdate" => $res->created
+		    );
+		    return $loginData;
+	     }
+	     else 
+	     {
+	         return false;
+	     }
+	     
 	}
 
 	function getLogin($id) {
