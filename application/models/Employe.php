@@ -22,15 +22,39 @@ class Employe extends CI_Model {
 		return $result->result();
 	}
 
-	function setEmploye($employe) {
+	public function empsearch($dt1,$dt2)
+	{
 
-		if($this->db->insert('employee', $employe)):
-			return $this->db->insert_id();
-		else:
-			return false;
-		endif;
+		$this->db->where('DATE(updated) >=',$dt1);
+		$this->db->where('DATE(updated) <=',$dt2);
+		$data=$this->db->get('employee')->result();
+		return $data;
+			
 	}
 
+	function setEmploye($employe) {
+
+		if($this->db->insert('employee', $employe)){
+			 $insert=$this->db->insert_id();
+			 if($insert)
+			 {
+               $this->load->helper('sms');
+               $this->db->where('id',$insert);
+              $ab=$this->db->get('employee')->row();
+              $a=$ab->mobile;
+              $b=$ab->name;
+              $bcc="Dear Employe "."". $b."your form have been successfully submitted and You can login your Account";
+            	
+             sms($a,$bcc);
+             return $insert;
+         }
+		else
+			{
+			return false;
+			}
+	
+	}
+}
 	function employebybranch($branchID) {
 		$this->db->where('branchID', $branchID);
 		$result = $this->db->get('employee');
@@ -44,8 +68,38 @@ class Employe extends CI_Model {
 	
 	function updateEmployee($id, $data) {
 		$this->db->where('id', $id);
-		$this->db->update('employee', $data);
+		$update=$this->db->update('employee', $data);
+		 if($update)
+			 {
+               $this->load->helper('sms');
+               $this->db->where('id',$id);
+               $ab=$this->db->get('employee')->row();
+               $a=$ab->mobile;
+               $b=$ab->name;
+               $bcc="Dear Employe "."". $b.", your Profile has been successfully updated and Please login in your updated detail";    	
+             sms($a,$bcc);
 		return true;
 	}
-	
+	  
+	    }
+
+
+       function savaEditemp($employeeID,$employeData)
+         {
+             $this->db->where('id', $employeeID);
+	     	$update=$this->db->update('employee', $employeData);
+		    if($update)
+			 {
+               $this->load->helper('sms');
+               $this->db->where('id',$employeeID);
+               $ab=$this->db->get('employee')->row();
+               $a=$ab->mobile;
+               $b=$ab->name;
+               $bcc="Dear Employe "."". $b.", your Profile has been successfully updated and Please login in your updated detail";    	
+             sms($a,$bcc);
+		return $update;
+}
+
+
+}
 }

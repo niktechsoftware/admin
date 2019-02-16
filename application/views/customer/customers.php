@@ -5,7 +5,7 @@
                                           <div class="panel panel-white">
                                 <div class="panel-body">
                                     <form class="form-horizontal" action="<?php echo base_url()?>Customer/csDetail" method="post" enctype="multipart/form-data">
-                                        <div class="form-group">
+                                        <div class="form-group col-sm-10">
                                             <label for="inputEmail3" class="col-sm-2 control-label">Start Date</label>
                                             <div class="col-sm-4">
                                                 <input type="date" name="sdt" class="form-control date-picker" placeholder="Start Date" required="required">
@@ -15,7 +15,7 @@
                                                 <input type="date" name="edt" class="form-control date-picker" placeholder="End Date" required="required">
                                             </div>
                                         </div>
-                                         <div class="form-group">
+                                         <div class="form-group col-sm-2">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <button type="submit" id="btn1" class="btn btn-success">Get Detail</button>
                                             </div>

@@ -80,7 +80,6 @@ $db['default'] = array(
 	'password' => '',
 	'database' => 'gfincpnt_jmdf',
 
-	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

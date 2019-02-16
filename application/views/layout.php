@@ -32,6 +32,7 @@
   $(document).ready(function() {
     $('#customers').DataTable();
 } );
+
   $(document).ready(function() {
     $('#daybookdetail').DataTable();
 } );
@@ -53,6 +54,22 @@
  $(document).ready(function() {
     $('#loan').DataTable();
 } );
+
+ $(document).ready(function() {
+    $('#agent').DataTable();
+} );
+ $(document).ready(function() {
+    $('#agentdetail').DataTable();
+} );
+ $(document).ready(function() {
+    $('#agentcomm').DataTable();
+} );
+ $(document).ready(function() {
+    $('#employes').DataTable();
+} );
+
+
+
 </script>
 
 

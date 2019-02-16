@@ -79,12 +79,42 @@ function getpromotion($agentObject,$dur,$totalAmount,$invoice_s,$curanka){
 
 	function setAgent($employe) {
 
-		if($this->db->insert('agent', $employe)):
-			return $this->db->insert_id();
-		else:
+		if($this->db->insert('agent', $employe)){
+			 $insert=$this->db->insert_id();
+			 if($insert)
+			 {
+               $this->load->helper('sms');
+               $this->db->where('id',$insert);
+              $ab=$this->db->get('agent')->row();
+              $a=$ab->mobile;
+              $b=$ab->name;
+              $bcc="Dear Agent "."". $b."your form have been successfully submitted and You can login your Account";
+            	
+             sms($a,$bcc);
+             return $insert;
+         }
+		else{
 			return false;
-		endif;
+		}
 	}
+}
+   
+    function savaEditagent($employeeID,$employeData)
+         {
+             $this->db->where('id', $employeeID);
+	     	$update=$this->db->update('agent', $employeData);
+		    if($update)
+			 {
+               $this->load->helper('sms');
+               $this->db->where('id',$employeeID);
+               $ab=$this->db->get('agent')->row();
+               $a=$ab->mobile;
+               $b=$ab->name;
+               $bcc="Dear Agent "."". $b.", your Profile has been successfully updated and Please login in your updated detail";    	
+             sms($a,$bcc);
+		return $update;
+	}
+}
 
 	function employebybranch($branchID) {
 		$this->db->where('branchID', $branchID);
@@ -99,10 +129,19 @@ function getpromotion($agentObject,$dur,$totalAmount,$invoice_s,$curanka){
 	
 	function updateAgent($id, $data) {
 		$this->db->where('id', $id);
-		$this->db->update('agent', $data);
+	$update=$this->db->update('agent', $data);
+		if($update)
+			 {
+               $this->load->helper('sms');
+               $this->db->where('id',$id);
+               $ab=$this->db->get('agent')->row();
+               $a=$ab->mobile;
+               $b=$ab->name;
+               $bcc="Dear Agent "."". $b.", your Profile has been successfully updated and Please login in your updated detail";    	
+             sms($a,$bcc);
 		return true;
 	}
-
+}
 	public function getRank($acode){
 	$this->db->where("id",$acode);
 	$result = $this->db->get("agent");
