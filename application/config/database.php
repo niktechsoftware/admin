@@ -76,19 +76,10 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-<<<<<<< HEAD
-// 	'username' => 'gfincpnt_jmdf',
-// 	'password' => 'rahul!123singh',
-// 	'database' => 'gfincpnt_jmdf',
-    'username' => 'root',
-    'password' => '',
-    'database' => 'jmdf',
-=======
 	'username' => 'root',
 	'password' => '',
 	'database' => 'gfincpnt_jmdf',
 
->>>>>>> c87172b31ed3d6662e0ad36dca1669323a662fa3
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

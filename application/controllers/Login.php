@@ -111,59 +111,32 @@ public function logout(){
              * This condtion varifyes, is given username exist in database or not
              * if its exist in database then it has some value otherwise it dosen't.
              */
-<<<<<<< HEAD
-//               if((count($loginData) > 0) && ($loginData[0]->password === sha1($password)) ) 
-//               {
-//             	/**
-//             	 * [$sessionData contian BranchID, username and boolean variable (isAdmin to identify schools superuser.)]
-//             	 * @var array
-//             	 */
-//             	 $this->db->where("id",$loginData[0]->branchID);
-//             	 $branchD = $this->db->get("branch")->row();
-//             	 $this->db->where("loginID",$loginData[0]->id);
-//             	 $empID = $this->db->get("employee")->row();
-//             	$sessionData = array(
-//             		"branchID" 	=> $loginData[0]->branchID,
-//             		"role" 	    => $loginData[0]->roleID,
-//             		"username" 	=> $loginData[0]->username,
-//             		"title"        =>$branchD->title,
-//             		"address"    =>$branchD->address,
-//             		"city"   =>$branchD->city,
-//             		"state"  =>$branchD->state,
-//             		"pin"    =>$branchD->pin,
-//             		"phone"  =>$branchD->phone,
-//             		"mobile"     =>$branchD->mobile,
-//             		"email"  =>$branchD->email,
-//             		"empName"  =>$empID->name,
-//             	);
-=======
-            if((count($loginData) > 0) && ($loginData[0]->password === sha1($password)) ) {
-            	/**
-            	 * [$sessionData contian BranchID, username and boolean variable (isAdmin to identify schools superuser.)]
-            	 * @var array
-            	 */
-            	 $this->db->where("id",$loginData[0]->branchID);
-            	 $branchD = $this->db->get("branch")->row();
-            	 $this->db->where("loginID",$loginData[0]->id);
-            	 $empID = $this->db->get("employee")->row();
-            	$sessionData = array(
-            	    "loginType" => $loginData[0]->isAdmin,
-            		"branchID" 	=> $loginData[0]->branchID,
-            		"role" 	    => $loginData[0]->roleID,
-            		"username" 	=> $loginData[0]->username,
-            		"title"        =>$branchD->title,
-            		"address"    =>$branchD->address,
-            		"city"   =>$branchD->city,
-            		"state"  =>$branchD->state,
-            		"pin"    =>$branchD->pin,
-            		"phone"  =>$branchD->phone,
-            		"mobile"     =>$branchD->mobile,
-            		"email"  =>$branchD->email,
-            		"empName"  =>$empID->name,
-            	);
+            // if((count($loginData) > 0) && ($loginData[0]->password === sha1($password)) ) {
+            // 	/**
+            // 	 * [$sessionData contian BranchID, username and boolean variable (isAdmin to identify schools superuser.)]
+            // 	 * @var array
+            // 	 */
+            // 	 $this->db->where("id",$loginData[0]->branchID);
+            // 	 $branchD = $this->db->get("branch")->row();
+            // 	 $this->db->where("loginID",$loginData[0]->id);
+            // 	 $empID = $this->db->get("employee")->row();
+            // 	$sessionData = array(
+            // 	    "loginType" => $loginData[0]->isAdmin,
+            // 		"branchID" 	=> $loginData[0]->branchID,
+            // 		"role" 	    => $loginData[0]->roleID,
+            // 		"username" 	=> $loginData[0]->username,
+            // 		"title"        =>$branchD->title,
+            // 		"address"    =>$branchD->address,
+            // 		"city"   =>$branchD->city,
+            // 		"state"  =>$branchD->state,
+            // 		"pin"    =>$branchD->pin,
+            // 		"phone"  =>$branchD->phone,
+            // 		"mobile"     =>$branchD->mobile,
+            // 		"email"  =>$branchD->email,
+            // 		"empName"  =>$empID->name,
+            // 	);
             	
             
->>>>>>> c87172b31ed3d6662e0ad36dca1669323a662fa3
 
 //                 // print_r($this->router->routes);
 
