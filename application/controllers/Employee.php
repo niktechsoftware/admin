@@ -30,10 +30,10 @@ function empDetail()
 		// $this->db->where('DATE(updated) >=',$dt1);
 		// $this->db->where('DATE(updated) <=',$dt2);
 		// $data['abc']=$this->db->get('employee')->result();
-		// 				//$data['a'] = $this->db->query("select * from customer where updated >= '$dt1' AND updated <= '$dt2'");
-						//$this->load->view('csdetail',$a);
-						//$this->load->view("csdetail");
-							//$data['employes'] = $this->customers->getAllCustomers();
+		// $data['a'] = $this->db->query("select * from customer where updated >= '$dt1' AND updated <= '$dt2'");
+	    //$this->load->view('csdetail',$a);
+	    //$this->load->view("csdetail");
+		//$data['employes'] = $this->customers->getAllCustomers();
 
 		$this->load->model('Employe');
 		$data['abc']=$this->Employe->empsearch($dt1,$dt2);

@@ -10,3 +10,4 @@ class Smsmodel extends CI_Model{
 		$val=$this->db->get("sms_setting")->row();
 		return $val;
 	}
+}
