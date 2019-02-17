@@ -1,5 +1,6 @@
 <?php
-class SmsAjax extends CI_Controller{
+class SmsAjax extends CI_Controller
+{
 	function __construct()
 	{
 		parent::__construct();
@@ -24,4 +25,6 @@ class SmsAjax extends CI_Controller{
               $data['body']="sms/smsPanel";
               $this->load->view('layout',$data);
 	         }	
-}
+		$this->load->model("smsmodel");
+	}
+	

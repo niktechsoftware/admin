@@ -22,23 +22,47 @@ class Accounts extends CI_Controller {
 	}
 	
 
-	public function getdabook() {
-	    if($this->session->userdata("loginType")==1){ 
-		$daybook = $this->db->get("daybook")->result();
-	    }else{
-	        
-	        
-	        // $this->db->where("branchID",$this->session->userdata("branchID"));
-	         
-	         
-	        
-	    }
-	     $daybook = $this->db->get("daybook")->result();
+	public function getdabook() 
+	    {
 
-		$data['daybook'] = $daybook;
+	    if($this->session->userdata("loginType")==1){ 
+		$daybook= $this->db->get("daybook")->result();
+		$data['employes'] = $daybook;
+		// rd details table
+		      // $rddetailw= $this->db->get("rddetail")->result();
+		      // $data['rd'] = $rddetailw;
+            // fddetail table
+		    $fde= $this->db->get("fddetail")->result();
+             $data['detail']= $fde;
+
+
 		$data['body'] = 'accounts/daybook';
 		$data['title'] = 'Daybook Transactions';
 		$this->load->view('layout', $data);
+		
+
+	    }
+	    else
+	    {
+	        
+	        
+	        // $this->db->where("branchID",$this->session->userdata("branchID"));
+	         	         
+	        
+	    }
+
+	    function rddetail()
+	    {
+	    	 if($this->session->userdata("loginType")==1){ 
+	    	 	
+	    	 }
+	    }
+	 //     $daybook = $this->db->get("daybook")->result();
+
+		// $data['daybook'] = $daybook;
+		// $data['body'] = 'accounts/daybook';
+		// $data['title'] = 'Daybook Transactions';
+		// $this->load->view('layout', $data);
 	}
 
 }

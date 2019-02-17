@@ -280,7 +280,7 @@ class Agent extends CI_Controller {
 	}
 
 	public function agents() {
-	$this->load->model("agents");
+	    $this->load->model("agents");
 		$data['employes'] = $this->agents->getAllAgents();
 		$data['title'] = 'All Agents';
 		$data['body'] = 'agent/agents';
