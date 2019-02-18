@@ -2,29 +2,7 @@
 	<div class="layout-content-body">
 	    <div class="row gutter-xs">
 		    <div class="col-xs-12">
-
-                            <div class="panel panel-white">
-                                <div class="panel-body">
-                                    <form class="form-horizontal" action="<?php echo base_url()?>Accounts/dbkdetail" method="post" enctype="multipart/form-data">
-                                        <div class="form-group col-sm-10">
-                                            <label for="inputEmail3" class="col-sm-2 control-label">Start Date</label>
-                                            <div class="col-sm-4">
-                                                <input type="date" name="sdt" class="form-control date-picker" placeholder="Start Date" required="required">
-                                            </div>
-                                            <label for="inputEmail3" class="col-sm-2 control-label">End Date</label>
-                                            <div class="col-sm-4">
-                                                <input type="date" name="edt" class="form-control date-picker" placeholder="End Date" required="required">
-                                            </div>
-                                        </div>
-                                         <div class="form-group col-sm-2">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" id="btn1" class="btn btn-success">Get Detail</button>
-                                            </div>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                            
+            
                 <div class="card">
                     <div class="card-header">
                         <div class="card-actions" style="top: 35%;">
@@ -38,7 +16,7 @@
                         <strong>Daybook Transactions</strong>
                     </div>
                     <div class="card-body">
-                        <table id="demo-datatables-5" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%">
+                        <table id="dbkdetail" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -51,7 +29,7 @@
                             </thead>
                             <tbody>
                                 <?php 
-                                    foreach ($daybook as $key => $value):
+                                    foreach ($abc as $value):
                                         echo "<tr>";
 
                                         echo "<td>".$value->id."</td>";

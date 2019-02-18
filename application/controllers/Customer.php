@@ -655,6 +655,8 @@ class Customer extends CI_Controller {
 	    	}else{
 	    		<?php $this->db->where("Customer_ID",$empid);
 		    	      $this->db->delete("customer");?>
+                <?php $this->db->where("Customer_ID",$empid);
+        $this->db->delete("daybook");?>
 		    	
 	    	}
 	    </script>

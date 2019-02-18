@@ -44,6 +44,24 @@
  $(document).ready(function() {
     $('#employes').DataTable();
 } );
+ $(document).ready(function() {
+    $('#agdetail').DataTable();
+} );
+  $(document).ready(function() {
+    $('#csdetail').DataTable();
+} );
+   $(document).ready(function() {
+    $('#empdetail').DataTable();
+} );
+ 
+   $(document).ready(function() {
+    $('#dbkdetail').DataTable();
+} );
+    $(document).ready(function() {
+    $('#demo').DataTable();
+} );
+ 
+ 
 
 
 </script>
