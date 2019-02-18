@@ -9,7 +9,14 @@ class Branch extends CI_Model {
 	 */
 	function getBranch() {
 		
+	    if(($this->session->userdata("isAdmin")==1)){
+	        
+	    
 		$result = $this->db->get('branch');
+	    }else{
+	        $this->db->where("id",$this->session->userdata("branchid"));
+	        $result = $this->db->get('branch');
+	    }
 		
 		/**
 		 * 	return login table Data getting from database according that username.
@@ -18,6 +25,7 @@ class Branch extends CI_Model {
 	}
 
 	function getBranchID($id) {
+	    
 		$this->db->where('id', $id);
 		$result = $this->db->get('branch');
 		

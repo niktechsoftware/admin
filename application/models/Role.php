@@ -4,8 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Role extends CI_Model {
 
 	function getRoles($branchID) {
+	    if(($this->session->userdata("isAdmin")==1)){
+	        
 		$this->db->where('branchID', $branchID);
-		return $this->db->get('role')->result();
+	$result =  $this->db->get('role')->result();
+	    }else{
+	        $this->db->where('branchID', $this->session->userdata("branchid"));
+	        $result =  $this->db->get('role')->result();
+	    }
 	}
 
 	function setRole($role) {

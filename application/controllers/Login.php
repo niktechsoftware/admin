@@ -14,10 +14,12 @@ class Login extends CI_Controller {
 	}
 
 
-public function logout(){
-   $this->session->unset_userdata();
-		$this->session->sess_destroy();
-		redirect('index.php/login');
+
+public function logout()
+{
+    $this->session->unset_userdata();
+    $this->session->sess_destroy();
+    redirect('index.php/login');
 }
 	/**
 	 * 
@@ -78,25 +80,25 @@ public function logout(){
                 if($loginData['isAdmin']==2)
                 {
                     $this->session->set_userdata($loginData);
-                    redirect("/Settings/branches", 'refresh');
+                    redirect("/Home/index", 'refresh');
                     //echo "Branch User";
                 }
                 if($loginData['isAdmin']==3)
                 {
                     $this->session->set_userdata($loginData);
-                    redirect("/Customer/customers", 'refresh');
+                    redirect("/Home/index", 'refresh');
                     //echo "Customer User";
                 }
                 if($loginData['isAdmin']==4)
                 {
                     $this->session->set_userdata($loginData);
-                    redirect("/Employee/employes", 'refresh');
+                    redirect("/Home/index", 'refresh');
                     //echo "Employee User";
                 }
                 if($loginData['isAdmin']==5)
                 {
                     $this->session->set_userdata($loginData);
-                    redirect("/Agent/agents", 'refresh');
+                    redirect("/Home/index", 'refresh');
                     //echo "Agent User";
                 }
             }
