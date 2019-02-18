@@ -28,13 +28,13 @@
                 <div class="card-header">
                   <div class="card-actions" style="top: 35%;">
                     <a class="btn btn-sm btn-labeled arrow-primary" href="<?= base_url() ?>newcustomer.html">
-                      <span class="btn-label">
-                        <span class="icon icon-plus-square icon-lg icon-fw"></span>
-                      </span>
+                      <span class="btn-label" style="height:30px">
+                        <span class="icon icon-plus-square icon-lg icon-fw text-center"></span>
+                      </span> 
                       New Customer
                     </a>
                     <a class="btn btn-sm btn-labeled arrow-info" onclick="window.history.back();" href="#">
-                      <span class="btn-label">
+                      <span class="btn-label" style="height:30px;">
                         <span class="icon icon-arrow-circle-left icon-lg icon-fw"></span>
                       </span>
                       Back

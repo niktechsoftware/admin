@@ -100,8 +100,9 @@ $route['setpremium'] = '/premium/setpremium';
 
 /* --------------- PLAN ------------------------- */
 $route['daybook'] = 'accounts/getdabook';
+$route['message'] = 'smsAjax/smsPanel';
 
-
+$route['expences']='accounts/expences';
 
 
 $route['translate_uri_dashes'] = FALSE;

@@ -1,4 +1,4 @@
-<?php
++<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 		
@@ -659,7 +659,7 @@ class Customer extends CI_Controller {
 	    ?><script>   	
 	    	if (result) {
 	    	   
-	    	}
+            }
 	    	else{
 	    		<?php
                     $this->load->helper('sms');

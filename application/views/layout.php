@@ -32,6 +32,29 @@
   $(document).ready(function() {
     $('#customers').DataTable();
 } );
+
+  $(document).ready(function() {
+    $('#daybookdetail').DataTable();
+} );
+ $(document).ready(function() {
+    $('#rdev').DataTable();
+} );
+ $(document).ready(function() {
+    $('#fdv').DataTable();
+} );
+ $(document).ready(function() {
+    $('#alle').DataTable();
+} );
+ $(document).ready(function() {
+    $('#misd').DataTable();
+} );
+ $(document).ready(function() {
+    $('#npsv').DataTable();
+} );
+ $(document).ready(function() {
+    $('#loan').DataTable();
+} );
+
  $(document).ready(function() {
     $('#agent').DataTable();
 } );
@@ -44,6 +67,25 @@
  $(document).ready(function() {
     $('#employes').DataTable();
 } );
+ $(document).ready(function() {
+    $('#agdetail').DataTable();
+} );
+  $(document).ready(function() {
+    $('#csdetail').DataTable();
+} );
+   $(document).ready(function() {
+    $('#empdetail').DataTable();
+} );
+ 
+   $(document).ready(function() {
+    $('#dbkdetail').DataTable();
+} );
+    $(document).ready(function() {
+    $('#demo').DataTable();
+} );
+ 
+ 
+
 
 
 </script>
