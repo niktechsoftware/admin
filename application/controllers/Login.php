@@ -17,6 +17,7 @@ class Login extends CI_Controller {
 
 public function logout()
 {
+    $this->session->set_flashdata('isAuth', 'false');
     $this->session->unset_userdata();
     $this->session->sess_destroy();
     redirect('index.php/login');
