@@ -22,10 +22,6 @@
 	               <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-1">Introducer(Agent) Code</label>
 	                <div class="col-sm-2"><?=  $employee->id; ?></div>
-
-	               
-	               
-
 	                <label class="col-sm-2 control-label" for="form-control-3">Username</label>
 	                <div class="col-sm-2"><?= $loginDetail->username;; ?></div>
 	                

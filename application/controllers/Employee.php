@@ -27,7 +27,6 @@ function empDetail()
 
 		$dt1 = date("Y-m-d", strtotime($this->input->post("sdt")));
 		$dt2 =  date("Y-m-d", strtotime($this->input->post("edt")));
-		
 		$this->load->model('Employe');
 		$data['abc']=$this->Employe->empsearch($dt1,$dt2);
 		$data['title'] = 'Searched Employee';
@@ -43,10 +42,22 @@ function empDetail()
 	   // echo $empid;
 	    ?><script>   	
 	    	if (result) {
+
 	    	   
-	    	}else{
-	    		<?php $this->db->where("id",$empid);
-		    	   $this->db->delete("employee");?>
+	    	}
+	    	else
+	    	{
+	    		<?php 
+		    	    $this->load->helper('sms');
+                   $this->db->where('id',$empid);
+                   $ab=$this->db->get('employee')->row();
+                   $a=$ab->mobile;
+                  $b=$ab->name;
+                   $bcc="Dear Employe "."". $b." your Employe Profile from JMDF has been successfully deleted";    	
+                sms($a,$bcc);
+                $this->db->where("id",$empid);
+		    	$this->db->delete("employee");
+                         ?>
 		    	
 	    	}
 	    	
@@ -295,10 +306,9 @@ function empDetail()
 				"aadharNo" 		=> $this->input->post('aadharNo')
 			
 		);
-		
 		$employeeID=$this->input->post("employeeID");
-		$this->db->where("id",$this->input->post("employeeID"));
-		$ft = $this->db->update("employee",$employeData);
+		$this->load->model('employe');
+		$ft['ft']=$this->employe->savaEditemp($employeeID,$employeData);
 		$this->load->model('employe');
 		$this->load->library('upload');
 		$config['upload_path'] = realpath(APPPATH . '../assets/images/employee');

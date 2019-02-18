@@ -5,8 +5,8 @@
 	      <div class="card">
 	        <div class="card-header">
 	          <div class="card-actions" style="top: 35%;">
-	            <a class="btn btn-sm btn-labeled arrow-info" onclick="window.history.back();" href="#">
-	              <span class="btn-label">
+	            <a class="btn btn-primary btn-labeled arrow-info" onclick="window.history.back();" href="#">
+	              <span class="btn-label text-center" style="height:30px;">
 	                <span class="icon icon-arrow-circle-left icon-lg icon-fw"></span>
 	              </span>
 	              Back

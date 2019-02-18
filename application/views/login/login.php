@@ -29,7 +29,7 @@
           <img class="img-responsive" src="<?= base_url(); ?>assets/img/logo.svg" alt="Elephant">
         </a>
         <div class="login-form">
-          <form data-toggle="validator" method="post" action="<?= base_url() ?>login/authentication.html">
+          <form data-toggle="validator" method="post" action="<?= base_url() ?>index.php/login/authentication">
             <div class="form-group">
               <label for="username">Username</label>
               <input id="username" class="form-control" type="text" name="username" spellcheck="false" autocomplete="off" data-msg-required="Please enter your username." required>
