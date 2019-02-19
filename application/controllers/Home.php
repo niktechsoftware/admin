@@ -6,7 +6,6 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		$this->is_login();
-		
 	}
 	
 	function is_login(){

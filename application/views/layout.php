@@ -326,6 +326,7 @@
                     <li class="sidenav-heading">Employee</li>
                     <li><a href="<?= base_url() ?>newemploye.html">New</a></li>
                     <li><a href="<?= base_url() ?>employes.html">Employes</a></li>
+                    <li><a href="<?= base_url() ?>index.php/employee/employeeSalary">Employee Salary</a></li>
                   </ul>
                 </li>
                   <?php endif;?>
