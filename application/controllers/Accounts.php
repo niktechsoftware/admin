@@ -79,7 +79,7 @@ class Accounts extends CI_Controller {
 	public function getdabook() 
 	    {
 
-	    if($this->session->userdata("loginType")==1){ 
+	    if($this->session->userdata("isAdmin")==1){ 
 		$daybook= $this->db->get("daybook")->result();
 		$data['employes'] = $daybook;
 		// rd details table

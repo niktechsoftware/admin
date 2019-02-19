@@ -1,7 +1,7 @@
 <?php
 class Smsmodel extends CI_Model
 {
-	function getsmsseting($school_code)
+	function getsmsseting()
 	{
 		$this->db->where("school_code",$school_code);
 		$row = $this->db->get("sms")->row();

@@ -22,9 +22,10 @@ class SmsAjax extends CI_Controller
 
 	    function smsPanel(){
               $data['title']="Sms Panel";
-              $data['body']="sms/smsPanel";
-              $this->load->view('layout',$data);
-	         }	
+              $data['body']="sms/smsPanel"
 		$this->load->model("smsmodel");
+		 $this->load->view('layout',$data);
+	        
 	}
 	
+}?>
