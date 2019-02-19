@@ -55,11 +55,11 @@ function getpromotion($agentObject,$dur,$totalAmount,$invoice_s,$curanka){
 }
 	
 	function getAllAgents() {
-	    if($this->session->userdata("loginType")==1){
+	    if($this->session->userdata("isAdmin")==1){
 
 		$result = $this->db->get('agent');
 	    }else{
-	        $this->db->where("branchID",$this->session->userdata("branchID"));
+	        $this->db->where("branchID",$this->session->userdata("branchid"));
 	       $result =  $this->db->get("agent");
 	    }
 		
@@ -143,6 +143,7 @@ function getpromotion($agentObject,$dur,$totalAmount,$invoice_s,$curanka){
 	}
 }
 	public function getRank($acode){
+	    
 	$this->db->where("id",$acode);
 	$result = $this->db->get("agent");
 	return $result->row()->rank;

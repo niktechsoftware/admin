@@ -21,7 +21,14 @@ class Employee extends CI_Controller {
 	
 	}
 	
-function empDetail()
+	public function employeeSalary() {
+	   
+	    $data['title'] = 'Employee Salary';
+	    $data['body'] = 'employee/employeeSalary';
+	    $this->load->view('layout',$data);
+	}
+	
+   function empDetail()
 	{
 
 

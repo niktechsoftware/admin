@@ -282,7 +282,9 @@
                     <span class="sidenav-label">Dashboards</span>
                   </a>
                 </li>
+               
                 <li class="sidenav-heading">Components</li>
+                 <?php if(($this->session->userdata("isAdmin")==1)):?>
                 <li class="sidenav-item has-subnav">
                   <a href="#" aria-haspopup="true">
                     <span class="sidenav-icon icon icon-works">&#73;</span>
@@ -298,6 +300,8 @@
                     <!-- <li><a href="<?= base_url() ?>plans.html">Plans</a></li> -->
                   </ul>
                 </li>
+               <?php endif;?>
+               <?php if(($this->session->userdata("isAdmin")==1)||($this->session->userdata("isAdmin")==5)||($this->session->userdata("isAdmin")==4)||($this->session->userdata("isAdmin")==2)):?>
                  <li class="sidenav-item has-subnav">
                   <a href="#" aria-haspopup="true">
                     <span class="sidenav-icon icon icon-works">&#110;</span>
@@ -305,11 +309,14 @@
                   </a>
                   <ul class="sidenav level-2 collapse">
                     <li class="sidenav-heading">Agent</li>
+                    
                     <li><a href="<?= base_url() ?>newagent.html">New</a></li>
                     <li><a href="<?= base_url() ?>agents.html">Agents List</a></li>
                      <li><a href="<?= base_url() ?>agentsCommission.html">Agents Commission</a></li>
                   </ul>
                 </li>
+                <?php endif;?>
+                <?php if(($this->session->userdata("isAdmin")==1)||($this->session->userdata("isAdmin")==4)||($this->session->userdata("isAdmin")==2)):?>
                 <li class="sidenav-item has-subnav">
                   <a href="#" aria-haspopup="true">
                     <span class="sidenav-icon icon icon-works">&#110;</span>
@@ -319,8 +326,11 @@
                     <li class="sidenav-heading">Employee</li>
                     <li><a href="<?= base_url() ?>newemploye.html">New</a></li>
                     <li><a href="<?= base_url() ?>employes.html">Employes</a></li>
+                    <li><a href="<?= base_url() ?>index.php/employee/employeeSalary">Employee Salary</a></li>
                   </ul>
                 </li>
+                  <?php endif;?>
+                 <?php if(($this->session->userdata("isAdmin")==1)||($this->session->userdata("isAdmin")==3)||($this->session->userdata("isAdmin")==4)||($this->session->userdata("isAdmin")==2)):?>
                 <li class="sidenav-item has-subnav">
                   <a href="#" aria-haspopup="true">
                     <span class="sidenav-icon icon icon-works">&#97;</span>
@@ -332,6 +342,7 @@
                     <li><a href="<?= base_url() ?>customers.html">Customers</a></li>
                   </ul>
                 </li>
+                  <?php endif;?>
                 <li class="sidenav-item has-subnav">
                   <a href="#" aria-haspopup="true">
                     <span class="sidenav-icon icon icon-works">&#61;</span>
@@ -343,6 +354,7 @@
                     <li><a href="<?= base_url() ?>premiumlistall.html">Premium list</a></li>
                   </ul>
                 </li>
+                 <?php if(($this->session->userdata("isAdmin")==1)||($this->session->userdata("isAdmin")==2)||($this->session->userdata("isAdmin")==3)||($this->session->userdata("isAdmin")==4)||($this->session->userdata("isAdmin")==5)):?>
                 <li class="sidenav-item has-subnav">
                   <a href="#" aria-haspopup="true">
                     <span class="sidenav-icon icon icon-works">&#68;</span>
@@ -350,11 +362,16 @@
                   </a>
                   <ul class="sidenav level-2 collapse">
                     <li class="sidenav-heading">Other</li>
+                    <?php if(($this->session->userdata("isAdmin")!=3)):?>
+                    <?php if(($this->session->userdata("isAdmin")!=5)):?>
                     <li><a href="<?= base_url() ?>message.html">Sms</a></li>
                     <li><a href="<?= base_url() ?>expences.html">Daily Expences</a></li>
+                    <?php endif;?>
+                     <?php endif;?>
                     <li><a href="<?= base_url() ?>daybook.html">Day-Book</a></li>
                   </ul>
                 </li>
+                <?php endif;?>
               </ul>
             </nav>
           </div>
