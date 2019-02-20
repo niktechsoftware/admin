@@ -29,18 +29,8 @@
 	                </div>
 
 	                <label class="col-sm-2 control-label" for="form-control-3">Username</label>
-	                <div class="col-sm-2"><?= $loginDetail->username; ?></div>
-	               
-
-	               
-	                 
-	                
-	               
+	                <div class="col-sm-2"><?= $loginDetail->username; ?></div>               
 	              </div>
-
-
-	              
-	                  
 	                   <div class="form-group">
 	                        <label class="col-sm-2 control-label" for="form-control-1">Name(BLOCK LETTER)</label>
 	                        <div class="col-sm-4">

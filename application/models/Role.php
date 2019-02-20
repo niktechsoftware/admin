@@ -7,7 +7,7 @@ class Role extends CI_Model {
 	    if(($this->session->userdata("isAdmin")==1)){
 	        
 		$this->db->where('branchID', $branchID);
-	$result =  $this->db->get('role')->result();
+	     $result =  $this->db->get('role')->result();
 	    }else{
 	        $this->db->where('branchID', $this->session->userdata("branchid"));
 	        $result =  $this->db->get('role')->result();

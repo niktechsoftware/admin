@@ -66,7 +66,7 @@
 
 	                <label class="col-sm-2 control-label" for="form-control-4">Date of Birth</label>
 	                <div class="col-sm-2">
-	                <input id="form-control-4" value =" <?= $customer->dob; ?>" class="form-control" name="dob" type="text" required="required"  data-inputmask="'alias': 'dd-mm-yyyy'">
+	                <input id="form-control-4" value =" <?= $customer->dob; ?>" class="form-control" name="dob" type="date" required="required"  data-inputmask="'alias': 'dd-mm-yyyy'">
 	                 
 	               </div>
 

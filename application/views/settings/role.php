@@ -17,7 +17,7 @@
 	        <div class="card-body">
 
 	          <div class="demo-form-wrapper">
-	            <form  id="demo-inputmask" class="form form-horizontal" onsubmit="return false;">
+	            <form  id="demo-inputmask" class="form form-horizontal" onsubmit="return true;">
 
 	              <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-1">Branch</label>
