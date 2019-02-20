@@ -213,7 +213,7 @@ class Settings extends CI_Controller {
 				$loginData = array(
 					"branchID" 	=> $st->id,
 					"roleID" 	=> 1,
-					"isAdmin" 	=> 0,
+					"isAdmin" 	=> 2,
 					"username" 	=> "branch".$st->id,
 					"password" 	=> sha1(123456)
 				);

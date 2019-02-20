@@ -1,4 +1,4 @@
-+<?php
+F+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 		
@@ -123,7 +123,7 @@ class Customer extends CI_Controller {
 				$loginData = array(
 					"branchID" 	=> $this->input->post('branchID'),
 					"roleID" 	=> 1,
-					"isAdmin" 	=> 0,
+					"isAdmin" 	=> 3,
 					"username" 	=> $this->input->post('username'),
 					"password" 	=> sha1($this->input->post('password'))
 				);
@@ -577,10 +577,7 @@ class Customer extends CI_Controller {
 	
 	public function editcustomer(){
 		$customerID=$this->input->post('customerid');
-		$this->load->model('customers');
 		$customerData = array(
-	
-	
 				"name" 			=> $this->input->post('name'),
 				"fatherName" 	=> $this->input->post('fatherName'),
 				"motherName" 	=> $this->input->post('motherName'),
@@ -601,9 +598,9 @@ class Customer extends CI_Controller {
 				"adhaarNo" 		=> $this->input->post('aadharNo')
 		);
 		//$customerID = $this->customers->setCustomer($customerData);
-		$this->load->model('customer');
+		$this->load->model('customers');
 
-		$ft['ft']=$this->employe->customeredt($employeeID,$employeData);
+		$ft['ft']=$this->employe->customeredt($customerID,$customerData);
 		
 		$this->load->library('upload');
 		$config['upload_path'] = realpath(APPPATH . '../assets/images/customer');

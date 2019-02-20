@@ -55,10 +55,12 @@ function getpromotion($agentObject,$dur,$totalAmount,$invoice_s,$curanka){
 }
 	
 	function getAllAgents() {
-	    if($this->session->userdata("loginType")==1){
+	    if($this->session->userdata("isAdmin")==1){
 
 		$result = $this->db->get('agent');
-	    }else{
+	    }
+	    else
+	    {
 	        $this->db->where("branchID",$this->session->userdata("branchID"));
 	       $result =  $this->db->get("agent");
 	    }

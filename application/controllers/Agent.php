@@ -170,7 +170,7 @@ class Agent extends CI_Controller {
 				$loginData = array(
 					"branchID" 	=> $this->input->post('branchID'),
 					"roleID" 	=> 1,
-					"isAdmin" 	=> 0,
+					"isAdmin" 	=> 5,
 					"username" 	=> $this->input->post('username'),
 					"password" 	=> sha1($this->input->post('password'))
 				);

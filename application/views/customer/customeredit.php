@@ -25,7 +25,7 @@
 	        <div class="card-body">
 	          
 	          <div class="demo-form-wrapper">
-	            <form id="demo-inputmask"  action="<?php echo base_url();?>Customer/editcustomer" class="form form-horizontal" method="post" enctype="multipart/form-data">
+	            <form id="demo-inputmask"  class="form form-horizontal" method="post" enctype="multipart/form-data">
 
 	               <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-1">Customer ID</label>

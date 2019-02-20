@@ -9,7 +9,7 @@ class Customers extends CI_Model {
 
 	function getAllCustomers() {
 	    
-	       if($this->session->userdata("loginType")==1){
+	       if($this->session->userdata("isAdmin")==1){
 	           	$result = $this->db->get('customer');
 	       }else{
 	             $this->db->where("branchID",$this->session->userdata("branchID"));
@@ -55,7 +55,7 @@ class Customers extends CI_Model {
 }
 	function customeredt($customerID,$customerData) {
 		 $this->db->where('id', $customerID);
-	     	$update=$this->db->update('customer', $customerData);
+	   	$update=$this->db->update('customer', $customerData);
 		    if($update)
 			 {
                $this->load->helper('sms');

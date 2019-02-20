@@ -506,13 +506,11 @@
 		                </div>
 
 		                <label class="col-sm-2 control-label" for="form-control-1">Monthely Amount</label>
-		                <div class="col-sm-4" >
+		                <div class="col-sm-4">
 		                 <input id="monthAmount" readonly="true" class="form-control" name="monthAmount" type="text" />
 		                  <?= form_error('monthAmount'); ?>
 		                </div>
-		              </div>
-		              
-		            
+		              </div>		            
 
 		              <div class="form-group">
 		                <label class="col-sm-2 control-label" for="planDuration">Total Amount</label>

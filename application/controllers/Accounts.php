@@ -22,8 +22,8 @@ class Accounts extends CI_Controller {
 	}
 	
 
-	public function getdabook() 
-	    {
+	public function getdaybook() 
+        {
 
 	    if($this->session->userdata("loginType")==1){ 
 		$daybook= $this->db->get("daybook")->result();
@@ -45,7 +45,7 @@ class Accounts extends CI_Controller {
 	    else
 	    {
 	        
-	        
+	        echo "iusmjfkjrkjrmkjr";
 	        // $this->db->where("branchID",$this->session->userdata("branchID"));
 	         	         
 	        
