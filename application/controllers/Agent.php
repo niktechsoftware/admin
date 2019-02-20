@@ -32,7 +32,7 @@ class Agent extends CI_Controller {
 		// $this->db->where('created >=',$dt1);
 		// $this->db->where('created <=',$dt2);
 
-		$this->db->where('created BETWEEN "'. date('Y-m-d', strtotime($dt1)). '" and "'. date('Y-m-d', strtotime($dt2)).'"');
+		$this->db->where('DATE(created) BETWEEN "'. date('Y-m-d', strtotime($dt1)). '" and "'. date('Y-m-d', strtotime($dt2)).'"');
 		$data['abc']=$this->db->get('agent')->result();
 		$data['title'] = 'Searched Agent';
 		$data['body'] = 'agent/agDetails';

@@ -61,7 +61,7 @@
 
 	                <label class="col-sm-2 control-label" for="form-control-4">Date of Birth</label>
 	                <div class="col-sm-4">
-	                  <input id="form-control-4" class="form-control" name="dob" type="text" required="required" value="<?= set_value('dob'); ?>" data-inputmask="'alias': 'yyyy-mm-dd'">
+	                  <input id="form-control-4" class="form-control" name="dob" type="date" required="required" value="<?= set_value('dob'); ?>" data-inputmask="'alias': 'yyyy-mm-dd'">
 	                  <?= form_error('dob'); ?>
 	                </div>
 	              </div>

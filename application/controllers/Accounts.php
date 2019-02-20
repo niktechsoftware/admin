@@ -19,13 +19,67 @@ class Accounts extends CI_Controller {
 			redirect('/login/index', 'refresh');
 		}
 	
+	} 
+	public function dbkdetail()
+	{
+
+		$dt1 = date("Y-m-d", strtotime($this->input->post("sdt")));
+		$dt2 =  date("Y-m-d", strtotime($this->input->post("edt")));
+		
+		
+		 $this->db->where('DATE(created) >=',$dt1);
+		 $this->db->where('DATE(created) <=',$dt2);
+		 $data['abc']=$this->db->get('daybook')->result();
+		$data['title'] = 'Searched From Daybook list';
+		$data['body'] = 'accounts/dbkdetail';
+		$this->load->view('layout',$data);
+	
+
 	}
+    
+    public function expences()
+    {
+        
+      
+         $dt = date("Y-m-d");
+	
+	 $this->db->where('DATE(created)',$dt);
+    $this->db->where('transactionType','debit');
+    $data['amountdabit']=$this->db->get('daybook')->result();
+         $this->db->where('DATE(created)',$dt);
+	$this->db->where('transactionType','credit');
+    $data['amountcredit']=$this->db->get('daybook')->result();
+				
+			            
+        
+		$data['title'] = 'Searched From Daybook list';
+		$data['body'] = 'accounts/expences';
+		$this->load->view('layout',$data);
+	
+    }
+    
+    public function expencescredit()
+    {
+        
+             $dt = date("Y-m-d");
+	
+	 $this->db->where('DATE(created)',$dt);
+    $this->db->where('transactionType','credit');
+    $data['amountdabit']=$this->db->get('daybook')->result();
+				
+			            
+        
+		$data['title'] = 'Searched From Daybook list';
+		$data['body'] = 'accounts/creditexpences';
+		$this->load->view('layout',$data);
+
+    }
 	
 
 	public function getdaybook() 
         {
 
-	    if($this->session->userdata("loginType")==1){ 
+	    if($this->session->userdata("isAdmin")==1){ 
 		$daybook= $this->db->get("daybook")->result();
 		$data['employes'] = $daybook;
 		// rd details table

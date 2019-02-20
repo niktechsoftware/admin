@@ -656,7 +656,7 @@ class Customer extends CI_Controller {
 	    ?><script>   	
 	    	if (result) {
 	    	   
-	    	}
+            }
 	    	else{
 	    		<?php
                     $this->load->helper('sms');

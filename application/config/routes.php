@@ -102,7 +102,7 @@ $route['setpremium'] = '/premium/setpremium';
 $route['daybook'] = 'accounts/getdaybook';
 $route['message'] = 'smsAjax/smsPanel';
 
-
+$route['expences']='accounts/expences';
 
 
 $route['translate_uri_dashes'] = FALSE;
