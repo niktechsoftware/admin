@@ -33,11 +33,11 @@ $row=$this->db->get('emp_salary')->result();
 	              		<th>Paid Month</th>
 	              		<th>Paid Mode</th>
 	              		<th>Paid Date</th>
-	              	</thead><?php
+	              	</thead>
+	              
+	              	<tbody><?php
 	              foreach($row as $data)
 	              { ?>
-	              
-	              	<tbody>
 	              		<tr>
 	              			<td><?php echo $data->emp_code; ?></td>
 	              			<td><?php echo $data->emp_name; ?></td>
@@ -46,9 +46,9 @@ $row=$this->db->get('emp_salary')->result();
 	              		<td><?php echo $data->pay_mode; ?></td>
 	              		<td><?php echo $data->pay_date; ?></td>
                 	     </tr>
-
+ <?php }?>
                 	 </tbody>
-                    <?php }?>
+                   
                 </table>
 </div>
 </div>

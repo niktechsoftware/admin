@@ -66,7 +66,7 @@
 	                </div><br><br>
 	                 <div class="col-sm-5">
 	                  <div class="col-sm-4"></div>
-	               <input id="form-control-1" class="btn btn-lg btn-info" name="Pay Salary" type="submit" width="70px">
+	               <input id="form-control-1" class="btn btn btn-info" name="Pay Salary" type="submit" width="70px">
 	                <div class="col-sm-4"></div>
 	                </div><br><br>
 	                  
@@ -96,7 +96,7 @@
 
                 	 </tbody>
                     <?php }?>
-                	       <div>  <a class="btn btn-warning"><strong style="font-size: 17px;"> Total Paid Salary
+                	       <div>  <a class="btn btn-warning"><strong style="font-size:15px;"> Total Paid Salary
                                  <?php
                    
                    // $dt = date("Y-m-d");
