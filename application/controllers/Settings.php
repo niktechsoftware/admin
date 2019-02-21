@@ -134,6 +134,27 @@ class Settings extends CI_Controller {
 		    endif;
 		}
 	}
+	public function deleteCommitee()
+
+	{
+
+		$this->db->where("id",$this->uri->segment(3));
+		$a=$this->db->delete('committee');
+		if($a)
+		{
+			redirect(base_url().'committees.html');
+		}
+		else
+		{
+			echo "not deleted";
+		}
+	}
+
+		public function EditCommitee()
+		{
+			$this->load->view('editcomittie');
+
+		}
 
 	public function comitteebybranch() {
 		if ($this->input->server('REQUEST_METHOD') == 'POST'):

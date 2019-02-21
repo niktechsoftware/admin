@@ -20,6 +20,7 @@ class Employe extends CI_Model {
 		 * 	return employee table Data getting from database.
 		 */
 		return $result->result();
+		
 	}
 
 	public function empsearch($dt1,$dt2)

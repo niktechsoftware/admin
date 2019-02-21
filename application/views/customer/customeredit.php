@@ -23,6 +23,7 @@
 	          <strong>Customer Detail</strong>
 	        </div>
 	        <div class="card-body">
+	        	
 	          
 	          <div class="demo-form-wrapper">
 	            <form id="demo-inputmask"  class="form form-horizontal" method="post" enctype="multipart/form-data">

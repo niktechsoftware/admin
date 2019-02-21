@@ -42,9 +42,12 @@
                             <td><?= $value->name; ?></td>
                             <td><?= $value->created; ?></td>
                             <td>
-                              <span class="icon icon-edit"></span>
+                              <!-- <span class="icon icon-edit"></span>
                               &emsp;
-                              <span class="icon icon-newspaper-o"></span>
+                              <span class="icon icon-newspaper-o"></span> -->
+
+                            <button>  <a href="<?php base_url();?>Settings/EditCommitee/<?= $value->id; ?>">Edit</a></button>
+                             <button>  <a href="<?php base_url();?>Settings/deleteCommitee/<?= $value->id; ?>">Delete</a></button>
                             </td>
                           </tr>
                         <?php endforeach; ?>

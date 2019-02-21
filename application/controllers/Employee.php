@@ -20,13 +20,44 @@ class Employee extends CI_Controller {
 		}
 	
 	}
+	public function sallarylist() {
+	     
+	     $data['id']=$this->uri->segment(3);
+	    $data['title'] = 'Employee Salary';
+	    $data['body'] = 'employee/sallarylist';
+	    $this->load->view('layout',$data);
+	}
 	
 	public function employeeSalary() {
-	   
+	     
+	     $data['id']=$this->uri->segment(3);
 	    $data['title'] = 'Employee Salary';
 	    $data['body'] = 'employee/employeeSalary';
 	    $this->load->view('layout',$data);
 	}
+	public function emp_pay_Salary() {
+	     $data= array(
+            
+            'emp_code' =>$this->input->post('emp_code') ,
+            'emp_name' =>$this->input->post('Empolyeename') ,
+            'paid_month'  =>$this->input->post('paymonth') , 
+            'paid_amount'=>$this->input->post('amount') ,
+            'pay_mode'=>$this->input->post('paymentmode') ,
+            'pay_date'=>date('y-m-d')
+	     );
+	     $data1=$this->db->insert('emp_salary',$data);
+	     if($data1)
+	     {
+	     	redirect(base_url().'employes.html','refresh');
+	     }
+	     else
+	     {
+	     	"errror";
+	     }
+	      
+	}
+
+
 	
    function empDetail()
 	{
