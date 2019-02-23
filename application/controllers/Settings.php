@@ -152,9 +152,36 @@ class Settings extends CI_Controller {
 
 		public function EditCommitee()
 		{
-			$this->load->view('editcomittie');
+           $this->db->where('id',$this->uri->segment(3));
+           $data['commit']=$this->db->get('committee')->result();
+           $data['title'] = 'Edit Committee';
+		    $data['body'] = 'settings/editcomittie';
+		 
+		    $this->load->view('layout', $data);
+			
+        }
 
-		}
+public function updatecommitee()
+		{
+        $id=$this->input->post('id');
+	  $cotitle=$this->input->post('ctitle');
+	  $dt=$this->input->post('date');
+		  $data=array(
+		  	'title' => $cotitle , 
+             'created' =>$dt , 
+		    );
+		  $this->db->where('id',$id);
+        $update=$this->db->update('committee',$data);
+        if($update)
+        {
+
+         redirect(base_url().'committees.html');
+
+        }
+		    
+			
+        }
+
 
 	public function comitteebybranch() {
 		if ($this->input->server('REQUEST_METHOD') == 'POST'):
