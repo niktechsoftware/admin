@@ -32,6 +32,15 @@ class Employe extends CI_Model {
 		return $data;
 			
 	}
+	public function empsearchsalry($dt1,$dt2)
+	{
+
+		$this->db->where('DATE(pay_date) >=',$dt1);
+		$this->db->where('DATE(pay_date) <=',$dt2);
+		$data=$this->db->get('emp_salary')->result();
+		return $data;
+			
+	}
 
 	function setEmploye($employe) {
 
