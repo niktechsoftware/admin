@@ -53,6 +53,7 @@ body {font-family: Arial;}
 <div class="tab ">
  <button class="tablinks btn-danger" onclick="openCity(event, 'debit')" id="defaultOpen">Debit</button>
  <button class="tablinks btn-danger" onclick="openCity(event, 'credit')">Credit</button>
+ <button class="tablinks btn-danger" onclick="openCity(event, 'both')">Both</button>
 </div>
 
 <div class="layout-content">
@@ -111,10 +112,10 @@ body {font-family: Arial;}
                             </thead>
                             <tbody>
                                 <?php 
-   // print_r($amountdabit);
+  
                                     foreach ($amountdabit as $value) :
                                         echo "<tr>";
-                                          //print_r($value);
+                                        
                                         echo "<td>".$value->id."</td>";
                                         echo "<td>".$value->customer_ID."</td>";
                                         echo "<td>".$value->amount."</td>";
@@ -195,7 +196,75 @@ body {font-family: Arial;}
                      
                     </div>
                     </div>
+
+                    <div id="both" class="tabcontent">
+ <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+ <h3>All Credit/debitExpences</h3>
+                    <div class="card-body">
+                        <table id="demo" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Customer_ID</th>
+                                    <th>Amount</th>
+                                    <th>Debit/Credit</th>
+                                    <td>Source</td>
+                                    <th>Transaction Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+   // print_r($amountdabit);
+                                    foreach ($bothexpences as $value) :
+                                        echo "<tr>";
+                                          //print_r($value);
+                                        echo "<td>".$value->id."</td>";
+                                        echo "<td>".$value->customer_ID."</td>";
+                                        echo "<td>".$value->amount."</td>";
+                                        echo "<td>".$value->transactionType."</td>";
+                                        echo "<td>".$value->source."</td>";
+                                        echo "<td>".$value->created."</td>";
+                                        echo "</tr>";
+                                    endforeach;
+                                ?>
+                            </tbody>
+                        </table>
+                    <div>  <a class="btn btn-warning"><strong style="font-size: 17px;">Today's Total-Credit 
+                                 <?php
+                   
+                    $dt = date("Y-m-d");
+                     $this->db->select_sum('amount');
+                     $this->db->where('DATE(created)',$dt);
+                    $this->db->where('transactionType','credit');
+
+
+                     $amountdabit =$this->db->get('daybook')->row()->amount;
+                    echo $amountdabit;
+                    
+                    ?>
+                          </strong></a></div>
+                          <div>  <a class="btn btn-warning"><strong style="font-size: 17px;">Today's Total-Debit 
+                                 <?php
+                   
+                    $dt = date("Y-m-d");
+                     $this->db->select_sum('amount');
+                     $this->db->where('DATE(created)',$dt);
+                    $this->db->where('transactionType','debit');
+
+
+                     $amountdabit =$this->db->get('daybook')->row()->amount;
+                    echo $amountdabit;
+                    
+                    ?>
+                          </strong></a></div>
+                     
+                    </div>
+                    </div>
                 </div>
+
+ </div>
+
+
             
 </div>
 	</div>
