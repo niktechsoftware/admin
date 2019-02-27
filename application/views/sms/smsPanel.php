@@ -86,8 +86,8 @@ endforeach;
                   </tr>
                 </tbody>
               </table>
-                <?php }?>
-                <?php elseif ($admin==2) {?>
+                
+                <?php } elseif ($admin==2) {?>
                  <table class="table">
                 <thead>                 
                   <tr>
@@ -134,8 +134,8 @@ endforeach;
                   </tr>
                 </tbody>
               </table>
-                <?php }?>
-               <?php elseif ($admin==4) {?>
+           
+               <?php } elseif ($admin==4) {?>
                  <table class="table">
                 <thead>
                  
