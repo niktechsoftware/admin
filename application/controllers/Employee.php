@@ -73,7 +73,23 @@ class Employee extends CI_Controller {
 	
 		
 	}
-    
+
+  function empSalarylist()
+  {
+		$dt1 = date("Y-m-d", strtotime($this->input->post("sdt")));
+		$dt2 =  date("Y-m-d", strtotime($this->input->post("edt")));
+		$this->load->model('Employe');
+		$data['abc']=$this->Employe->empsearchsalry($dt1,$dt2);
+		$data['title'] = 'Employee Salary List';
+		$data['body'] = 'employee/searchsalary';
+		$this->load->view('layout',$data);
+
+
+  }
+
+
+
+
 
 	public function employeeDelete(){
 	    $empid = $this->uri->segment(3);
