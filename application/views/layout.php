@@ -24,7 +24,7 @@
     <script src="<?= base_url(); ?>assets/js/custom.js"></script>
      <!--start datatable-->
  <link rel="stylesheet" href="<?= base_url(); ?>assets/css/datatable/dataTables.bootstrap4.min.css">
- <!--<script src="<?= base_url(); ?>assets/js/datatable/jquery-3.3.1.js"></script>-->
+ <script src="<?= base_url(); ?>assets/js/datatable/jquery-3.3.1.js"></script>
  <script src="<?= base_url(); ?>assets/js/datatable/jquery.dataTables.min.js"></script>
   <script src="<?= base_url(); ?>assets/js/datatable/dataTables.bootstrap4.min.js"></script>
  <!--end datatable-->
