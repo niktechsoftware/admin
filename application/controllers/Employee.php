@@ -20,11 +20,32 @@ class Employee extends CI_Controller {
 		}
 	
 	}
+
+public function sallaryall() {
+	     
+	     $id=$this->uri->segment(3);
+	    $name=$this->uri->segment(4);
+	    $this->db->where('emp_code',$id);
+	     $this->db->where('	emp_name',$name);
+	     $data['abc']=$this->db->get('emp_salary')->result();
+	   
+	    
+	     $data['title'] = 'Employee Salary';
+	     $data['body'] = 'employee/empsalary';
+	     //$data['row']=$this->db->get('employee')->result();
+
+	     $this->load->view('layout',$data);
+	
+	}
+
+
 	public function sallarylist() {
 	     
 	     $data['id']=$this->uri->segment(3);
-	    $data['title'] = 'Employee Salary';
+	    $data['title'] = 'Employee List for Sallary';
 	    $data['body'] = 'employee/sallarylist';
+	    // $data['row']=$this->db->get('employee')->result();
+
 	    $this->load->view('layout',$data);
 	}
 	

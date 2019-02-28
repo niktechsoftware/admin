@@ -2,29 +2,7 @@
 	<div class="layout-content-body">
 	  <div class="row gutter-xs">
 	    <div class="col-md-12">
-	    	  <div class="panel panel-white">
-                                <div class="panel-body">
-                                    <form class="form-horizontal" action="<?php echo base_url()?>Employee/empSalarylist" method="post" enctype="multipart/form-data">
-                                      <div class="row">
-                                        <div class="form-group col-sm-10">
-                                            <label for="inputEmail3" class="col-sm-2 control-label">Start Date</label>
-                                            <div class="col-sm-4">
-                                                <input type="date" name="sdt" class="form-control date-picker" placeholder="Start Date" required="required">
-                                            </div>
-                                            <label for="inputEmail3" class="col-sm-2 control-label">End Date</label>
-                                            <div class="col-sm-4">
-                                                <input type="date" name="edt" class="form-control date-picker" placeholder="End Date" required="required">
-                                            </div>
-                                        </div>
-                                         <div class="form-group col-sm-2">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" id="btn1" class="btn btn-success">Get Detail</button>
-                                            </div>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                            
+	    	 
 	      <div class="card">
 	        <div class="card-header">
 	          <div class="card-actions" style="top: 35%;">
@@ -39,7 +17,7 @@
 	        </div><br>
 
 
-<?php 
+ <?php 
 
 $row=$this->db->get('emp_salary')->result();
 
@@ -72,8 +50,39 @@ $row=$this->db->get('emp_salary')->result();
  <?php }?>
                 	 </tbody>
                    
+                </table> 
+
+             <!--    <div class="card-body">
+                  <div class="card-body" data-toggle="match-height">
+                  <div class="panel-scroll table-responsive">
+                    <table class="table table-striped table-hover center" id="empss">
+
+	              	<thead>
+	              			<th>Emplyee Id</th>
+	              			<th>Emplyee Name</th>
+	              		<th>Father Name</th>
+	              		<th>Mother Name</th>
+	              		<th>DOB</th>
+	              		
+	              	</thead>
+	              
+	              	<tbody><?php
+	              	 $row=$this->db->get('employee')->result();
+	              foreach($row as $data)
+	              { ?>
+	              		<tr><td>
+	              			<?php echo $data->id; ?></td>
+	              			<td><a href="<?php echo base_url();?>employee/sallaryall/<?php echo $data->id;?>/<?php echo $data->name; ?>"><?php echo $data->name; ?></a></td>
+	              			<td><?php echo $data->fatherName; ?></td>
+	              		<td>	<?php echo $data->motherName; ?> </td>
+	              		<td><?php echo $data->dob; ?></td>
+	              	</tr>
+
+	 <?php }?>
+                	 </tbody>
+                   
                 </table>
-</div>
+ --></div>
 </div>
 </div>
 </div>
