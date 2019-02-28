@@ -100,7 +100,7 @@ $route['setpremium'] = '/premium/setpremium';
 
 /* --------------- PLAN ------------------------- */
 $route['daybook'] = 'accounts/getdaybook';
-$route['message'] = 'smsAjax/smsPanel';
+$route['message'] = 'Login/smssetting';
 
 $route['expences']='accounts/expences';
 

@@ -100,7 +100,7 @@
                            <th>Pay Date</th>
                         <td>
                           <div class="form-group form-group-sm">
-                            <input id="form-control-6" name="payDate" class="form-control" type="text" data-inputmask="'alias': 'yyyy-mm-dd'">
+                            <input id="form-control-6" name="payDate" class="form-control" type="date" data-inputmask="'alias': 'yyyy-mm-dd'">
                           </div>
                         </td>
                       </tr>

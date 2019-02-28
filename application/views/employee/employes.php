@@ -79,7 +79,8 @@
                             <td><?= date("d-M-Y (H:i:s A)", strtotime($value->created)); ?></td>
                             <td><a class="btn btn-primary" href="<?= base_url() ?>employee/<?= $value->id ?>">Detail</a></td>
                             <td><a class="btn btn-success" href="<?= base_url() ?>employeeEdit/<?= $value->id ?>">Edit</a></td>
-                            <td><a class="btn btn-danger"  href="<?= base_url() ?>employee/employeeDelete/<?= $value->id ?>" onclick="return confirm('Are you sure')">Delete</a></td>
+                             <td><a class="btn btn-info" href="<?= base_url() ?>employee/employeeSalary/<?= $value->id; ?>">Pay Salary</a></td>
+                            <td><a class="btn btn-danger"  href="<?= base_url() ?>employee/employeeDelete/<?= $value->id ;?>" onclick="return confirm('Are you sure')">Delete</a></td>
                           </tr>
                         <?php endforeach; ?>
                       </tbody>

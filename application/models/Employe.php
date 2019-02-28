@@ -20,6 +20,7 @@ class Employe extends CI_Model {
 		 * 	return employee table Data getting from database.
 		 */
 		return $result->result();
+		
 	}
 
 	public function empsearch($dt1,$dt2)
@@ -28,6 +29,15 @@ class Employe extends CI_Model {
 		$this->db->where('DATE(updated) >=',$dt1);
 		$this->db->where('DATE(updated) <=',$dt2);
 		$data=$this->db->get('employee')->result();
+		return $data;
+			
+	}
+	public function empsearchsalry($dt1,$dt2)
+	{
+
+		$this->db->where('DATE(pay_date) >=',$dt1);
+		$this->db->where('DATE(pay_date) <=',$dt2);
+		$data=$this->db->get('emp_salary')->result();
 		return $data;
 			
 	}

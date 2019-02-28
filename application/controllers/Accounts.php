@@ -70,10 +70,23 @@ class Accounts extends CI_Controller {
 			            
         
 		$data['title'] = 'Searched From Daybook list';
-		$data['body'] = 'accounts/creditexpences';
+		$data['body'] = 'accounts/expences';
 		$this->load->view('layout',$data);
 
     }
+
+     public function bothexpences()
+    {
+        
+             $dt = date("Y-m-d");
+	
+		 $this->db->where('DATE(created)',$dt);
+	    $data=$this->db->get('daybook')->result(); 
+	    print_r('$data');
+	    exit();
+		
+    }
+	
 	
 
 	public function getdaybook() 

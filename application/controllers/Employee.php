@@ -20,13 +20,65 @@ class Employee extends CI_Controller {
 		}
 	
 	}
+
+public function sallaryall() {
+	     
+	     $id=$this->uri->segment(3);
+	    $name=$this->uri->segment(4);
+	    $this->db->where('emp_code',$id);
+	     $this->db->where('	emp_name',$name);
+	     $data['abc']=$this->db->get('emp_salary')->result();
+	   
+	    
+	     $data['title'] = 'Employee Salary';
+	     $data['body'] = 'employee/empsalary';
+	     //$data['row']=$this->db->get('employee')->result();
+
+	     $this->load->view('layout',$data);
+	
+	}
+
+
+	public function sallarylist() {
+	     
+	     $data['id']=$this->uri->segment(3);
+	    $data['title'] = 'Employee List for Sallary';
+	    $data['body'] = 'employee/sallarylist';
+	    // $data['row']=$this->db->get('employee')->result();
+
+	    $this->load->view('layout',$data);
+	}
 	
 	public function employeeSalary() {
-	   
+	     
+	     $data['id']=$this->uri->segment(3);
 	    $data['title'] = 'Employee Salary';
 	    $data['body'] = 'employee/employeeSalary';
 	    $this->load->view('layout',$data);
 	}
+	public function emp_pay_Salary() {
+	     $data= array(
+            
+            'emp_code' =>$this->input->post('emp_code') ,
+            'emp_name' =>$this->input->post('Empolyeename') ,
+            'paid_month'  =>$this->input->post('paymonth') , 
+            'paid_amount'=>$this->input->post('amount') ,
+            'pay_mode'=>$this->input->post('paymentmode') ,
+            'pay_date'=>date('y-m-d')
+	     );
+	     $data1=$this->db->insert('emp_salary',$data);
+	     if($data1)
+	     {
+	     	redirect(base_url().'employes.html','refresh');
+	     }
+	     else
+	     {
+	     	"errror";
+	     }
+	      
+	}
+
+
 	
    function empDetail()
 	{
@@ -42,7 +94,23 @@ class Employee extends CI_Controller {
 	
 		
 	}
-    
+
+  function empSalarylist()
+  {
+		$dt1 = date("Y-m-d", strtotime($this->input->post("sdt")));
+		$dt2 =  date("Y-m-d", strtotime($this->input->post("edt")));
+		$this->load->model('Employe');
+		$data['abc']=$this->Employe->empsearchsalry($dt1,$dt2);
+		$data['title'] = 'Employee Salary List';
+		$data['body'] = 'employee/searchsalary';
+		$this->load->view('layout',$data);
+
+
+  }
+
+
+
+
 
 	public function employeeDelete(){
 	    $empid = $this->uri->segment(3);
