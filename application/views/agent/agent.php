@@ -37,7 +37,7 @@
 	                <label class="col-sm-2 control-label" for="form-control-2">Father Name</label>
 	                <div class="col-sm-2"><?= $employee->fatherName; ?></div>
  <label class="col-sm-2 control-label" for="form-control-4">Date of Birth</label>
-	                <div class="col-sm-2"><?= $employee->dob; ?></div>
+	                <div class="col-sm-2"><?= date("d M Y", strtotime($employee->dob)); ?></div>
 
 	                <label class="col-sm-2 control-label" for="form-control-5">Gender</label>
 	                <div class="col-sm-2"><?= $employee->gender; ?></div>

@@ -67,9 +67,9 @@
 	              </div>
 
 	              <div class="form-group">
-	                <label class="col-sm-2 control-label" for="form-control-5">Gender</label>
+	                <label class="col-sm-2 control-label" for="form-control-5" >Gender</label>
 	                <div class="col-sm-4">
-	                  <select class="form-control" name="gender" required="required">
+	                  <select class="form-control" name="gender" required="required" >
 	                  	<option>-Select Gender-</option>
 	                  	<?php foreach ($gender as $key => $value) {
 	                  		$sel = set_value('gender') == $value ? " selected" : "";
@@ -386,7 +386,7 @@
 	              <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-22">Plan Name</label>
 	                <div class="col-sm-4">
-	                  <select id="demo-select2-3" class="form-control" name="planID" onchange="getPlan(this.value)">
+	                  <select id="demo-select2-3" class="form-control" name="planID" onchange="getPlan(this.value)" required="required">
 	                	<option>- Select Plan -</option>
 	                	<?php 
 	                		foreach ($plans as $key => $value):

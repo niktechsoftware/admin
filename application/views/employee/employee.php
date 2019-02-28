@@ -46,7 +46,7 @@
 	              <div class="form-group">
 
 	                <label class="col-sm-2 control-label" for="form-control-4">Date of Birth</label>
-	                <div class="col-sm-2"><?= $employee->dob; ?></div>
+	                <div class="col-sm-2"><?= date("d M Y", strtotime($employee->dob)); ?></div>
 
 	                <label class="col-sm-2 control-label" for="form-control-5">Gender</label>
 	                <div class="col-sm-2"><?= $employee->gender; ?></div>
@@ -97,7 +97,7 @@
 	                <label class="col-sm-2 control-label" for="form-control-20">Branch</label>
 	                <div class="col-sm-2"><?= $branchDetail->title; ?></div>
 
-	                <label class="col-sm-2 control-label" for="form-control-21">Commitee</label>
+	                <label class="col-sm-2 control-label" for="form-control-21">Committee</label>
 	                <div class="col-sm-2"></div>
 	              </div>
 

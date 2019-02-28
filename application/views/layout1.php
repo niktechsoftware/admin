@@ -42,7 +42,6 @@
  $(document).ready(function() {
     $('#fdv').DataTable();
 } );
-
  $(document).ready(function() {
     $('#alle').DataTable();
 } );
@@ -52,8 +51,8 @@
  $(document).ready(function() {
     $('#npsv').DataTable();
 } );
-$(document).ready(function() {
-    $('#ln').DataTable();
+ $(document).ready(function() {
+    $('#loan').DataTable();
 } );
 
  $(document).ready(function() {
@@ -86,6 +85,9 @@ $(document).ready(function() {
 } );
  $(document).ready(function() {
     $('#empss').DataTable();
+} );
+ $(document).ready(function() {
+    $('#demo1').DataTable();
 } );
  
  
