@@ -86,6 +86,9 @@
  $(document).ready(function() {
     $('#empss').DataTable();
 } );
+ $(document).ready(function() {
+    $('#demo1').DataTable();
+} );
  
  
 

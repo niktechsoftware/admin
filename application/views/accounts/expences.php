@@ -51,9 +51,9 @@ body {font-family: Arial;}
 <h2>DayBook</h2>
 
 <div class="tab ">
- <button class="tablinks btn-danger" onclick="openCity(event, 'debit')" id="defaultOpen">Debit</button>
- <button class="tablinks btn-danger" onclick="openCity(event, 'credit')">Credit</button>
- <button class="tablinks btn-danger" onclick="openCity(event, 'both')">Both</button>
+ <button class="tablinks btn-danger" onclick="openCity(event, 'debit')" id="defaultOpen"><span style="color:black;">Debit</span></button>
+ <button class="tablinks btn-danger" onclick="openCity(event, 'credit')"><span style="color:black;">Credit</span></button>
+ <button class="tablinks btn-danger" onclick="openCity(event, 'both')"><span style="color:black;">Both</span></button>
 </div>
 
 <div class="layout-content">
@@ -197,11 +197,11 @@ body {font-family: Arial;}
                     </div>
                     </div>
 
-                    <div id="both" class="tabcontent">
- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
- <h3>All Credit/debitExpences</h3>
+                     <div id="both" class="tabcontent">
+           <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+           <h3>All Credit/debitExpences</h3>
                     <div class="card-body">
-                        <table id="demo" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%">
+                        <table id="demo1" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -215,7 +215,10 @@ body {font-family: Arial;}
                             <tbody>
                                 <?php 
    // print_r($amountdabit);
-                                    foreach ($bothexpences as $value) :
+                                    foreach ($amountboth as $value) :
+
+
+                                       
                                         echo "<tr>";
                                           //print_r($value);
                                         echo "<td>".$value->id."</td>";
@@ -242,8 +245,8 @@ body {font-family: Arial;}
                     echo $amountdabit;
                     
                     ?>
-                          </strong></a></div>
-                          <div>  <a class="btn btn-warning"><strong style="font-size: 17px;">Today's Total-Debit 
+                          </strong></a>
+                          <a class="btn btn-warning"><strong style="font-size: 17px;">Today's Total-Debit 
                                  <?php
                    
                     $dt = date("Y-m-d");
@@ -259,7 +262,7 @@ body {font-family: Arial;}
                           </strong></a></div>
                      
                     </div>
-                    </div>
+                    </div> 
                 </div>
 
  </div>
