@@ -329,7 +329,7 @@ $(document).ready(function() {
                   <ul class="sidenav level-2 collapse">
                     <li class="sidenav-heading">Employee</li>
                     <li><a href="<?= base_url() ?>newemploye.html">New</a></li>
-                    <li><a href="<?= base_url() ?>employes.html">Employes</a></li>
+                    <li><a href="<?= base_url() ?>employes.html">Employees</a></li>
                     <li><a href="<?= base_url() ?>index.php/employee/sallarylist">Employee Salary List</a></li>
                   </ul>
                 </li>

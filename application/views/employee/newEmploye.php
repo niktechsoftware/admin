@@ -31,11 +31,7 @@
 	                  	?>
 	                  </select>
 	                </div>
-
-	                
 	              </div>
-
-
 	              <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-1">Name</label>
 	                <div class="col-sm-4">
@@ -201,18 +197,18 @@
 	                  <?= form_error('branchID'); ?>
 	                </div>
 	                
-	                <label class="col-sm-2 control-label" for="form-control-1">Is Admin ?</label>
+	                <!-- <label class="col-sm-2 control-label" for="form-control-1">Is Admin ?</label>
 	                <div class="col-sm-4">
 	                  <select class="form-control" name="isAdmin" required="required">
-	                  	<option>-Select Authority-</option>
-	                  	<?php foreach ($isAdmin as $key => $value) {
+	                  	<option>-Select Authority-</option>-->
+	                  	<!--<?php foreach ($isAdmin as $key => $value) {
 	                  		$sel = set_value('isAdmin') == $value ? "selected" : "";
 	                  		echo '<option value="'.$value.'" '.$sel.'>'.$key.'</option>';
 	                  	}
-	                  	?>
-	                  </select>
+	                  	?>-->
+	                  <!-- </select>
 	                  <?= form_error('isAdmin'); ?>
-	                </div>
+	                </div>-->
 	              </div>
 
 	              <div class="form-group">
