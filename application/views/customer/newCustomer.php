@@ -376,7 +376,7 @@
 	                  <?= form_error('branchID'); ?>
 	                </div>
 
-	                <label class="col-sm-2 control-label" for="form-control-21">Commitee</label>
+	                <label class="col-sm-2 control-label" for="form-control-21">Committee</label>
 	                <div class="col-sm-4">
 		                <select id="demo-select2-2" class="form-control" name="committee" required="required"></select>
 	                  	<?= form_error('committee'); ?>
@@ -594,7 +594,7 @@
 	               <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-37">Join Date</label>
 	                <div class="col-sm-4">
-	                  <input id="form-control-67" class="form-control" name="joindate" type="text" required="required" data-inputmask="'alias': 'yyyy-mm-dd'">
+	                  <input id="form-control-67" class="form-control" name="joindate" type="date" required="required" data-inputmask="'alias': 'yyyy-mm-dd'">
 	                 
 	                </div>
 
