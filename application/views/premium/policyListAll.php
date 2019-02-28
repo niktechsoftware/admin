@@ -46,7 +46,7 @@
                          $idplan =  $this->db->get("investmentDetail")->row();
                       if($idplan){
                           $this->db->where("id",$idplan->planID);
-                        $plantitla  = $this->db->get("investmentPlans")->row()->title;
+                       // $plantitla  = $this->db->get("investmentPlans")->row()->title;
                       }
                         ?>
                           <td><?= $plantitla ?></td>

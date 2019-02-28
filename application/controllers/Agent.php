@@ -98,6 +98,7 @@ class Agent extends CI_Controller {
 	
 	public function agentDelete(){
 	    $agentid = $this->uri->segment(3);
+	    //echo $agentid;
 	    ?><script>
 	    	if (result) {
 
@@ -113,7 +114,7 @@ class Agent extends CI_Controller {
                   $b=$ab->name;
                    $bcc="Dear Agent "."". $b." your Agent Profile from JMDF has been successfully deleted";    	
                 sms($a,$bcc);
-                $this->db->where("id",$agentid);
+                $this->db->where("id",$empid);
 		    	$this->db->delete("agent");
                          ?>
 		    	
@@ -152,7 +153,7 @@ class Agent extends CI_Controller {
 			$data['category'] = ['GEN','OBC','SC','ST','OTHER'];
 			$data['gender'] 	= ['MALE','FEMALE','OTHER'];
 				$data['meritalr'] 	= ['Married','Unmarried','OTHER'];
-			$data['isAdmin'] 	= array("NO" => 0, "YES" => 1);
+			$data['isAdmin'] 	=5; //array("NO" => 0, "YES" => 1);
 			$data['branch']		= $branch;
 			$data['rank']	= $rank;
 			$data['title'] = 'New Employee';

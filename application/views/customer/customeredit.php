@@ -171,11 +171,10 @@
 	               
 	                </div>
 
-	                <label class="col-sm-2 control-label" for="form-control-21">Commitee</label>
+	                <label class="col-sm-2 control-label" for="form-control-21">Committee</label>
 	                <div class="col-sm-2">
 	                <input id="form-control-16" value="<?= $commiteeDetail->title ?>"  class="form-control" name="committee" type="text" required="required" >
-	               
-	                <?= $commiteeDetail->title ?></div>
+	               </div>
 	              </div>
 
 

@@ -129,7 +129,17 @@ function getpromotion($agentObject,$dur,$totalAmount,$invoice_s,$curanka){
 	
 	function updateAgent($id, $data) {
 		$this->db->where('id', $id);
-	$update=$this->db->update('agent', $data);
+		if($data)
+		{
+	     $update=$this->db->update('agent', $data);
+		}
+		else
+		{
+			echo "<script>";
+				echo "alert('something error in file uploading!please check files Size must be'<br>'' less the 1mb and files in jpeg,png or jpg')";
+				echo "</script>";
+
+		}
 		if($update)
 			 {
                $this->load->helper('sms');

@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -145,7 +146,7 @@ public function sallaryall() {
 			$data['category'] = ['GEN','OBC','SC','ST','OTHER'];
 			$data['gender'] 	= ['MALE','FEMALE','OTHER'];
 			$data['post'] 	= ['Computer Operator','Area Manager','Branch Manager','Field Manager','Regional Officer', 'District Manager' ];
-			$data['isAdmin'] 	= array("NO" => 0, "YES" => 1);
+			$data['isAdmin'] 	= 4;//array("NO" => 0, "YES" => 1);
 			$data['branch']		= $branch;
 			$data['rank']	= $rank;
 			$data['title'] = 'New Employee';

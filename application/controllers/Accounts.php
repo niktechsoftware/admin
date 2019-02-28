@@ -46,11 +46,15 @@ class Accounts extends CI_Controller {
 	 $this->db->where('DATE(created)',$dt);
     $this->db->where('transactionType','debit');
     $data['amountdabit']=$this->db->get('daybook')->result();
-         $this->db->where('DATE(created)',$dt);
+     $this->db->where('DATE(created)',$dt);
 	$this->db->where('transactionType','credit');
     $data['amountcredit']=$this->db->get('daybook')->result();
 				
-			            
+	$this->db->where('DATE(created)',$dt);
+	//$this->db->where('transactionType','credit');
+	// $this->db->where('transactionType','debit');
+    $data['amountboth']=$this->db->get('daybook')->result();
+	
         
 		$data['title'] = 'Searched From Daybook list';
 		$data['body'] = 'accounts/expences';
@@ -61,6 +65,10 @@ class Accounts extends CI_Controller {
     public function expencescredit()
     {
         
+
+         echo "string";
+         exit();
+
              $dt = date("Y-m-d");
 	
 	 $this->db->where('DATE(created)',$dt);
@@ -77,13 +85,12 @@ class Accounts extends CI_Controller {
 
      public function bothexpences()
     {
-        
-             $dt = date("Y-m-d");
-	
-		 $this->db->where('DATE(created)',$dt);
-	    $data=$this->db->get('daybook')->result(); 
-	    print_r('$data');
-	    exit();
+        echo "string";
+   //           $dt = date("Y-m-d");
+		 // $this->db->where('DATE(created)',$dt);
+	  //   $data=$this->db->get('daybook')->result(); 
+	  //   print_r('$data');
+	  //   exit();
 		
     }
 	

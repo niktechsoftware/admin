@@ -254,7 +254,7 @@ body {font-family: Arial;}
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 10px 10px;
+  padding: 14px 16px;
   transition: 0.3s;
   font-size: 17px;
 }
@@ -287,7 +287,7 @@ body {font-family: Arial;}
 .topright:hover {color: red;}
 </style>
 
-<div class="layout-content"><div class="layout-content-body">
+
 <h2>DayBook</h2>
 
 
@@ -301,36 +301,36 @@ body {font-family: Arial;}
 </div>
 
 <div id="all" class="tabcontent">
-  <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
   <h3>All DayBook Transection </h3>
   
   <?php 
  $da=$this->db->get("daybook")->result();
    
   ?>
-                   <div class="panel-scroll table-responsive">
+                   <div class=" panel-scroll table-responsive">
                     <table class="table table-striped table-hover center" id="alle">
                       <thead>
                         <tr>
                             <td>CustomerID</td>
                             <td>Amount</td>
                             <td>Transaction Type</td>
-							<td>Source</td>
                             <td>Updated</td>
                             <td>Created</td>
+                            
                             <td>Invoice No.</td>
                         </tr>
                     </thead>
                     <tbody>
-                     <?php foreach($da as $data){ ?>
-                       <tr>
-					        <td><?php echo $data->customer_ID; ?></td>
-                             <td><?php echo $data->amount; ?></td>
-                            <td><?php echo $data->transactionType; ?></td>
-                            <td><?php echo $data->source; ?></td>
-                            <td><?php echo $data->updated; ?></td>
-                            <td><?php echo $data->created; ?></td>
-                            <td><?php echo $data->invoice_no; ?></td>
+                      <?php foreach($da as $data){ ?>
+                        <tr>
+                            <td><?php echo $data->customer_ID?></td>
+                             <td><?php echo $data->amount?></td>
+                              <td><?php echo $data->transactionType?></td>
+                               <td><?php echo $data->source?></td>
+                                <td><?php echo $data->updated?></td>
+                                <td><?php echo $data->created?></td>
+                                <td><?php echo $data->invoice_no?></td>
                         </tr>
                         <?php
                                }?>
@@ -340,12 +340,12 @@ body {font-family: Arial;}
 </div>
 
 <div id="fd" class="tabcontent">
-  <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
   <h3>All FD Transactions</h3>
   
-      <div class="panel-scroll table-responsive">
+      <div class=" panel-scroll table-responsive">
                     <table class="table table-striped table-hover center" id="fdv">
-                     <thead>
+                      <thead>
                         <tr>
                             <td>CustomerID</td>
                             <td>Depositer Name</td>
@@ -355,25 +355,26 @@ body {font-family: Arial;}
                             <td>Paid Date</td>
                             <td>Invoice Slip</td>
                             <td>Status</td>
-                             </tr>
+                            
+
+                        </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($detail as $fd){ ?>
                         <tr>
-                            <td><?php echo $fd->customerID; ?></td>
-                            <td><?php echo $fd->depositorName; ?></td>
-                            <td><?php echo $fd->premiumAmount; ?></td>
-                            <td><?php echo $fd->paid; ?></td>
-                            <td><?php echo $fd->payMode; ?></td>
-                            <td><?php echo $fd->paid_date; ?></td>
-                            <td><?php echo $fd->invoice_slip; ?></td>
-                            <td><?php echo $fd->status; ?></td>
+                            <td><?php echo $fd->customerID?></td>
+                            <td><?php echo $fd->depositorName?></td>
+                            <td><?php echo $fd->premiumAmount?></td>
+                            <td><?php echo $fd->paid?></td>
+                            <td><?php echo $fd->payMode?></td>
+                            <td><?php echo $fd->paid_date?></td>
+                            <td><?php echo $fd->invoice_slip?></td>
+                            <td><?php echo $fd->status?></td>
                         </tr>
                         <?php
                          }?>
                     </tbody>
                 </table>
-				
             </div>
 </div>
 
@@ -507,15 +508,14 @@ $np=$this->db->get("npsdetail")->result();
 
 </div>
 <div id="loan" class="tabcontent">
-  <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
   <h3>All Loan Transactions</h3>
   <?php
 $ln=$this->db->get("loandetail")->result();
 
   ?>
    <div class=" panel-scroll table-responsive">
-                   
-				 <table class="table table-striped table-hover center" id="ln">
+                    <table class="table table-striped table-hover center" id="loan">
                       <thead>
                         <tr>
                             <td>customerID</td>
@@ -532,15 +532,15 @@ $ln=$this->db->get("loandetail")->result();
                     <tbody>
                         <?php foreach($ln as $lnd ){ ?>
                         <tr>
-                            <td><?php echo $lnd->customerID; ?></td>
-                            <td><?php echo $lnd->depositorName; ?></td>
-                            <td><?php echo $lnd->premiumAmount; ?></td>
-                            <td><?php echo $lnd->paid; ?></td>
-                            <td><?php echo $lnd->payMode; ?></td>
-                            <td><?php echo $lnd->paid_date; ?></td>
-                            <td><?php echo $lnd->invoice_slip; ?></td>
-                            <td><?php echo $lnd->status; ?></td>
-                            <td><?php echo $lnd->remaining_months; ?></td>
+                            <td><?php echo $lnd->customerID?></td>
+                            <td><?php echo $lnd->depositorName?></td>
+                            <td><?php echo $lnd->premiumAmount?></td>
+                            <td><?php echo $lnd->paid?></td>
+                            <td><?php echo $lnd->payMode?></td>
+                            <td><?php echo $lnd->paid_date?></td>
+                            <td><?php echo $lnd->invoice_slip?></td>
+                            <td><?php echo $lnd->status?></td>
+                            <td><?php echo $lnd->remaining_months?></td>
                         </tr>
                         <?php
                            }?>
@@ -568,4 +568,3 @@ function openCity(evt, cityName) {
 document.getElementById("defaultOpen").click();
 </script>
    
-</div></div>

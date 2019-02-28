@@ -24,7 +24,7 @@
     <script src="<?= base_url(); ?>assets/js/custom.js"></script>
      <!--start datatable-->
  <link rel="stylesheet" href="<?= base_url(); ?>assets/css/datatable/dataTables.bootstrap4.min.css">
- <script src="<?= base_url(); ?>assets/js/datatable/jquery-3.3.1.js"></script>
+ <!--<script src="<?= base_url(); ?>assets/js/datatable/jquery-3.3.1.js"></script>-->
  <script src="<?= base_url(); ?>assets/js/datatable/jquery.dataTables.min.js"></script>
   <script src="<?= base_url(); ?>assets/js/datatable/dataTables.bootstrap4.min.js"></script>
  <!--end datatable-->
@@ -42,7 +42,6 @@
  $(document).ready(function() {
     $('#fdv').DataTable();
 } );
-
  $(document).ready(function() {
     $('#alle').DataTable();
 } );
@@ -52,8 +51,8 @@
  $(document).ready(function() {
     $('#npsv').DataTable();
 } );
-$(document).ready(function() {
-    $('#ln').DataTable();
+ $(document).ready(function() {
+    $('#loan').DataTable();
 } );
 
  $(document).ready(function() {
@@ -86,6 +85,9 @@ $(document).ready(function() {
 } );
  $(document).ready(function() {
     $('#empss').DataTable();
+} );
+ $(document).ready(function() {
+    $('#demo1').DataTable();
 } );
  
  
@@ -329,7 +331,7 @@ $(document).ready(function() {
                   <ul class="sidenav level-2 collapse">
                     <li class="sidenav-heading">Employee</li>
                     <li><a href="<?= base_url() ?>newemploye.html">New</a></li>
-                    <li><a href="<?= base_url() ?>employes.html">Employees</a></li>
+                    <li><a href="<?= base_url() ?>employes.html">Employes</a></li>
                     <li><a href="<?= base_url() ?>index.php/employee/sallarylist">Employee Salary List</a></li>
                   </ul>
                 </li>

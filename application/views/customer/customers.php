@@ -49,6 +49,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
+						  <th>Customer ID</th>
                           <th>Name</th>
                           <th>Father</th>
                           <th>Status</th>
@@ -63,8 +64,10 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($employes as $key => $value): ?>
+                        <?php foreach ($employes as $key => $value): 
+						$i=1;?>
                           <tr class='clickable-row'>
+						  <td><?php echo $i; ?></td>
                             <td><?= $value->Customer_ID; ?></td>
                             <td><?= $value->name; ?></td>
                             <td><?= $value->fatherName; ?></td>
@@ -78,7 +81,8 @@
                              <td><a class="btn btn-success" href="<?= base_url() ?>customer/customerEdit/<?= $value->Customer_ID ?>">Edit</a></td>
                              <td><a class="btn btn-danger"  href="<?= base_url() ?>customer/customerDelete/<?= $value->Customer_ID ?>" onclick="return confirm('Are you Sure')">Delete</a></td>
                           </tr>
-                        <?php endforeach; ?>
+                        <?php $i++;
+						endforeach; ?>
                       </tbody>
                     </table>
                   </div>
