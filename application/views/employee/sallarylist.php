@@ -19,10 +19,10 @@
 
  <?php 
 
-$row=$this->db->get('emp_salary')->result();
+//$row=$this->db->get('emp_salary')->result();
 
 ?>
-                 <div class="card-body">
+                <!--  <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
                   <div class="panel-scroll table-responsive">
                     <table class="table table-striped table-hover center" id="empss">
@@ -50,9 +50,9 @@ $row=$this->db->get('emp_salary')->result();
  <?php }?>
                 	 </tbody>
                    
-                </table> 
+                </table>  -->
 
-             <!--    <div class="card-body">
+               <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
                   <div class="panel-scroll table-responsive">
                     <table class="table table-striped table-hover center" id="empss">
@@ -72,7 +72,7 @@ $row=$this->db->get('emp_salary')->result();
 	              { ?>
 	              		<tr><td>
 	              			<?php echo $data->id; ?></td>
-	              			<td><a href="<?php echo base_url();?>employee/sallaryall/<?php echo $data->id;?>/<?php echo $data->name; ?>"><?php echo $data->name; ?></a></td>
+	              			<td><a href="<?php echo base_url();?>employee/sallaryall/<?php echo $data->id;?>"><?php echo $data->name; ?></a></td>
 	              			<td><?php echo $data->fatherName; ?></td>
 	              		<td>	<?php echo $data->motherName; ?> </td>
 	              		<td><?php echo $data->dob; ?></td>
@@ -82,7 +82,7 @@ $row=$this->db->get('emp_salary')->result();
                 	 </tbody>
                    
                 </table>
- --></div>
+ </div>
 </div>
 </div>
 </div>

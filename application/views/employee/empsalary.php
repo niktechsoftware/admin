@@ -42,7 +42,56 @@
                  <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
                   <div class="panel-scroll table-responsive">
-                    <table class="table table-striped table-hover center" id="empss">
+                  <table class="table table-bordered table-striped table-hover">
+                  <thead>
+                    <th>Paid Amount</th>
+                    <th>Paid Month</th>
+                    <th>Paid Mode</th>
+                    <th>Paid Date</th>
+                  </thead><?php
+
+                   $id=$this->uri->segment(3);
+                  $this->db->where('emp_code',$id);
+                  $row=$this->db->get('emp_salary')->result();
+     
+             
+                  foreach($row as $data)
+                { ?>
+                
+                  <tbody>
+                    <tr>
+                    <td><?php echo $data->paid_amount; ?></td>
+                    <td><?php echo $data->paid_month; ?></td>
+                    <td><?php echo $data->pay_mode; ?></td>
+                    <td><?php echo $data->pay_date; ?></td>
+                       </tr>
+
+                   </tbody>
+                    <?php }?>
+                         <div>  <a class="btn btn-warning"><strong style="font-size:15px;"> Total Paid Salary
+                                 <?php
+                   
+                   // $dt = date("Y-m-d");
+               $this->db->select_sum('paid_amount');
+               //$this->db->where('DATE(created)',$dt);
+              $this->db->where('emp_code',$id);
+               $amountdabit =$this->db->get('emp_salary')->row()->paid_amount;
+                    echo $amountdabit;
+                    
+                    ?>
+                          </strong></a></div>
+                        
+                        
+                     
+                    </div>
+                  </table>
+
+
+               
+
+
+
+                 <!--    <table class="table table-striped table-hover center" id="empss">
 
                     <thead>
                             <th>Emplyee Code</th>
@@ -67,7 +116,7 @@
  <?php }?>
                      </tbody>
                    
-                </table> 
+                </table> --> 
                 </div>
 </div>
 </div>
