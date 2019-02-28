@@ -31,11 +31,7 @@
 	                  	?>
 	                  </select>
 	                </div>
-
-	                
 	              </div>
-
-
 	              <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-1">Name</label>
 	                <div class="col-sm-4">

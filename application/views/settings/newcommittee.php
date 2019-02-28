@@ -20,7 +20,7 @@
 	            <form  id="demo-inputmask" class="form form-horizontal" method="post">
 
 	              <div class="form-group">
-	                <label class="col-sm-2 control-label" for="form-control-1">Commitee Title</label>
+	                <label class="col-sm-2 control-label" for="form-control-1">Committee Title</label>
 	                <div class="col-sm-4">
 	                  <input id="form-control-1" class="form-control" name="title" type="text" required="required" value="<?= set_value('title'); ?>">
 	                  <?= form_error('title'); ?>
@@ -41,7 +41,7 @@
 	              </div>
 
 	              <div class="form-group">
-	                <label class="col-sm-2 control-label" for="form-control-1">Commitee Admin</label>
+	                <label class="col-sm-2 control-label" for="form-control-1">Committee Admin</label>
 	                <div class="col-sm-4">
 		                <select id="demo-select2-2" class="form-control" name="employeeID" required="required"></select>
 	                  <?= form_error('employeeID'); ?>
