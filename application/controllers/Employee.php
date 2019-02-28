@@ -15,7 +15,7 @@ class Employee extends CI_Controller {
 		$is_lock = $this->session->userdata('is_lock');
 		$logtype = $this->session->userdata('login_type');
 		if($is_login){
-			//echo $is_login;
+			
 			redirect('/login/index', 'refresh');
 		}
 	
@@ -23,17 +23,11 @@ class Employee extends CI_Controller {
 
 public function sallaryall() {
 	     
-	     $id=$this->uri->segment(3);
-	    $name=$this->uri->segment(4);
-	    $this->db->where('emp_code',$id);
-	     $this->db->where('	emp_name',$name);
-	     $data['abc']=$this->db->get('emp_salary')->result();
-	   
+	    
 	    
 	     $data['title'] = 'Employee Salary';
 	     $data['body'] = 'employee/empsalary';
-	     //$data['row']=$this->db->get('employee')->result();
-
+	   
 	     $this->load->view('layout',$data);
 	
 	}
