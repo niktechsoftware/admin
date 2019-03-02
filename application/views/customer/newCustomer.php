@@ -237,7 +237,7 @@
 	                </div>
 	              </div>
 
-	              <div class="form-group">
+	              <!--<div class="form-group">
 
 	              	<label class="col-sm-2 control-label" for="form-control-212">Contact</label>
 	                <div class="col-sm-4">
@@ -251,7 +251,7 @@
 	                  <?= form_error('nominee_signature'); ?>
 	                </div>
 
-	              </div>
+	              </div>-->
 	             <!--  <div id="guarantor" style="display: none;">
 		              <div class="divider divider-horizontal">
 	                  	<div class="divider-content text-primary"><h4>GUARANTOR DETAIL</h4></div>
@@ -570,6 +570,62 @@
 		                </div>
 		                
 		              </div>
+					  <!--a--> 
+ <div >
+		              <div class="divider divider-horizontal">
+	                  	<div class="divider-content text-primary"><h4>GUARANTOR DETAIL</h4></div>
+	                  </div>
+
+	                  <div class="form-group">
+		                <label class="col-sm-2 control-label" for="form-control-1">Guarantor Name</label>
+		                <div class="col-sm-1">
+		                  <select class="form-control" name="guarantor_title" required="required">
+		                  	<option>-Title-</option>
+		                  	<option value="Mrs.">Mr.</option>
+		                  	<option value="Mrs.">Mrs.</option>
+		                  	<option value="Dr.">Dr.</option>
+		                  	<option value="Late">Late</option>
+		                  </select>
+		                  <?= form_error('guarantor_title'); ?>
+		                </div>
+		                <div class="col-sm-3">
+		                  <input id="form-control-1" class="form-control" name="guarantor_name" type="text" required="required" value="<?= set_value('guarantor_name'); ?>">
+		                  <?= form_error('guarantor_name'); ?>
+		                </div>
+
+		                <label class="col-sm-2 control-label" for="form-control-1">Guarantor Father Name</label>
+		                <div class="col-sm-1">
+		                  <select class="form-control" name="guarantor_father_title" required="required">
+		                  	<option>-Title-</option>
+		                  	<option value="Mrs.">Mr.</option>
+		                  	<option value="Dr.">Dr.</option>
+		                  	<option value="Late">Late</option>
+		                  </select>
+		                  <?= form_error('guarantor_father_title'); ?>
+		                </div>
+		                <div class="col-sm-3">
+		                  <input id="form-control-1" class="form-control" name="guarantor_father_name" type="text" required="required" value="<?= set_value('guarantor_father_name'); ?>">
+		                  <?= form_error('guarantor_father_name'); ?>
+		                </div>
+		              </div>
+
+	                  <div class="form-group">
+
+		              	<label class="col-sm-2 control-label" for="form-control-43">Address</label>
+		                <div class="col-sm-4">
+		                  <input id="form-control-43" class="form-control" name="guarantor_address" type="text" required="required" value="<?= set_value('guarantor_address'); ?>">
+		                  <?= form_error('guarantor_address'); ?>
+		                </div>
+
+		                <label class="col-sm-2 control-label" for="form-control-18">Aadhar Number</label>
+		                <div class="col-sm-4">
+		                  <input id="form-control-44" class="form-control" name="guarantor_aadhar_no" type="text" required="required" value="<?= set_value('guarantor_aadhar_no'); ?>">
+		                  <?= form_error('guarantor_aadhar_no'); ?>
+		                </div>
+
+		              </div>
+		            </div>
+					  <!---->
 		              
 	              </span>
 
