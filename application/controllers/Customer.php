@@ -90,6 +90,10 @@ class Customer extends CI_Controller {
 			$this->form_validation->set_rules('mobile', 'Mobile', 'required|min_length[10]|max_length[10]');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('aadharNo', 'Aadhar Number', 'required');
+			$this->form_validation->set_rules('guarantor_name', 'Guarantor Name', 'required');
+			$this->form_validation->set_rules('guarantor_father_name', 'Guarantor fatherName Name', 'required');
+			$this->form_validation->set_rules('guarantor_address', 'Guarantor Address', 'required');
+			$this->form_validation->set_rules('guarantor_aadhar_no', 'Guarantor Aadhar Number', 'required');
 			$this->form_validation->set_rules('image', 'File', 'trim|xss_clean');
 			$this->form_validation->set_rules('signature', 'File', 'trim|xss_clean');
 			$this->form_validation->set_rules('idProof', 'File', 'trim|xss_clean');
@@ -154,17 +158,16 @@ class Customer extends CI_Controller {
 					"mobile" 		=> $this->input->post('mobile'),
 					"email" 		=> $this->input->post('email'),
 					"idProof" 		=> $this->input->post('idProof'),
-					"adhaarNo" 		=> $this->input->post('aadharNo')
+					"adhaarNo" 		=> $this->input->post('aadharNo'),
+					"loan_guare_name" 	=> $this->input->post('guarantor_name'),
+					"guar_f_name" 		=> $this->input->post('guarantor_father_name'),
+					"guar_address" 		=> $this->input->post('guarantor_address'),
+					"guar_addhar_number" => $this->input->post('guarantor_aadhar_no')
+
 				);
 				$customerno = $this->customers->setCustomer($customerData);
-                  print_r($customerno);
-
-				$customerID = date("ymd", strtotime($this->input->post("joindate"))).'C'.$customerno;
+                $customerID = date("ymd", strtotime($this->input->post("joindate"))).'C'.$customerno;
 				$policy_No = date("ymd", strtotime($this->input->post("joindate"))).'P'.$customerno;
-                 print_r($customerID);
-                  print_r($policy_No);
-
-
 				$cusdata = array(
 						'policy_No' =>	$policy_No,
 						'Customer_ID' => $customerID

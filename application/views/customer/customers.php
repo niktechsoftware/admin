@@ -49,7 +49,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
-						  <th>Customer ID</th>
+						              <th>Customer ID</th>
                           <th>Name</th>
                           <th>Father</th>
                           <th>Status</th>
@@ -65,9 +65,9 @@
                       </thead>
                       <tbody>
                         <?php foreach ($employes as $key => $value): 
-						$i=1;?>
+					              	$i=1;?>
                           <tr class='clickable-row'>
-						  <td><?php echo $i; ?></td>
+						                <td><?php echo $i; ?></td>
                             <td><?= $value->Customer_ID; ?></td>
                             <td><?= $value->name; ?></td>
                             <td><?= $value->fatherName; ?></td>
