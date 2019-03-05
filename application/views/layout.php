@@ -87,6 +87,21 @@ $(document).ready(function() {
  $(document).ready(function() {
     $('#empss').DataTable();
 } );
+  $(document).ready(function() {
+    $('#fdmy').DataTable();
+} );
+   $(document).ready(function() {
+    $('#rdmy').DataTable();
+} );
+      $(document).ready(function() {
+    $('#mismy').DataTable();
+} );
+         $(document).ready(function() {
+    $('#npsmy').DataTable();
+} );
+            $(document).ready(function() {
+    $('#loanmy').DataTable();
+} );
  
  
 

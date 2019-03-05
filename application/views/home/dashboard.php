@@ -393,7 +393,136 @@
 									</div>
 									<strong>Premium Due</strong>
 								</div>
-								<div class="card-body">
+								<div class="card-body" data-toggle="match-height">
+											<table class="table table-borderless table-middle">
+												<tbody>
+													<tr>
+														<td class="col-xs-1">1.</td>
+														<td class="col-xs-6">
+															RD Premium Due
+														</td>
+														<td class="col-xs-5">
+															<?php
+															$this->db->select_sum('premiumAmount');
+															$this->db->from('rddetail');
+															$this->db->where('status','pending');
+															$da=$this->db->get()->row();
+
+															// $data= $this->db->get('rddetail')->row();
+															// if($data->num_rows()>0){
+															// 	$da=$data->premiumAmount;
+															// 	print_r($da);
+															// }
+
+															?>
+															<div class="text-right"><a href="<?= base_url();?>index.php/Home/Rd_Premium_Due" class="btn btn-primary"><?php if($da->premiumAmount==0){echo "0.00" ;} else{ echo $da->premiumAmount;}?></a></div>
+														</td>
+														<!-- <td class="col-xs-3">
+															<div class="progress progress-sm m-y-0">
+																<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+																	<span class="sr-only">100% Complete</span>
+																</div>
+															</div>
+														</td> -->
+													</tr>
+													<tr>
+														<td class="col-xs-1">2.</td>
+														<td class="col-xs-6">
+															<?php 
+															$this->db->select_sum('premiumAmount');
+															$this->db->from('fddetail');
+															$this->db->where('status','pending');
+															$db=$this->db->get()->row();
+
+															?>
+															<a class="link-muted" href="#">FD Premium Due</a>
+														</td>
+														<td class="col-xs-5">
+
+															<div class="text-right"><a href="<?= base_url();?>index.php/Home/Fd_Premium_Due" class="btn btn-primary"><?php if($db->premiumAmount==0){echo "0.00" ;} else{ echo $db->premiumAmount;}?></a></div>
+														</td>
+														<!-- <td class="col-xs-3">
+															<div class="progress progress-sm m-y-0">
+																<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+																	<span class="sr-only">100% Complete</span>
+																</div>
+															</div>
+														</td> -->
+													</tr>
+													<tr>
+														<td class="col-xs-1">3.</td>
+														<td class="col-xs-6">
+															<a class="link-muted" href="#">MIS Premium Due</a>
+
+														</td>
+														<td class="col-xs-5">
+															<?php 
+															$this->db->select_sum('premiumAmount');
+															$this->db->from('misdetail');
+															$this->db->where('status','pending');
+															$ab=$this->db->get()->row();
+
+															?>
+															<div class="text-right"><a href="<?= base_url();?>index.php/Home/Mis_Premium_Due" class="btn btn-primary"><?php if($ab->premiumAmount==0){echo "0.00" ;} else{ echo $ab->premiumAmount;}?></a></div>
+														</td>
+														<!-- <td class="col-xs-3">
+															<div class="progress progress-sm m-y-0">
+																<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+																	<span class="sr-only">75% Complete</span>
+																</div>
+															</div>
+														</td> -->
+													</tr>
+													<tr>
+														<td class="col-xs-1">4.</td>
+														<td class="col-xs-6">
+															<a class="link-muted" href="#">NPS Premium Due</a>
+														</td>
+														<td class="col-xs-5">
+															<?php 
+															$this->db->select_sum('premiumAmount');
+															$this->db->from('npsdetail');
+															$this->db->where('status','pending');
+															$ac=$this->db->get()->row();
+
+															?>
+															<div class="text-right"><a href="<?= base_url();?>index.php/Home/Nps_Premium_Due" class="btn btn-primary"> <?php if($ac->premiumAmount==0){echo "0.00" ;} else{ echo $ac->premiumAmount;}?></a></div>
+														</td>
+														<!-- <td class="col-xs-3">
+															<div class="progress progress-sm m-y-0">
+																<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+																	<span class="sr-only">75% Complete</span>
+																</div>
+															</div>
+														</td> -->
+													</tr>
+													<tr>
+														<td class="col-xs-1">5.</td>
+														<td class="col-xs-6">
+															<a class="link-muted" href="#">LOAN Premium Due</a>
+														</td>
+														<td class="col-xs-5">
+															<?php 
+															$this->db->select_sum('premiumAmount');
+															$this->db->from('loandetail');
+															$this->db->where('status','pending');
+															$bd=$this->db->get()->row();
+
+															?>
+															<div class="text-right"><a href="<?= base_url();?>index.php/Home/Loan_Premium_Due" class="btn btn-primary"><?php if($bd->premiumAmount==0){echo "0.00" ;} else{ echo $bd->premiumAmount;}?></a></div>
+														</td>
+														<!-- <td class="col-xs-3">
+															<div class="progress progress-sm m-y-0">
+																<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="15000" style="width: 50%">
+																	<span class="sr-only">50% Complete</span>
+																</div>
+															</div>
+														</td> -->
+													</tr>
+												</tbody>
+											</table>
+										</div>
+								<!-- <div class="card-body">
 									<div class="timeline">
 										<div class="timeline-item">
 											<div class="timeline-segment">
@@ -474,7 +603,7 @@
 									</div>
 									<button class="btn btn-primary btn-sm btn-block" type="button">See all</button>
 								</div>
-							</div>
+ -->							</div>
 						</div>
 					</div>
 				</div>
