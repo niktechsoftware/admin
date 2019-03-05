@@ -173,32 +173,140 @@
 										</div>
 										<div class="card-body" data-toggle="match-height">
 											<ul class="list-group list-group-divided">
+								
 												<li class="list-group-item">
 													<div class="media">
 														<div class="media-middle media-body">
-															<h6 class="media-heading">
-																<span>Direct</span>
-															</h6>
-															<h4 class="media-heading">67%
+															<h5 class="media-heading">
+															1.	<span>Top 10 Due Agent Amount</span>
+															</h5>
+															<div class="card-body" data-toggle="match-height">
+											<table class="table table-borderless table-middle">
+												<tbody>
+													<tr>
+														<td class="col-xs-1">S.N.</td>
+														<td class="col-xs-6">
+															Agent Id
+														</td>
+														<td class="col-xs-2">
+															<div class="text-right">Amount</div>
+														</td>
+														
+													</tr>
+													<?php
+															$i=1;
+																$id=$this->db->get('agent')->result();
+																// echo"<pre>";
+																// print_r($agentid);
+																// exit;
+																foreach($id as $row):
+															?>
+															<!-- <h4 class="media-heading">67%
 																<small>124,029</small>
-															</h4>
+															</h4> -->
+															<?php 
+															$this->db->select_sum('amount');
+															$this->db->from('agent_comission');
+															$this->db->where('a_id',$row->id);
+															$this->db->order_by("amount" , "asc");
+															$amount=$this->db->get()->row();
+															// $this->db->order_by($amount->amount , "asc");
+															// $this->db->limit(10);
+															?>
+													<tr>
+														<td class="col-xs-1"><?php echo $i;?></td>
+														<td class="col-xs-6">
+														<?php echo "$row->id";?>
+														</td>
+														<td class="col-xs-2">
+															<div class="text-right"><?php echo "$amount->amount";?></div>
+														</td>
+														
+													</tr>
+													<?php
+															$i++;
+												            endforeach;
+															?>
+												
+													
+												</tbody>
+											</table>
+										</div>
+
+															
 														</div>
-														<div class="media-middle media-right">
+														<!-- <div class="media-middle media-right">
 															<span class="bg-primary circle sq-40">
-																<span class="icon-works">&#52;</span>
+																<span class="icon-works">&#57;</span>
 															</span>
-														</div>
+														</div> -->
 													</div>
 												</li>
-												<li class="list-group-item">
+
+												<!-- <li class="list-group-item">
 													<div class="media">
 														<div class="media-middle media-body">
-															<h6 class="media-heading">
-																<span>Referrals</span>
-															</h6>
-															<h4 class="media-heading">21%
-																<small>38,875</small>
-															</h4>
+															<h5 class="media-heading">
+															2.	<span>Total Customer</span>
+															</h5>
+															<div class="card-body" data-toggle="match-height">
+											<table class="table table-borderless table-middle">
+												<tbody>
+													<tr>
+														<td class="col-xs-1">1.</td>
+														<td class="col-xs-6">
+															RD
+														</td>
+														<td class="col-xs-2">
+															<div class="text-right"><a class="btn btn-primary" href="#">Amount</a></div>
+														</td>
+														
+													</tr>
+													<tr>
+														<td class="col-xs-1">2.</td>
+														<td class="col-xs-6">
+															FD
+														</td>
+														<td class="col-xs-2">
+															<div class="text-right"><a class="btn btn-primary" href="#">Amount</a></div>
+														</td>
+														
+													</tr>
+													<tr>
+														<td class="col-xs-1">3.</td>
+														<td class="col-xs-6">
+															MIS
+														</td>
+														<td class="col-xs-2">
+															<div class="text-right"><a class="btn btn-primary" href="#">Amount</a></div>
+														</td>
+														
+													</tr>
+													<tr>
+														<td class="col-xs-1">4.</td>
+														<td class="col-xs-6">
+															MPS
+														</td>
+														<td class="col-xs-2">
+															<div class="text-right"><a class="btn btn-primary" href="#">Amount</a></div>
+														</td>
+														
+													</tr>
+													<tr>
+														<td class="col-xs-1">5.</td>
+														<td class="col-xs-6">
+															Loan
+														</td>
+														<td class="col-xs-2">
+															<div class="text-right"><a class=" btn btn-primary" href="#">Amount</a></div>
+														</td>
+														
+													</tr>
+												</tbody>
+											</table>
+										</div>
+
+															
 														</div>
 														<div class="media-middle media-right">
 															<span class="bg-primary circle sq-40">
@@ -206,8 +314,8 @@
 															</span>
 														</div>
 													</div>
-												</li>
-												<li class="list-group-item">
+												</li> -->
+												<!-- <li class="list-group-item">
 													<div class="media">
 														<div class="media-middle media-body">
 															<h6 class="media-heading">
@@ -223,7 +331,7 @@
 															</span>
 														</div>
 													</div>
-												</li>
+												</li> -->
 											</ul>
 										</div>
 									</div>
@@ -250,89 +358,24 @@
 											</div>
 											<strong>All Branches</strong>
 										</div>
+										<?php $data=$this->db->get('branch')->result();?>
 										<div class="card-body" data-toggle="match-height">
 											<table class="table table-borderless table-middle">
 												<tbody>
+												<?php $i=1;
+												foreach($data as $dt):?>
 													<tr>
-														<td class="col-xs-1">1.</td>
+														<td class="col-xs-1"><?php echo $i;?></td>
 														<td class="col-xs-6">
-															<a class="link-muted" href="#">/getting-started</a>
+														<?php echo $dt->title;?>
 														</td>
-														<td class="col-xs-2">
-															<div class="text-right">185,118</div>
-														</td>
-														<td class="col-xs-3">
-															<div class="progress progress-sm m-y-0">
-																<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-																	<span class="sr-only">100% Complete</span>
-																</div>
-															</div>
-														</td>
+														
+														
+														
 													</tr>
-													<tr>
-														<td class="col-xs-1">2.</td>
-														<td class="col-xs-6">
-															<a class="link-muted" href="#">/pricing</a>
-														</td>
-														<td class="col-xs-2">
-															<div class="text-right">185,118</div>
-														</td>
-														<td class="col-xs-3">
-															<div class="progress progress-sm m-y-0">
-																<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-																	<span class="sr-only">100% Complete</span>
-																</div>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td class="col-xs-1">3.</td>
-														<td class="col-xs-6">
-															<a class="link-muted" href="#">/blog</a>
-														</td>
-														<td class="col-xs-2">
-															<div class="text-right">138,839</div>
-														</td>
-														<td class="col-xs-3">
-															<div class="progress progress-sm m-y-0">
-																<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
-																	<span class="sr-only">75% Complete</span>
-																</div>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td class="col-xs-1">4.</td>
-														<td class="col-xs-6">
-															<a class="link-muted" href="#">/support</a>
-														</td>
-														<td class="col-xs-2">
-															<div class="text-right">138,220</div>
-														</td>
-														<td class="col-xs-3">
-															<div class="progress progress-sm m-y-0">
-																<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
-																	<span class="sr-only">75% Complete</span>
-																</div>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td class="col-xs-1">5.</td>
-														<td class="col-xs-6">
-															<a class="link-muted" href="#">/about-us</a>
-														</td>
-														<td class="col-xs-2">
-															<div class="text-right">17,385</div>
-														</td>
-														<td class="col-xs-3">
-															<div class="progress progress-sm m-y-0">
-																<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="15000" style="width: 50%">
-																	<span class="sr-only">50% Complete</span>
-																</div>
-															</div>
-														</td>
-													</tr>
+														<?php $i++;
+													 endforeach;?>
+													
 												</tbody>
 											</table>
 										</div>
