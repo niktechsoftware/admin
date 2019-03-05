@@ -178,10 +178,10 @@
 													<div class="media">
 														<div class="media-middle media-body">
 															<h5 class="media-heading">
-															1.	<span>Top 10 Due Agent Amount</span>
+																<span>Top 10 Due Agent Amount</span>
 															</h5>
 															<div class="card-body" data-toggle="match-height">
-											<table class="table table-borderless table-middle">
+											<table class="table table-borderless table-striped table-middle">
 												<tbody>
 													<tr>
 														<td class="col-xs-1">S.N.</td>
@@ -360,7 +360,7 @@
 										</div>
 										<?php $data=$this->db->get('branch')->result();?>
 										<div class="card-body" data-toggle="match-height">
-											<table class="table table-borderless table-middle">
+											<table class="table table-borderless table-striped table-middle">
 												<tbody>
 												<?php $i=1;
 												foreach($data as $dt):?>
@@ -394,12 +394,12 @@
 									<strong>Premium Due</strong>
 								</div>
 								<div class="card-body" data-toggle="match-height">
-											<table class="table table-borderless table-middle">
+											<table class="table table-borderless table-striped table-middle">
 												<tbody>
 													<tr>
 														<td class="col-xs-1">1.</td>
 														<td class="col-xs-6">
-															RD Premium Due
+															<a href="<?= base_url();?>index.php/Home/Rd_Premium_Due" >RD Premium Due</a>
 														</td>
 														<td class="col-xs-5">
 															<?php
@@ -415,7 +415,7 @@
 															// }
 
 															?>
-															<div class="text-right"><a href="<?= base_url();?>index.php/Home/Rd_Premium_Due" class="btn btn-primary"><?php if($da->premiumAmount==0){echo "0.00" ;} else{ echo $da->premiumAmount;}?></a></div>
+															<div class="text-right"><?php if($da->premiumAmount==0){echo "0.00" ;} else{ echo $da->premiumAmount;}?></div>
 														</td>
 														<!-- <td class="col-xs-3">
 															<div class="progress progress-sm m-y-0">
@@ -435,11 +435,11 @@
 															$db=$this->db->get()->row();
 
 															?>
-															<a class="link-muted" href="#">FD Premium Due</a>
+															<a href="<?= base_url();?>index.php/Home/Fd_Premium_Due" >FD Premium Due</a>
 														</td>
 														<td class="col-xs-5">
 
-															<div class="text-right"><a href="<?= base_url();?>index.php/Home/Fd_Premium_Due" class="btn btn-primary"><?php if($db->premiumAmount==0){echo "0.00" ;} else{ echo $db->premiumAmount;}?></a></div>
+															<div class="text-right"><?php if($db->premiumAmount==0){echo "0.00" ;} else{ echo $db->premiumAmount;}?></div>
 														</td>
 														<!-- <td class="col-xs-3">
 															<div class="progress progress-sm m-y-0">
@@ -452,7 +452,7 @@
 													<tr>
 														<td class="col-xs-1">3.</td>
 														<td class="col-xs-6">
-															<a class="link-muted" href="#">MIS Premium Due</a>
+															<a href="<?= base_url();?>index.php/Home/Mis_Premium_Due" >MIS Premium Due</a>
 
 														</td>
 														<td class="col-xs-5">
@@ -463,7 +463,7 @@
 															$ab=$this->db->get()->row();
 
 															?>
-															<div class="text-right"><a href="<?= base_url();?>index.php/Home/Mis_Premium_Due" class="btn btn-primary"><?php if($ab->premiumAmount==0){echo "0.00" ;} else{ echo $ab->premiumAmount;}?></a></div>
+															<div class="text-right"><?php if($ab->premiumAmount==0){echo "0.00" ;} else{ echo $ab->premiumAmount;}?></div>
 														</td>
 														<!-- <td class="col-xs-3">
 															<div class="progress progress-sm m-y-0">
@@ -476,7 +476,7 @@
 													<tr>
 														<td class="col-xs-1">4.</td>
 														<td class="col-xs-6">
-															<a class="link-muted" href="#">NPS Premium Due</a>
+															<a href="<?= base_url();?>index.php/Home/Nps_Premium_Due" >NPS Premium Due</a>
 														</td>
 														<td class="col-xs-5">
 															<?php 
@@ -486,7 +486,7 @@
 															$ac=$this->db->get()->row();
 
 															?>
-															<div class="text-right"><a href="<?= base_url();?>index.php/Home/Nps_Premium_Due" class="btn btn-primary"> <?php if($ac->premiumAmount==0){echo "0.00" ;} else{ echo $ac->premiumAmount;}?></a></div>
+															<div class="text-right"> <?php if($ac->premiumAmount==0){echo "0.00" ;} else{ echo $ac->premiumAmount;}?></div>
 														</td>
 														<!-- <td class="col-xs-3">
 															<div class="progress progress-sm m-y-0">
@@ -499,7 +499,7 @@
 													<tr>
 														<td class="col-xs-1">5.</td>
 														<td class="col-xs-6">
-															<a class="link-muted" href="#">LOAN Premium Due</a>
+															<a href="<?= base_url();?>index.php/Home/Loan_Premium_Due" >LOAN Premium Due</a>
 														</td>
 														<td class="col-xs-5">
 															<?php 
@@ -509,7 +509,7 @@
 															$bd=$this->db->get()->row();
 
 															?>
-															<div class="text-right"><a href="<?= base_url();?>index.php/Home/Loan_Premium_Due" class="btn btn-primary"><?php if($bd->premiumAmount==0){echo "0.00" ;} else{ echo $bd->premiumAmount;}?></a></div>
+															<div class="text-right"><?php if($bd->premiumAmount==0){echo "0.00" ;} else{ echo $bd->premiumAmount;}?></div>
 														</td>
 														<!-- <td class="col-xs-3">
 															<div class="progress progress-sm m-y-0">
