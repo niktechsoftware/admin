@@ -148,7 +148,7 @@ endforeach;
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
+                    <!--<td>
                       <button class="btn btn-sm <?php if($emp == 'yes'){echo "btn-light-green"; }else{echo "btn-light-red";}?>" id="employee" value="employee">
                         <i class="<?php if($emp == 'yes'){echo "fa fa-check"; }else{echo "fa fa-times fa fa-white";}?>"></i> 
                         <?php if($emp == 'yes'){echo "YES"; }else{echo "NO";}?>
@@ -159,7 +159,7 @@ endforeach;
                         <i class="<?php if($age == 'yes'){echo "fa fa-check"; }else{echo "fa fa-times fa fa-white";}?>"></i> 
                         <?php if($age == 'yes'){echo "YES"; }else{echo "fa fa-times fa fa-white";}?>
                       </button>
-                    </td>
+                    </td>-->
                     <td>
                       <button class="btn btn-sm <?php if($branch == 'yes'){echo "btn-light-green"; }else{echo "btn-light-red";}?>" id="branch" value="branch">
                         <i class="<?php if($branch == 'yes'){echo "fa fa-check"; }else{echo "fa fa-times fa fa-white";}?>"></i> 

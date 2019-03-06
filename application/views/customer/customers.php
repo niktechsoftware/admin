@@ -64,8 +64,9 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($employes as $key => $value): 
-					              	$i=1;?>
+                        <?php $i=1;
+                        foreach ($employes as $key => $value): 
+					              	?>
                           <tr class='clickable-row'>
 						                <td><?php echo $i; ?></td>
                             <td><?= $value->Customer_ID; ?></td>

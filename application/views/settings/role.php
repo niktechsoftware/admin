@@ -104,7 +104,8 @@
 	function setRole() {
 		let branchID = $('#demo-select2-1').val()
 		let title 	 = $('#form-control-1').val()
-
+alert(branchID)
+alert(title)
 		$.ajax({
 			url: '<?= site_url() ?>role.html',
 			method: 'POST',

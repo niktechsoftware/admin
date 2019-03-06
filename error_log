@@ -63,3 +63,5 @@
 [01-Jan-2019 08:53:46 Etc/GMT] PHP Fatal error:  Cannot access empty property in /home/gfincpnt/public_html/admin/application/views/premium/printcertificate.php on line 183
 [02-Jan-2019 20:18:02 Etc/GMT] PHP Fatal error:  Call to a member function row() on a non-object in /home/gfincpnt/public_html/admin/application/controllers/Premium.php on line 284
 [21-Jan-2019 13:03:58 Etc/GMT] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/gfincpnt/public_html/admin/application/views/agent/agentComissionPay.php on line 61
+[04-Mar-2019 10:27:34 Etc/GMT] PHP Fatal error:  Call to a member function getsmsseting() on a non-object in /home/gfincpnt/public_html/admin/application/controllers/Login.php on line 172
+[04-Mar-2019 10:55:14 Etc/GMT] PHP Fatal error:  Call to a member function getsmsseting() on a non-object in /home/gfincpnt/public_html/admin/application/controllers/Login.php on line 172
