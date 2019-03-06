@@ -91,7 +91,7 @@ class Customer extends CI_Controller {
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('aadharNo', 'Aadhar Number', 'required');
 			$this->form_validation->set_rules('guarantor_name', 'Guarantor Name', 'required');
-			$this->form_validation->set_rules('guarantor_father_name', 'Guarantor fatherName Name', 'required');
+			$this->form_validation->set_rules('guarantor_father_name', 'Guarantor father Name', 'required');
 			$this->form_validation->set_rules('guarantor_address', 'Guarantor Address', 'required');
 			$this->form_validation->set_rules('guarantor_aadhar_no', 'Guarantor Aadhar Number', 'required');
 			$this->form_validation->set_rules('image', 'File', 'trim|xss_clean');
@@ -161,9 +161,8 @@ class Customer extends CI_Controller {
 					"adhaarNo" 		=> $this->input->post('aadharNo'),
 					"loan_guare_name" 	=> $this->input->post('guarantor_name'),
 					"guar_f_name" 		=> $this->input->post('guarantor_father_name'),
-					"guar_address" 		=> $this->input->post('guarantor_address'),
-					"guar_addhar_number" => $this->input->post('guarantor_aadhar_no')
-
+					"guar_addhar_number" => $this->input->post('guarantor_aadhar_no'),
+					"guar_address" 		=> $this->input->post('guarantor_address')
 				);
 				$customerno = $this->customers->setCustomer($customerData);
                 $customerID = date("ymd", strtotime($this->input->post("joindate"))).'C'.$customerno;
