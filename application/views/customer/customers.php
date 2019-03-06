@@ -83,7 +83,7 @@
                              <td><a class="btn btn-danger"  href="<?= base_url() ?>customer/customerDelete/<?= $value->Customer_ID ?>" onclick="return confirm('Are you Sure')">Delete</a></td>
                           </tr>
                         <?php $i++;
-						endforeach; ?>
+				             		endforeach; ?>
                       </tbody>
                     </table>
                   </div>
