@@ -182,17 +182,15 @@
 															</h5>
 															<div class="card-body" data-toggle="match-height">
 											<table class="table table-borderless table-striped table-middle">
-												<tbody>
-													<tr>
-														<td class="col-xs-1">S.N.</td>
-														<td class="col-xs-6">
-															Agent Id
-														</td>
-														<td class="col-xs-2">
-															<div class="text-right">Amount</div>
-														</td>
+
+											       <thead>
+														<th class="col-xs-1">S.N.</th>
+														<th class="col-xs-6">Agent Name</th>
+														<th class="col-xs-2"><div class="text-right">Amount</div></th>
 														
-													</tr>
+													</thead>
+												<tbody>
+													
 													<?php
 															$i=1;
 																$id=$this->db->get('agent')->result();
@@ -208,7 +206,7 @@
 															$this->db->select_sum('amount');
 															$this->db->from('agent_comission');
 															$this->db->where('a_id',$row->id);
-															$this->db->order_by("amount" , "asc");
+															//$this->db->order_by("amount" , "asc");
 															$amount=$this->db->get()->row();
 															// $this->db->order_by($amount->amount , "asc");
 															// $this->db->limit(10);
@@ -216,7 +214,7 @@
 													<tr>
 														<td class="col-xs-1"><?php echo $i;?></td>
 														<td class="col-xs-6">
-														<?php echo "$row->id";?>
+														<?php echo "$row->name";?>
 														</td>
 														<td class="col-xs-2">
 															<div class="text-right"><?php echo "$amount->amount";?></div>
@@ -224,9 +222,9 @@
 														
 													</tr>
 													<?php
-															$i++;
-												            endforeach;
-															?>
+													$i++;
+													endforeach;
+													?>
 												
 													
 												</tbody>
@@ -358,10 +356,25 @@
 											</div>
 											<strong>All Branches</strong>
 										</div>
-										<?php $data=$this->db->get('branch')->result();?>
+										
 										<div class="card-body" data-toggle="match-height">
 											<table class="table table-borderless table-striped table-middle">
+											       <thead>
+														<th class="col-xs-1">S.N.</th>
+														<th class="col-xs-3">Branch Name</th>
+														<th class="col-xs-4"><div class="text-right">Opening Balance</div></th>
+														<th class="col-xs-4"><div class="text-right">Clossing Balance</div></th>
+
+														<!-- <td class="col-xs-2">
+														Opening Balance
+														</td> -->
+														
+													</thead>
 												<tbody>
+												<?php $data=$this->db->get('branch')->result();?>
+
+												
+												
 												<?php $i=1;
 												foreach($data as $dt):?>
 													<tr>
@@ -369,8 +382,17 @@
 														<td class="col-xs-6">
 														<?php echo $dt->title;?>
 														</td>
-														
-														
+														<?php 
+													  $this->db->from('opening_closing_balance');
+													  $this->db->where('branch_id',$dt->id);
+													  $amount=$this->db->get()->row();
+												?>
+														<td class="col-xs-2">
+															<div class="text-right"><?php echo $amount->opening_balance ;?></div>
+														</td>
+														<td class="col-xs-2">
+															<div class="text-right"><?php echo $amount->closing_balance ;?></div>
+														</td>
 														
 													</tr>
 														<?php $i++;
@@ -395,6 +417,15 @@
 								</div>
 								<div class="card-body" data-toggle="match-height">
 											<table class="table table-borderless table-striped table-middle">
+											<thead>
+														<th class="col-xs-1">S.N.</th>
+														<th class="col-xs-4">Plan</th>
+														<th class="col-xs-4"><div class="text-right">Amount</div></th>
+														<!-- <td class="col-xs-2">
+														Opening Balance
+														</td> -->
+														
+													</thead>
 												<tbody>
 													<tr>
 														<td class="col-xs-1">1.</td>

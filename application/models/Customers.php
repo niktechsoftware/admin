@@ -15,9 +15,6 @@ class Customers extends CI_Model {
 	             $this->db->where("branchID",$this->session->userdata("branchID"));
 	            $result = $this->db->get('customer');
 	       }
-
-	
-		
 		/**
 		 * 	return employee table Data getting from database.
 		 */

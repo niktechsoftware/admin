@@ -30,7 +30,7 @@ class Logintable extends CI_Model {
 		        "isAdmin" => $res->isAdmin,
 		        "username" => $res->username,
 		        "password" => $res->password,
-		        "branchid" => $res->branchID,
+		        "branchId" => $res->branchID,
 		        "email" => $res->email_id,
 		        "roleid" => $res->roleID,
 		        "modifieddate" => $res->modified,
