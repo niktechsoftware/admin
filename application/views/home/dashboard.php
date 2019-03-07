@@ -382,11 +382,11 @@
 														<td class="col-xs-6">
 														<?php echo $dt->title;?>
 														</td>
-														<?php 
+													<?php 
 													  $this->db->from('opening_closing_balance');
 													  $this->db->where('branch_id',$dt->id);
 													  $amount=$this->db->get()->row();
-												?>
+												    ?>
 														<td class="col-xs-2">
 															<div class="text-right"><?php echo $amount->opening_balance ;?></div>
 														</td>
