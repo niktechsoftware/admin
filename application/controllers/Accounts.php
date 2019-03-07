@@ -106,7 +106,7 @@ class Accounts extends CI_Controller {
 		      // $rddetailw= $this->db->get("rddetail")->result();
 		      // $data['rd'] = $rddetailw;
             // fddetail table
-		    $fde= $this->db->get("fddetail")->result();
+		    $fde= $this->db->get("fdDetail")->result();
              $data['detail']= $fde;
 
 

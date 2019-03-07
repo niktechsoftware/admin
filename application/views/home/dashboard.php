@@ -183,17 +183,15 @@
 															</h5>
 															<div class="card-body" data-toggle="match-height">
 											<table class="table table-borderless table-striped table-middle">
-												<tbody>
-													<tr>
-														<td class="col-xs-1">S.N.</td>
-														<td class="col-xs-6">
-															Agent Id
-														</td>
-														<td class="col-xs-2">
-															<div class="text-right">Amount</div>
-														</td>
+
+											       <thead>
+														<th class="col-xs-1">S.N.</th>
+														<th class="col-xs-6">Agent Name</th>
+														<th class="col-xs-2"><div class="text-right">Amount</div></th>
 														
-													</tr>
+													</thead>
+												<tbody>
+													
 													<?php
 															$i=1;
 																$id=$this->db->get('agent')->result();
@@ -209,7 +207,7 @@
 															$this->db->select_sum('amount');
 															$this->db->from('agent_comission');
 															$this->db->where('a_id',$row->id);
-															$this->db->order_by("amount" , "asc");
+															//$this->db->order_by("amount" , "asc");
 															$amount=$this->db->get()->row();
 															// $this->db->order_by($amount->amount , "asc");
 															// $this->db->limit(10);
@@ -217,7 +215,7 @@
 													<tr>
 														<td class="col-xs-1"><?php echo $i;?></td>
 														<td class="col-xs-6">
-														<?php echo "$row->id";?>
+														<?php echo "$row->name";?>
 														</td>
 														<td class="col-xs-2">
 															<div class="text-right"><?php echo "$amount->amount";?></div>
@@ -225,9 +223,9 @@
 														
 													</tr>
 													<?php
-															$i++;
-												            endforeach;
-															?>
+													$i++;
+													endforeach;
+													?>
 												
 													
 												</tbody>
@@ -405,30 +403,9 @@
 
 						<?php 
 
-                           $rdtotal =0;
-                           $cdate = date('Y-m-d');
+                           
 						if(($this->session->userdata("isAdmin")==2)):
-							 $this->db->select('Customer_ID');
-							$this->db->where("branchID",$this->session->userdata("branchid"));
-							$dfg = $this->db->get('customer')->result();
-
-							foreach ($dfg as $value):
-							 
-							    $value->Customer_ID;
-							    $this->db->where("customerID",$value->Customer_ID);
-							   $cplan= $this->db->get("investmentdetail")->row();
-							   if($cplan->planID==2){
-							                  $this->db->select_sum('premiumAmount');
-															$this->db->from('rddetail');
-															$this->db->where('should_paid <',$cdate);
-															$this->db->where('status','pending');
-															$da=$this->db->get()->row()->premiumAmount;
-													$rdtotal =$rdtotal+$da;
-
-							   }
-
-							  endforeach;
-
+							
 							?>
 
 				       <div class="row gutter-xs">
@@ -528,10 +505,25 @@
 											</div>
 											<strong>All Branches</strong>
 										</div>
-										<?php $data=$this->db->get('branch')->result();?>
+										
 										<div class="card-body" data-toggle="match-height">
 											<table class="table table-borderless table-striped table-middle">
+											       <thead>
+														<th class="col-xs-1">S.N.</th>
+														<th class="col-xs-3">Branch Name</th>
+														<th class="col-xs-4"><div class="text-right">Opening Balance</div></th>
+														<th class="col-xs-4"><div class="text-right">Clossing Balance</div></th>
+
+														<!-- <td class="col-xs-2">
+														Opening Balance
+														</td> -->
+														
+													</thead>
 												<tbody>
+												<?php $data=$this->db->get('branch')->result();?>
+
+												
+												
 												<?php $i=1;
 												foreach($data as $dt):?>
 													<tr>
@@ -539,8 +531,17 @@
 														<td class="col-xs-6">
 														<?php echo $dt->title;?>
 														</td>
-														
-														
+													<?php 
+													  $this->db->from('opening_closing_balance');
+													  $this->db->where('branch_id',$dt->id);
+													  $amount=$this->db->get()->row();
+												    ?>
+														<td class="col-xs-2">
+															<div class="text-right"><?php echo $amount->opening_balance ;?></div>
+														</td>
+														<td class="col-xs-2">
+															<div class="text-right"><?php echo $amount->closing_balance ;?></div>
+														</td>
 														
 													</tr>
 														<?php $i++;
@@ -565,6 +566,15 @@
 								</div>
 								<div class="card-body" data-toggle="match-height">
 											<table class="table table-borderless table-striped table-middle">
+											<thead>
+														<th class="col-xs-1">S.N.</th>
+														<th class="col-xs-4">Plan</th>
+														<th class="col-xs-4"><div class="text-right">Amount</div></th>
+														<!-- <td class="col-xs-2">
+														Opening Balance
+														</td> -->
+														
+													</thead>
 												<tbody>
 													<tr>
 														<td class="col-xs-1">1.</td>
@@ -572,15 +582,33 @@
 															<a href="<?= base_url();?>index.php/Home/Rd_Premium_Due" >RD Premium Due</a>
 														</td>
 														<td class="col-xs-5">
-															<?php
-															$this->db->select_sum('premiumAmount');
-															$this->db->from('rddetail');
-															$this->db->where('status','pending');
-															$da=$this->db->get()->row();
+															<?php 
 
-															
+							                           $rdtotal =0;
+							                           $rdate = date('Y-m-d');
+													
+														 $this->db->select('Customer_ID');
+														$this->db->where("branchID",$this->session->userdata("branchid"));
+														$dfr = $this->db->get('customer')->result();
 
-															?>
+														foreach ($dfr as $valr):
+														 
+														    $valr->Customer_ID;
+														    $this->db->where("customerID",$valr->Customer_ID);
+														  
+														   	
+														                  $this->db->select_sum('premiumAmount');
+																						$this->db->from('rddetail');
+																						$this->db->where('should_paid <',$rdate);
+																						$this->db->where('status','pending');
+																						$rd=$this->db->get()->row()->premiumAmount;
+																				$rdtotal =$rdtotal+$rd;
+
+														   // }
+
+														  endforeach;
+
+							                               ?>
 															<div class="text-right"><?php if($rdtotal==0){echo "0.00" ;} else{ echo $rdtotal;}?></div>
 														</td>
 														
@@ -592,7 +620,7 @@
 													<?php 
 
 							                           $fdtotal =0;
-							                           $date = date('Y-m-d');
+							                           $cdate = date('Y-m-d');
 													
 														 $this->db->select('Customer_ID');
 														$this->db->where("branchID",$this->session->userdata("branchid"));
@@ -600,12 +628,12 @@
 
 														foreach ($df as $val):
 														 
-														    $value->Customer_ID;
+														    $val->Customer_ID;
 														    $this->db->where("customerID",$val->Customer_ID);
 														   $plan= $this->db->get("investmentdetail")->row();
 														   if($plan->planID==1){
 														                  $this->db->select_sum('premiumAmount');
-																						$this->db->from('rddetail');
+																						$this->db->from('fddetail');
 																						$this->db->where('should_paid <',$cdate);
 																						$this->db->where('status','pending');
 																						$d=$this->db->get()->row()->premiumAmount;
@@ -632,32 +660,33 @@
 														</td>
 														<td class="col-xs-5">
 																<?php 
+															$mistotal =0;
+								                           $mdate = date('Y-m-d');
+														    $this->db->select('Customer_ID');
+															$this->db->where("branchID",$this->session->userdata("branchid"));
+															$dfgd = $this->db->get('customer')->result();
 
-											                           $mistotal =0;
-											                           $mdate = date('Y-m-d');
-																	
-																		 $this->db->select('Customer_ID');
-																		$this->db->where("branchID",$this->session->userdata("branchid"));
-																		$dfa = $this->db->get('customer')->result();
+															foreach ($dfgd as $valuee):
+															 
+															    $valuee->Customer_ID;
+ 							    
+															
+															$this->db->where("customerID",$valuee->Customer_ID);
+															 $this->db->select_sum('premiumAmount');
+															$this->db->from('misdetail');
+															$this->db->where('should_paid <',$mdate);
+															$this->db->where('status','pending');
+															$daf=$this->db->get()->row()->premiumAmount;
+													        $mistotal =$mistotal+$daf;
+													       //print_r($da); 
 
-																		foreach ($dfa as $vale):
-																		 
-																		    $vale->Customer_ID;
-																		    $this->db->where("customerID",$vale->Customer_ID);
-																		   $plan1= $this->db->get("investmentdetail")->row();
-																		   if($plan1->planID==4){
-															                  $this->db->select_sum('premiumAmount');
-																			$this->db->from('rddetail');
-																			$this->db->where('should_paid <',$mdate);
-																			$this->db->where('status','pending');
-																			$dc=$this->db->get()->row()->premiumAmount;
-																	       $mistotal =$mistotal+$dc;
- 
-														   }
 
-														  endforeach;
+							                                 //}
 
-							                               ?>
+							                             endforeach;
+
+
+															?>
 															<div class="text-right"><?php if($mistotal==0){echo "0.00" ;} else{ echo $mistotal;}?></div>
 														</td>
 														
@@ -668,70 +697,70 @@
 															<a href="<?= base_url();?>index.php/Home/Nps_Premium_Due" >NPS Premium Due</a>
 														</td>
 														<td class="col-xs-5">
-															<?php 
-															            $npstotal =0;
-											                           $sdate = date('Y-m-d');
-																	
-																		 $this->db->select('Customer_ID');
-																		$this->db->where("branchID",$this->session->userdata("branchid"));
-																		$dfs = $this->db->get('customer')->result();
+																<?php 
+															$ntotal =0;
+								                           $ndate = date('Y-m-d');
+														    $this->db->select('Customer_ID');
+															$this->db->where("branchID",$this->session->userdata("branchid"));
+															$dfgn = $this->db->get('customer')->result();
 
-																		foreach ($dfs as $vala):
-																		 
-																		    $vala->Customer_ID;
-																		    $this->db->where("customerID",$vala->Customer_ID);
-																		   $plan3= $this->db->get("investmentdetail")->row();
-																		   if($plan3->planID==3){
-															                  $this->db->select_sum('premiumAmount');
-																			$this->db->from('rddetail');
-																			$this->db->where('should_paid <',$sdate);
-																			$this->db->where('status','pending');
-																			$df=$this->db->get()->row()->premiumAmount;
-																	       $npstotal =$npstotal+$df;
- 
-														   }
+															foreach ($dfgn as $valuen):
+															 
+															    $valuen->Customer_ID;
+															   // print_r($valuen->Customer_ID);
+															  
+ 							    
+															$this->db->where("customerID",$valuen->Customer_ID);
+															 $this->db->select_sum('premiumAmount');
+															$this->db->from('npsdetail');
+															$this->db->where('should_paid <',$ndate);
+															$this->db->where('status','pending');
+															//$dal=$this->db->get()->result();
+															$dan=$this->db->get()->row()->premiumAmount;
+													       $ntotal =$ntotal+$dan;
+													    
+							                             endforeach;
 
-														  endforeach;
 
-
-															?>
-															<div class="text-right"> <?php if($npstotal==0){echo "0.00" ;} else{ echo $npstotal;}?></div>
+															?>	
+															<div class="text-right"> <?php if($ntotal==0){echo "0.00" ;} else{ echo $ntotal;}?></div>
 														</td>
 														
 													</tr>
+
 													<tr>
 														<td class="col-xs-1">5.</td>
 														<td class="col-xs-6">
 															<a href="<?= base_url();?>index.php/Home/Loan_Premium_Due" >LOAN Premium Due</a>
 														</td>
 														<td class="col-xs-5">
-															<?php 
-															   $ltotal =0;
-											                           $ldate = date('Y-m-d');
-																	
-																		 $this->db->select('Customer_ID');
-																		$this->db->where("branchID",$this->session->userdata("branchid"));
-																		$dfl = $this->db->get('customer')->result();
+																<?php 
+															$dtotal =0;
+								                           $ldate = date('Y-m-d');
+														    $this->db->select('Customer_ID');
+															$this->db->where("branchID",$this->session->userdata("branchid"));
+															$dfgl = $this->db->get('customer')->result();
 
-																		foreach ($dfl as $valx):
-																		 
-																		    $valx->Customer_ID;
-																		    $this->db->where("customerID",$valx->Customer_ID);
-																		   $plan4= $this->db->get("investmentdetail")->row();
-																		   if($plan4->planID==5){
-															                  $this->db->select_sum('premiumAmount');
-																			$this->db->from('rddetail');
-																			$this->db->where('should_paid <',$ldate);
-																			$this->db->where('status','pending');
-																			$dfl=$this->db->get()->row()->premiumAmount;
-																	       $ltotal =$ltotal+$dfl;
- 
-														   }
+															foreach ($dfgl as $valuel):
+															 
+															    $valuel->Customer_ID;
+															  
+ 							    
+															$this->db->where("customerID",$valuel->Customer_ID);
+															 $this->db->select_sum('premiumAmount');
+															$this->db->from('loandetail');
+															$this->db->where('should_paid <',$ldate);
+															$this->db->where('status','pending');
+															//$dal=$this->db->get()->result();
+															$dal=$this->db->get()->row()->premiumAmount;
+													       $dtotal =$dtotal+$dal;
+													    
 
-														  endforeach;
+							                             endforeach;
+
 
 															?>
-															<div class="text-right"><?php if($ltotal==0){echo "0.00" ;} else{ echo $ltotal;}?></div>
+															<div class="text-right"><?php if($dtotal==0){echo "0.00" ;} else{ echo $dtotal;}?></div>
 														</td>
 														
 													</tr>

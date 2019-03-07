@@ -384,7 +384,7 @@ body {font-family: Arial;}
   <h3>All RD Transactions</h3>
  
   <?php 
-   $rd=$this->db->get("rddetail")->result();
+   $rd=$this->db->get("rdDetail")->result();
 
   ?>
    <div class=" panel-scroll table-responsive">
@@ -426,7 +426,7 @@ body {font-family: Arial;}
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
   <h3>All MIS Transactions</h3>
  <?php 
-$mis=$this->db->get("misdetail")->result();
+$mis=$this->db->get("misDetail")->result();
  ?>
  <div class=" panel-scroll table-responsive">
                     <table class="table table-striped table-hover center" id="misd">
@@ -469,7 +469,7 @@ $mis=$this->db->get("misdetail")->result();
   <h3>All NPS Transactions</h3>
   
   <?php
-$np=$this->db->get("npsdetail")->result();
+$np=$this->db->get("npsDetail")->result();
   ?>
   <div class=" panel-scroll table-responsive">
                     <table class="table table-striped table-hover center" id="npsv">
@@ -512,7 +512,7 @@ $np=$this->db->get("npsdetail")->result();
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
   <h3>All Loan Transactions</h3>
   <?php
-$ln=$this->db->get("loandetail")->result();
+$ln=$this->db->get("loanDetail")->result();
 
   ?>
    <div class=" panel-scroll table-responsive">

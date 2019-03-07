@@ -179,7 +179,7 @@
                     </td>
                   </tr>
                 </tbody>  
-                </table>          
+              </table>          
                 <?php } ?>
                
           <div style="margin-top:30px;" class="row">

@@ -29,7 +29,7 @@
 	                </div>
 
 	                <label class="col-sm-2 control-label" for="form-control-3">Username</label>
-	                <div class="col-sm-2"><?= $loginDetail->username; ?></div>               
+	                <div class="col-sm-2"> <?php if($loginDetail){echo $loginDetail->username;} ?></div>               
 	              </div>
 	                   <div class="form-group">
 	                        <label class="col-sm-2 control-label" for="form-control-1">Name(BLOCK LETTER)</label>
@@ -50,7 +50,7 @@
 	                 <div class="form-group">
 	                <label class="col-sm-2 control-label" for="form-control-1">Date of Birth</label>
 	                <div class="col-sm-4">
-	                  <input id="form-control-1" class="form-control" name="dob" type="date" required="required" value="<?= $employee->dob; ?>" data-inputmask="'alias': 'dd-mm-yyyy'">
+	                  <input id="form-control-1" class="form-control" name="dob" type="text" required="required" value="<?php echo date('d-m-Y',strtotime($employee->dob)); ?>" data-inputmask="'alias': 'dd-mm-yyyy'">
 	                 
 	                </div>
 	              
