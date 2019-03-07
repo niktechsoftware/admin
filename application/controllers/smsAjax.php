@@ -19,62 +19,162 @@ class SmsAjax extends CI_Controller
 		}
 	
 	 }
+
 	 function getsms()
 	 {
 
-           $this->load->model('Smsmodel');
-			$classData = array(
-					"employee" => $this->input->post("selectedData"),
-					"isAdmin" => $this->session->userdata("isAdmin");
-			  );
-			$sectionList = $this->configureClassModel->addClass($classData);
 
+	 	   if($this->session->userdata("isAdmin")==1)
+	 	   {
+               $emp=$this->input->post("employee");
+               $age=$this->input->post("agent");
+               $comm=$this->input->post("committee");
+               $cust=$this->input->post("customer");
+               $bran=$this->input->post("branch");
 
+              $message=$this->input->post("message");
+             if($emp=='yes')
+              {
+                 if($this->input->post('select')=='Empolyee'||$this->input->post('select')=='All')
+                 {
+                   $employee=$this->db->get('employee')->result(); 
 
+                    foreach ($employee as $value)
+                     { 
+                         $this->load->helper('sms');
+                        $b=$value->name;
+                        $a =$value->mobile;
+                        $bcc="Dear Employe "." ". $b." ". $message;
+                         sms($a,$bcc);
 
+                      } 
+                   }
 
+              }
+              if($age=='yes')
+              { 
+                      
+               if($this->input->post('select')=='Agent'||$this->input->post('select')=='All')
+                 {
+                  $agent=$this->db->get('agent')->result(); 
+                    foreach ($agent as $value)
+                     { 
+                         $this->load->helper('sms');
+                        $b=$value->name;
+                        $a =$value->mobile;
+                      $bcc="Dear Agent "."". $b."". $message;    	
+                     sms($a,$bcc);
 
+                      }    
+                  }
+              }
+              if($cust=='yes')
+              {  
+                 if($this->input->post('select')=='Customer'||$this->input->post('select')=='All')
+                 {
+              
+                   $customer=$this->db->get('customer')->result(); 
+                    foreach ($customer as $value)
+                     { 
+                         $this->load->helper('sms');
+                        $b=$value->name;
+                        $a =$value->mobile;
+                      $bcc="Dear Customer "."". $b."". $message;    	
+                     sms($a,$bcc);
 
+                       } 
+                     }   
+              }
+            if($bran=='yes')
+              {
+                 if($this->input->post('select')=='Branch'||$this->input->post('select')=='All')
+                 {
+                   $branch=$this->db->get('branch')->result(); 
+                    foreach ($branch as $value)
+                     { 
+                         $this->load->helper('sms');
+                        $b=$value->title;
+                        $a =$value->mobile;
+                        $bcc="Your Branch "."". $b."". $message;    	
+                       sms($a,$bcc);
 
+                      }  
+                    }  
+                }
 
+                 redirect('Login/smssetting','refresh');
+	        }
 
+	         if($this->session->userdata("isAdmin")==2)
+	 	      {
+               $emp=$this->input->post("employee");
+               $age=$this->input->post("agent");
+               $cust=$this->input->post("customer");
+              $message=$this->input->post("message");
+             if($emp=='yes')
+              {
+                 if($this->input->post('select')=='Empolyee'||$this->input->post('select')=='All')
+                   $this->db->where(' branchID',$this->session->userdata("branchid"));
+                   $employee=$this->db->get('employee')->result(); 
+                    foreach ($employee as $value)
+                     { 
+                         $this->load->helper('sms');
+                        $b=$value->name;
+                        $a =$value->mobile;
+                      $bcc="Dear Employe "."". $b."".$message;    	
+                     sms($a,$bcc);
 
+                      }    
+                }
+              else
+               {
+                    
+                   echo " Something is wrong!Please Contact to Admin,For Send the Message ";
 
+                }
+              if($age=='yes')
+              {
+                 if($this->input->post('select')=='Agent'||$this->input->post('select')=='All')
+                   $this->db->where('branchID',$this->session->userdata("branchid"));
+                   $agent=$this->db->get('agent')->result(); 
+                    foreach ($agent as $value)
+                     { 
+                         $this->load->helper('sms');
+                        $b=$value->name;
+                        $a =$value->mobile;
+                      $bcc="Dear Agent "."". $b."".$message;    	
+                     sms($a,$bcc);
 
+                      }    
+              }
+               else
+               {
+                     echo " Something is wrong!Please Contact to Admin,For Send the Message "; 
+               }
+              if($cust=='yes')
+              {
+                 if($this->input->post('select')=='Customer'||$this->input->post('select')=='All')
+                   $this->db->where('branchID',$this->session->userdata("branchid"));
+                   $customer=$this->db->get('customer')->result(); 
+                    foreach ($customer as $value)
+                     { 
+                         $this->load->helper('sms');
+                        $b=$value->name;
+                        $a =$value->mobile;
+                      $bcc="Dear Customer "."". $b."".$message;    	
+                     sms($a,$bcc);
 
+                      }    
+              }
+             else
+               {
+                      echo " Something is wrong!Please Contact to Admin,For Send the Message ";
+              }
+	        }
 
-
-
-
-
-
-	 
-	/*$mode=$_POST['mode'];
-if ($mode=='true') //mode is true when button is enabled 
-{
-    //Retrive the values from database you want and send using json_encode
-    //example
-   // $message='you can  send the message!!';
-    $success='yes';
-   echo json_encode(array('success'=>$success));
-	
-}
-
-else if ($mode=='false')  //mode is false when button is untracked
-{
-    //Retrive the values from database you want and send using json_encode
-    //example
-  // $message='you can not send the message!';
-    $success='no';
-   echo json_encode(array('success'=>$success));
-  
-//echo "hlo";
-  }
-*/
-	 }
 
 
 		
 	}
-	
+}
 ?>

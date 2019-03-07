@@ -1,9 +1,8 @@
 <?php
 class Smsmodel extends CI_Model
 {
-	function getsmsseting($admin)
+	function getsmsseting()
 	{
-	    $this->db->where("isAdmin",$admin);
 		$row = $this->db->get("sms");
 		return $row;
 	}
