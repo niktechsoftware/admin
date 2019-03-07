@@ -151,11 +151,14 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
-                     <center> <h4 class="text-primary">MIS Premium Due hello</h4></center>
+                     <center> <h4 class="text-primary">MIS Premium Due </h4></center>
                      <div class=" panel-scroll table-responsive">
                      
                     <table class="table table-striped table-hover center" id="mismy">
-                      <?php         $this->db->select('Customer_ID');
+                      <?php  
+                       $cdate = date('Y-m-d');   
+
+                           $this->db->select('Customer_ID');
                                     $this->db->where("branchID",$this->session->userdata("branchid"));
                                     $dfl = $this->db->get('customer')->result();
                                     foreach ($dfl as $valx):
@@ -165,6 +168,8 @@
                                     if($plan4->planID==1)
                                     {         
                                       $this->db->from('misdetail');
+                                      $this->db->where('should_paid <',$cdate);
+                                      $this->db->where('status','pending');
 
                                       $dfl=$this->db->get()->result();
 

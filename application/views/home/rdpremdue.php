@@ -152,26 +152,67 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
-                  <center> <h4 class="text-primary">RD Premium Due hello</h4></center>
+                  <center> <h4 class="text-primary">RD Premium Due </h4></center>
                      <div class=" panel-scroll table-responsive">
                      
                     <table class="table table-striped table-hover center" id="rdmy">
-                       <?php         $this->db->select('Customer_ID');
+                       <?php  
+                            $cdate = date('Y-m-d');    
+
+                          $this->db->select('Customer_ID');
                                     $this->db->where("branchID",$this->session->userdata("branchid"));
                                     $dfl = $this->db->get('customer')->result();
                                     foreach ($dfl as $valx):
                                     $valx->Customer_ID;
                                     $this->db->where("customerID",$valx->Customer_ID);
-                                    $plan4= $this->db->get("investmentdetail")->row();
+                                     /*$plan4= $this->db->get("investmentdetail")->row();
                                     if($plan4->planID==1)
                                     {         
                                       $this->db->from('rddetail');
+                                      $this->db->where('should_paid <',$cdate);
+                                      $this->db->where('status','pending');
 
                                       $dfl=$this->db->get()->result();
 
-                                    }
-                                      endforeach;
-                                         ?>
+                                    }*/
+                                      $this->db->from('rddetail');
+                                      $this->db->where('should_paid <',$cdate);
+                                      $this->db->where('status','pending');
+
+                                      $dfl=$this->db->get()->result();
+                                    
+                                    foreach ($dfl as $dt ):?>
+
+                                 <tbody>
+                                    <?php $i=1;?>
+                                    <?php foreach ($dfl as $dt ): 
+                                      
+                                        ?>
+                                        <tr class='clickable-row'>
+                                        <td><?php echo $i; ?></td>
+                                          <td><?php echo $dt->customerID; ?></td>
+                                          <td><?php  echo $dt->policyID; ?></td>
+                                          <td><?php echo $dt->premiumAmount; ?></td>
+                                          <td><?php echo $dt->balancePremium ?></td>
+                                          <td><?php echo $dt->depositorName; ?></td>
+                                          <td><?php echo $dt->paid; ?></td>
+                                          <td><?php echo $dt->should_paid; ?></td>
+                                          <td><?php echo $dt->payMode; ?></td>
+                                          <td><?php echo  $dt->paid_date ?></td>
+                                           <td><?php echo $dt->remaining_months ?></td>
+                                            <td><?php echo $dt->invoice_slip ?></td>
+                                             <td><?php echo $dt->status ?></td>
+                                          
+                                                  </tr>
+                                                <?php $i++;
+                                                endforeach; ?>
+                                                     </tbody>
+                                                      <?php endforeach;
+
+
+                                                              endforeach;
+                                                              // print_r($dfl);
+                                                                 ?>
                       <thead>
                         
                         <tr>
@@ -190,29 +231,7 @@
                           <th>Status</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <?php $i=1;?>
-                        <?php foreach ($dfl as $dt ): 
-                          ?>
-                          <tr class='clickable-row'>
-                          <td><?php echo $i; ?></td>
-                            <td><?php echo $dt->customerID; ?></td>
-                            <td><?php  echo $dt->policyID; ?></td>
-                            <td><?php echo $dt->premiumAmount; ?></td>
-                            <td><?php echo $dt->balancePremium ?></td>
-                            <td><?php echo $dt->depositorName; ?></td>
-                            <td><?php echo $dt->paid; ?></td>
-                            <td><?php echo $dt->should_paid; ?></td>
-                            <td><?php echo $dt->payMode; ?></td>
-                            <td><?php echo  $dt->paid_date ?></td>
-                             <td><?php echo $dt->remaining_months ?></td>
-                              <td><?php echo $dt->invoice_slip ?></td>
-                               <td><?php echo $dt->status ?></td>
-                            
-                          </tr>
-                        <?php $i++;
-                        endforeach; ?>
-                      </tbody>
+                      
                     </table>
                   </div>
                   </div>
