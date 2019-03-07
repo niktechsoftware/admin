@@ -12,6 +12,7 @@ class Role extends CI_Model {
 	        $this->db->where('branchID', $this->session->userdata("branchid"));
 	        $result =  $this->db->get('role')->result();
 	    }
+	    return $result;
 	}
 
 	function setRole($role) {
