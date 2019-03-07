@@ -1,122 +1,4 @@
 
-  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript">
-  window.jQuery || document.write('<script src="classes/commons/jquery/jquery-1.7.1.min.js"><\/script>')
-  </script>
-    <!--<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script> -->
-  <!-- <link href="<?php echo base_url();?>assets/button/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="<?php echo base_url();?>assets/button/js/bootstrap-toggle.min.js"></script>
-  <script src="<?php echo base_url();?>assets/button/js/malsup.github.io/jquery.form.js"></script> 
-
-
- <?php
-  foreach($row as $data):
-       $admin=$data->isAdmin;
-       $emp=$data->employee;
-        $age = $data->agent;
-        $cust = $data->customer;
-        $comm = $data->committee;
-        $bran= $data->branch;
-   endforeach;
-   ?>
-   <div class="layout-content">
-  <div class="layout-content-body">
-      <div class="row gutter-xs">
-        <div class="col-xs-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-actions" style="top: 35%;">
-                            <a class="btn btn-sm btn-labeled arrow-info" onclick="window.history.back();" href="#">
-                                <span class="btn-label">
-                                    <span class="icon icon-arrow-circle-left icon-lg icon-fw"></span>
-                                </span>
-                                Back
-                            </a>
-                        </div>
-                        <strong>Sms Panel</strong>
-                    </div> 
-           <div class="panel panel-calendar">
-            <div class="panel-heading panel-blue border-light">
-              <h4 class="panel-title">SMS Setting Panel</h4>
-            </div>           
-            <div class="panel-body">
-               <?php if($admin==1){?>
-              <table class="table">
-                <thead>
-                 
-                  <tr>
-                    <th>All Employee</th>
-                    <th>All Agent</th>
-                    <th>All Committee</th>
-                      <th>All Customer</th> 
-                      <th>All Branch</th>
-                  </tr>        
-                </thead>
-                 <form id="myForm" name="myForm" action="audio_alarm.php" method="post"> 
-                <tbody>
-                  <tr>
-                    <td>
-                       <input type="checkbox" name="toggle" id="toggle" data-toggle="toggle" data-off="No" data-on="yes" checked>
-                    </td>
-                    <td>
-                       <input type="checkbox" name="toggle1" id="toggle1" data-toggle="toggle" data-off="untracked" data-on="tracked" checked>
-                    </td>
-                    <td>
-                   <input type="checkbox" name="toggle2" id="toggle2" data-toggle="toggle" data-off="untracked" data-on="tracked" checked>
-                    </td>
-                    <td>
-                   <input type="checkbox" name="toggle3" id="toggle3" data-toggle="toggle" data-off="untracked" data-on="tracked" checked>
-                    </td>
-                    <td>
-                    <input type="checkbox" name="toggle4" id="toggle4" data-toggle="toggle" data-off="untracked" data-on="tracked" checked>
-                    </td>
-                  </tr>
-                </tbody> 
-                </form> 
-                </table>          
-          <?php }?>
-             <br><br>
-    <div class="panel panel-default">
-    <div class="panel-heading" id="heading"></div>
-    <div class="panel-body" id="body"></div>
-  </div>
-    <div></div>
-  </div>
-</div></div></div></div></div></div>
-
-
-
-    <script>
-      $('#toggle').change(function(){
-
-        var mode= $(this).prop('checked');
-        // // submit the form 
-        // $(#myForm).ajaxSubmit(); 
-        // // return false to prevent normal browser submit and page navigation 
-        // return false; 
-         //console.log("hii");
-        $.ajax({
-          type:'POST',
-          dataType:'JSON',
-          url:'index.php/SmsAjax/getsms',
-          data:'mode='+mode,
-          success:function(data)
-          {
-            var data=eval(data);
-            message=data.message;
-            success=data.success;
-            $("#heading").html(success);
-            $("#body").html(message);
-          }
-        });
-      });
-    </script>
-   -->
-
-
  <style>
  .switch {
   position: relative;
@@ -222,11 +104,9 @@
 </style>
  <?php
   foreach($row as $data):
-       $admin=$data->isAdmin;
        $emp=$data->employee;
         $age = $data->agent;
         $cust = $data->customer;
-        $comm = $data->committee;
         $bran= $data->branch;
    endforeach;
    ?>
@@ -252,14 +132,13 @@
               <h4 class="panel-title">SMS Setting Panel</h4>
             </div>           
             <div class="panel-body">
-               <?php if($admin==1){?>
+               <?php if($this->session->userdata("isAdmin")==1){?>
               <table class="table">
                 <thead>
                  
                   <tr>
                     <th>All Employee</th>
                     <th>All Agent</th>
-                    <th>All Committee</th>
                       <th>All Customer</th> 
                       <th>All Branch</th>
                   </tr>        
@@ -269,27 +148,23 @@
                     <td>
                       <label class="switch" id="employee">
                       <input class="switch-input" name="employee" id="emplo" value="<?php echo $emp; ?>" type="checkbox" />
+                      <input type="hidden" name="emplye" value="NO">
                    <span class="switch-label" id="employeelb" data-on="Yes" data-off="No"></span> 
                     <span class="switch-handle"></span> 
                            </label>
                     </td>
                     <td>
                       <label class="switch" id="agent">
-                      <input class="switch-input"   name="employee" value="<?php echo $emp; ?>" type="checkbox" />
+                      <input class="switch-input"   name="agent" value="<?php echo $emp; ?>" type="checkbox" />
+                       <input type="hidden" name="agen" value="NO">
                    <span class="switch-label" id="agentlb" data-on="Yes" data-off="No"></span> 
-                    <span class="switch-handle"></span> 
-                           </label>
-                    </td>
-                    <td>
-                   <label class="switch" id="committee">
-                      <input class="switch-input" name="committee" value="<?php echo $comm; ?>"  type="checkbox" />
-                   <span class="switch-label" id="committeelb" data-on="Yes" data-off="No"></span> 
                     <span class="switch-handle"></span> 
                            </label>
                     </td>
                     <td>
                   <label class="switch" id="customer">
                       <input class="switch-input" name="customer" value="<?php echo $cust; ?>" type="checkbox" />
+                       <input type="hidden" name="cust" value="NO">
                    <span class="switch-label" id="customerlb" data-on="Yes" data-off="No"></span> 
                     <span class="switch-handle"></span> 
                            </label>
@@ -297,6 +172,7 @@
                     <td>
                    <label class="switch" id="branch">
                    <input class="switch-input" name="branch" value="<?php echo $bran; ?>"  type="checkbox" />
+                    <input type="hidden" name="brach" value="NO">
                  <span class="switch-label" id="branchlb" data-on="Yes" data-off="No"></span> 
                  <span class="switch-handle"></span> 
                    </label>
@@ -304,84 +180,47 @@
                   </tr>
                 </tbody>  
                 </table>          
-                <?php }
-                else
-                  {?>
-                    <div class="panel-body">
-                <table class="table">
-                <thead>
-                 
-                  <tr>
-                    <th>All Employee</th>
-                    <th>All Agent</th>
-                    <th>All Committee</th>
-                      <th>All Customer</th>
-                  </tr>        
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                   <label class="switch" id="employee">
-                      <input class="switch-input" name="employee" value="<?php echo $emp; ?>" type="checkbox" />
-                   <span class="switch-label" id="employeelb" data-on="Yes" data-off="No"></span> 
-                    <span class="switch-handle"></span> 
-                           </label>
-                    </td>
-                    <td>
-                     <label class="switch" id="agent">
-                      <input class="switch-input"   name="employee" value="<?php echo $emp; ?>" type="checkbox" />
-                   <span class="switch-label" id="agentlb" data-on="Yes" data-off="No"></span> 
-                    <span class="switch-handle"></span> 
-                           </label>
-                    </td>
-                    <td>
-                   <label class="switch" id="committee">
-                      <input class="switch-input" name="committee" value="<?php echo $comm; ?>"  type="checkbox" />
-                   <span class="switch-label" id="committeelb" data-on="Yes" data-off="No"></span> 
-                    <span class="switch-handle"></span> 
-                           </label>
-                    </td>
-                    <td>
-                  <label class="switch" id="customer">
-                      <input class="switch-input" name="customer" value="<?php echo $cust; ?>" type="checkbox" />
-                   <span class="switch-label" id="customerlb" data-on="Yes" data-off="No"></span> 
-                    <span class="switch-handle"></span> 
-                           </label>
-                    </td>
-                  </tr>
-                </tbody>  
-                </table>          
                 <?php } ?>
+               
           <div style="margin-top:30px;" class="row">
             <div class="col-md-3">
           <label for="id_select" class="border-style:none;" class="form-control"><span style="font-size:15px;color:orange"  class="text-center">  Select Group Sms </span>
            </label>
           </div>
-          <?php if($admin==1)
+          <?php if($this->session->userdata("isAdmin")==1)
             {?>
            <div class="col-md-6">
             
-        <select id="id_select" autofocus="true" class="form-control" style="color:orange" >
-      <option value="all" class="form-control"> <span  class="text-center">All</span></option>
-       <option value="branch" class="form-control"> <span  class="text-center">Branch </span></option>
-      <option value="employee" class="form-control"> <span  class="text-center">Empolyee </span> </option>
-       <option value="customer" class="form-control"> <span class="text-center">Customer </span></option>
-        <option value="agent" class="form-control"> <span  class="text-center">Agent</span></option>
-         <option value="committee" class="form-control"> <span  class="text-center">Committee</span></option>
+        <select name="select" autofocus="true" class="form-control" style="color:orange" >
+      <option value="All" class="form-control"> <span  class="text-center">All</span></option>
+       <option value="Branch" class="form-control"> <span  class="text-center">Branch </span></option>
+      <option value="Empolyee" class="form-control"> <span  class="text-center">Empolyee </span> </option>
+       <option value="Customer" class="form-control"> <span class="text-center">Customer </span></option>
+        <option value="Agent" class="form-control"> <span  class="text-center">Agent</span></option>
+      
       </select>
            </div>
           <?php }
-            else
-            {
             ?> 
+            <?php if($this->session->userdata("isAdmin")==2)
+            {?>
             <div class="col-md-6">       
-        <select id="id_select" autofocus="true" class="form-control" style="color:orange" >
-      <option value="all" class="form-control"> <span  class="text-center">All</span></option>
-      <option value="employee" class="form-control"> <span  class="text-center">Empolyee </span> </option>
-       <option value="customer" class="form-control"> <span class="text-center">Customer </span></option>
-        <option value="agent" class="form-control"> <span  class="text-center">Agent</span></option>
-         <option value="committee" class="form-control"> <span  class="text-center">Committee</span></option>
-      </select>
+        <select name="select" autofocus="true" class="form-control" style="color:orange" >
+
+      <?php if(($_POST['employee'])&&($_POST['customer'])&&($_POST['agent'])) {?>
+      <option value="All" class="form-control"> <span  class="text-center">All</span></option>
+       <?php } ?>
+      
+         <?php if(($_POST['employee'])) {?>
+       <option value="Empolyee" class="form-control"> <span  class="text-center">Empolyee </span> </option>
+        <?php } ?>
+        <?php if(($_POST['customer'])) {?>
+       <option value="Customer" class="form-control"> <span class="text-center">Customer </span></option>
+        <?php } ?>
+           <?php if(($_POST['agent'])) {?>
+        <option value="Agent" class="form-control"> <span  class="text-center">Agent</span></option>
+         <?php } ?>
+       </select>
            </div>
            <?php }?>
             <div class="col-md-2"></div>
@@ -392,13 +231,13 @@
            </label>
           </div>
            <div class="col-md-6">
-            <textarea name="Text1" cols="40" rows="5" class="form-control" placeholder="Write Your Message here "></textarea>
+            <input type="text" name="message" cols="40" rows="5" class="form-control" placeholder="Write Your Message here "></textarea>
             </div> 
             <div class="col-md-2"></div>
             </div>
              <div style="margin-top:30px;"  class="row">
             <div class="col-md-5"></div>
-            <div class="col-md-5"><input type="submit" name="submit" class="btn btn-warning" value="Send Message"></div>
+            <div class="col-md-5"><input type="submit" name="submit" class="btn btn-warning" id="submit" value="Send Message"></div>
               <div class="col-md-2"></div>
             </div>
             </form> 
@@ -408,37 +247,37 @@
        </div>
       </div>
        </div>
-      <script>
-(function() {
-  $(document).ready(function() {
-    $('#emplo').on('change', function() {
-      var isChecked = $(this).is(':checked');
-      var selectedData;
-      var $switchLabel = $('#employeelb');
-      if(isChecked) {
-        selectedData = $switchLabel.attr('data-on');
-      } else {
-        selectedData = $switchLabel.attr('data-off');
-      }
-    if(!(selectedData == "" || isChecked  == "")){
-          $.post("<?php echo site_url('index.php/SmsAjax/getsms') ?>", 
-              {
-            selectedData : selectedData,
-            isChecked :  isChecked,
-            }, 
-              function(data){
-                  
-                    //alert(data);
+        <!-- <script>
+
+          $(document).ready(function() {
+            $('#emplo').on('change', function() {
+              var isChecked = $(this).is(':checked');
+              var selectedData;
+              var $switchLabel = $('#employeelb');
+              if(isChecked) {
+                selectedData = $switchLabel.attr('data-on');
+              } else {
+                selectedData = $switchLabel.attr('data-off');
+              }
+              alert(selectedData);
+
+              $.ajax({
+                "url":'<?php echo base_url()?>SmsAjex/getsms',
+                "method": 'POST',
+                "data": {selectedData: selectedData},
+                success:(data) => {
+                 console.log(data)
+                },
+                error: (error) => {
+                  console.log(error)
+                }
+              })
+          
             });
-        }
-
-    });
-  });
-
-})();
+          });
 
 
     
      
-    </script>
+    </script> --> 
     
