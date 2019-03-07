@@ -64,8 +64,9 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($employes as $key => $value): 
-					              	$i=1;?>
+                        <?php $i=1;
+                        foreach ($employes as $key => $value): 
+					              	?>
                           <tr class='clickable-row'>
 						                <td><?php echo $i; ?></td>
                             <td><?= $value->Customer_ID; ?></td>
@@ -82,7 +83,7 @@
                              <td><a class="btn btn-danger"  href="<?= base_url() ?>customer/customerDelete/<?= $value->Customer_ID ?>" onclick="return confirm('Are you Sure')">Delete</a></td>
                           </tr>
                         <?php $i++;
-						endforeach; ?>
+				             		endforeach; ?>
                       </tbody>
                     </table>
                   </div>

@@ -16,7 +16,11 @@ class Logintable extends CI_Model {
 		
 		// $this->db->select('password');
 		$this->db->where('username', $username);
+
+		$this->db->where('password',SHA1($password));
+/*=======
 		$this->db->where('password', sha1($password));
+>>>>>>> e2e43f82483e01af1b23e93abcd4c0555a6737ea*/
 		$login = $this->db->get('login');
 		/**
 		 * 	return login table Data getting from database according that username.

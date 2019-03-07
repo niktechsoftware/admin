@@ -370,7 +370,10 @@
                     <li class="sidenav-heading">Other</li>
                     <?php if(($this->session->userdata("isAdmin")!=3)):?>
                     <?php if(($this->session->userdata("isAdmin")!=5)):?>
+                      <?php if($this->session->userdata("isAdmin")==2&&$this->session->userdata("isAdmin")==1)
+                      {?>
                     <li><a href="<?= base_url() ?>message.html">Sms</a></li>
+                    <?php  }?>
                     <li><a href="<?= base_url() ?>expences.html">Daily Expences</a></li>
                     <?php endif;?>
                      <?php endif;?>

@@ -329,7 +329,7 @@ class Agent extends CI_Controller {
 	
 		$this->load->model("auth/logintable");
 		$loginDetail = $this->logintable->getLogin($employee->loginID);
-	
+	//echo $employee->loginID;
 	
 		$data['meritalr'] 	= ['Married','Unmarried','OTHER'];
 		$data['employee'] = $employee;
