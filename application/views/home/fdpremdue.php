@@ -51,16 +51,12 @@
                      <div class=" panel-scroll table-responsive">
                      
                     <table class="table table-striped table-hover center" id="rdmy">
-<<<<<<< HEAD
-                      
-=======
                       <?php 
                         $c1date = date('Y-m-d'); 
                       $this->db->where('should_paid <',$c1date);
                         $this->db->where('status','pending');
                         $data=$this->db->get('fddetail')->result();
                         ?>
->>>>>>> 9052014790fa46a7509bf153d4986aa8b8e759b0
                       <thead>
                         
                         <tr>
