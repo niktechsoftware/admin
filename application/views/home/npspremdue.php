@@ -166,7 +166,7 @@
                           
 
                         $this->db->select('Customer_ID');
-                                    $this->db->where("branchID",$this->session->userdata("branchid"));
+                                    $this->db->where("branchID",$this->session->userdata("branchId"));
                                     $dfl = $this->db->get('customer')->result();
                                     foreach ($dfl as $valx):
                                     $valx->Customer_ID;

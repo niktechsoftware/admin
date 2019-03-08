@@ -297,11 +297,11 @@ body {font-family: Arial;}
   <button class="tablinks" onclick="openCity(event, 'all')" id="defaultOpen">ALL</button>
   <button class="tablinks" onclick="openCity(event, 'fd')"> Fixed Deposit(FD)</button>
   <button class="tablinks" onclick="openCity(event, 'rd')">Recurring Deposit(RD)</button>
-  <button class="tablinks" onclick="openCity(event, 'mis')"> Management Information System(MIS)</button>
-  <button class="tablinks" onclick="openCity(event, 'nps')">National Pension System(NPS)</button>
+  <button class="tablinks" onclick="openCity(event, 'mis')"> Monthly Investment Plan (MIS)</button>
+  <button class="tablinks" onclick="openCity(event, 'nps')">Adhaarshila National Pension Severs(NPS)</button>
   <button class="tablinks" onclick="openCity(event, 'loan')">Loan</button>
 </div>
-
+<?php if(($this->session->userdata("isAdmin")==1)):?>
 <div id="all" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
   <h3>All DayBook Transection </h3>
@@ -550,7 +550,269 @@ $ln=$this->db->get("loanDetail")->result();
                 </table>
             </div>
 </div>
+<?php endif;?>
+<?php if(($this->session->userdata("isAdmin")==2)):?>
+  <div id="all" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
+  <h3>All DayBook Transection </h3>
+  
+  <?php 
+  $this->db->where("branchID",$this->session->userdata("branchId"));
+ $dab=$this->db->get("daybook")->row();
+   
+  ?>
+                   <div class="panel-scroll table-responsive">
+                    <table class="table table-striped table-hover center" id="alle">
+                      <thead>
+                        <tr>
+                            <td>CustomerID</td>
+                            <td>Amount</td>
+                            <td>Transaction Type</td>
+                            <td>Source</td>
+                            <td>Updated</td>
+                            <td>Created</td>
+                            <td>Invoice No.</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <?php foreach($dab as $dat): ?>
+                       <tr>
+                        <td><?php echo $dat->customer_ID; ?></td>
+                             <td><?php echo $dat->amount; ?></td>
+                            <td><?php echo $dat->transactionType; ?></td>
+                            <td><?php echo $dat->source; ?></td>
+                            <td><?php echo $dat->updated; ?></td>
+                            <td><?php echo $dat->created; ?></td>
+                            <td><?php echo $dat->invoice_no; ?></td>
+                        </tr>
+                        <?php
+                               endforeach;?>
+                    </tbody>
+                </table>
+            </div>
+</div>
 
+<div id="fd" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
+  <h3>All FD Transactions</h3>
+  
+      <div class="panel-scroll table-responsive">
+                    <table class="table table-striped table-hover center" id="fdv">
+                     <thead>
+                        <tr>
+                            <td>CustomerID</td>
+                            <td>Depositer Name</td>
+                            <td>Premium Amount</td>
+                            <td>Paid</td>
+                            <td>Pay Mode</td>
+                            <td>Paid Date</td>
+                            <td>Invoice Slip</td>
+                            <td>Status</td>
+                             </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($detail as $fd){ ?>
+                        <tr>
+                            <td><?php echo $fd->customerID; ?></td>
+                            <td><?php echo $fd->depositorName; ?></td>
+                            <td><?php echo $fd->premiumAmount; ?></td>
+                            <td><?php echo $fd->paid; ?></td>
+                            <td><?php echo $fd->payMode; ?></td>
+                            <td><?php echo $fd->paid_date; ?></td>
+                            <td><?php echo $fd->invoice_slip; ?></td>
+                            <td><?php echo $fd->status; ?></td>
+                        </tr>
+                        <?php
+                         }?>
+                    </tbody>
+                </table>
+        
+            </div>
+</div>
+
+<div id="rd" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <h3>All RD Transactions</h3>
+ 
+  <?php 
+   $rd=$this->db->get("rdDetail")->result();
+
+  ?>
+   <div class=" panel-scroll table-responsive">
+                    <table class="table table-striped table-hover center" id="rdev">
+                      <thead>
+                        <tr>
+                            <td>customerID</td>
+                            <td>Depositer Name</td>
+                            <td>Paid</td>
+                            <td>Pay Mode</td>
+                            <td>Paid Date</td>
+                            <td>Invoice Slip</td>
+                            <td>Status</td>
+                             <td>Duration</td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <?php foreach ($rd as $rde){ ?>
+                          <tr>
+                              <td><?php echo $rde->customerID?></td>
+                              <td><?php echo $rde->depositorName?></td>
+                              <td><?php echo $rde->paid?></td>
+                              <td><?php echo $rde->payMode?></td>
+                              <td><?php echo $rde->paid_date?></td>
+                              <td><?php echo $rde->invoice_slip?></td>
+                              <td><?php echo $rde->status?></td>
+                              <td><?php echo $rde->status?></td>
+                          </tr>
+                          <?php 
+                         } ?>
+                    </tbody>
+                </table>
+            </div>
+
+
+</div>
+<div id="mis" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <h3>All MIS Transactions</h3>
+ <?php 
+$mis=$this->db->get("misDetail")->result();
+ ?>
+ <div class=" panel-scroll table-responsive">
+                    <table class="table table-striped table-hover center" id="misd">
+                      <thead>
+                        <tr>
+                            <td>customerID</td>
+                            <td>Depositer Name</td>
+                            <td>Premium Amount</td>
+                            <td>Paid</td>
+                            <td>Pay Mode</td>
+                            <td>Paid Date</td>
+                            <td>Invoice Slip</td>
+                            <td>Status</td>
+                            <td>Remaining Months</td>
+                             
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($mis as $data1){ ?>
+                        <tr>
+                           <td><?php echo $data1->customerID?></td>
+                           <td><?php echo $data1->depositorName?></td>
+                           <td><?php echo $data1->premiumAmount?></td>
+                           <td><?php echo $data1->paid?></td>
+                           <td><?php echo $data1->payMode?></td>
+                           <td><?php echo $data1->paid_date?></td>
+                           <td><?php echo $data1->invoice_slip?></td>
+                           <td><?php echo $data1->status?></td>
+                           <td><?php echo $data1->remaining_months?></td> 
+                        </tr>
+                        <?php
+                    }?>
+                    </tbody>
+                </table>
+            </div>
+</div>
+<div id="nps" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <h3>All NPS Transactions</h3>
+  
+  <?php
+$np=$this->db->get("npsDetail")->result();
+  ?>
+  <div class=" panel-scroll table-responsive">
+                    <table class="table table-striped table-hover center" id="npsv">
+                      <thead>
+                        <tr>
+                            <td>customerID</td>
+                            <td>Depositer Name</td>
+                            <td>Premium Amount</td>
+                            <td>Paid</td>
+                            <td>Pay Mode</td>
+                            <td>Paid Date</td>
+                            <td>Invoice Slip</td>
+                            <td>Status</td>
+                            <td>Remaining Months</td>
+                             
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($np as $nps){ ?>
+                        <tr>
+                            <td><?php echo $nps->customerID ?></td>
+                            <td><?php echo $nps->depositorName ?></td>
+                            <td><?php echo $nps->premiumAmount ?></td>
+                            <td><?php echo $nps->paid ?></td>
+                            <td><?php echo $nps->payMode ?></td>
+                            <td><?php echo $nps->paid_date ?></td>
+                            <td><?php echo $nps->invoice_slip ?></td>
+                            <td><?php echo $nps->status ?></td>
+                            <td><?php echo $nps->remaining_months?></td>
+                        </tr>
+                        <?php 
+                    }?>
+                    </tbody>
+                </table>
+            </div>
+
+</div>
+<div id="loan" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
+  <h3>All Loan Transactions</h3>
+  <?php
+$ln=$this->db->get("loanDetail")->result();
+
+  ?>
+   <div class=" panel-scroll table-responsive">
+                   
+         <table class="table table-striped table-hover center" id="ln">
+                      <thead>
+                        <tr>
+                            <td>customerID</td>
+                            <td>Depositer Name</td>
+                            <td>Premium Amount</td>
+                            <td>Paid</td>
+                            <td>Pay Mode</td>
+                            <td>Paid Date</td>
+                            <td>Invoice Slip</td>
+                            <td>Status</td>
+                            <td>Remaining Months</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($ln as $lnd ){ ?>
+                        <tr>
+                            <td><?php echo $lnd->customerID; ?></td>
+                            <td><?php echo $lnd->depositorName; ?></td>
+                            <td><?php echo $lnd->premiumAmount; ?></td>
+                            <td><?php echo $lnd->paid; ?></td>
+                            <td><?php echo $lnd->payMode; ?></td>
+                            <td><?php echo $lnd->paid_date; ?></td>
+                            <td><?php echo $lnd->invoice_slip; ?></td>
+                            <td><?php echo $lnd->status; ?></td>
+                            <td><?php echo $lnd->remaining_months; ?></td>
+                        </tr>
+                        <?php
+                           }?>
+                    </tbody>
+                </table>
+            </div>
+</div>
+  <?php endif;?>
+  <?php if(($this->session->userdata("isAdmin")==3)):?>
+    <h2><center>Under Construction</center></h2>
+<?php endif;?>
+
+<?php if(($this->session->userdata("isAdmin")==4)):?>
+  <h2><center>Under Construction</center></h2>
+<?php endif;?>
+
+<?php if(($this->session->userdata("isAdmin")==5)):?>
+  <h2><center>Under Construction</center></h2>
+<?php endif;?>
 <script>
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;
