@@ -99,7 +99,7 @@ class Accounts extends CI_Controller {
 	public function getdaybook() 
         {
 
-	    if($this->session->userdata("isAdmin")==1){ 
+	    
 		$daybook= $this->db->get("daybook")->result();
 		$data['employes'] = $daybook;
 		// rd details table
@@ -115,16 +115,8 @@ class Accounts extends CI_Controller {
 		$this->load->view('layout', $data);
 		
 
-	    }
-	    else
-	    {
-	        
-	        echo "iusmjfkjrkjrmkjr";
-	        // $this->db->where("branchID",$this->session->userdata("branchID"));
-	         	         
-	        
-	    }
-
+	    
+	    
 	    function rddetail()
 	    {
 	    	 if($this->session->userdata("loginType")==1){ 

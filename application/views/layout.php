@@ -253,11 +253,11 @@ $(document).ready(function() {
               </li>
               <li class="dropdown hidden-xs">
                 <button class="navbar-account-btn" data-toggle="dropdown" aria-haspopup="true">
-                  <img class="circle" width="36" height="36" src="<?= base_url(); ?>assets/img/0180441436.jpg" alt="Teddy Wilson"> Admin
+                  <img class="circle" width="36" height="36" src="<?= base_url(); ?>assets/img/0180441436.jpg" alt="Teddy Wilson"> Account
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="profile.html">Profile</a></li>
+                  <li><a href="#">Profile</a></li>
                   <li><a href="<?php echo base_url();?>index.php/login/logout.html">Sign out</a></li>
                 </ul>
               </li>
