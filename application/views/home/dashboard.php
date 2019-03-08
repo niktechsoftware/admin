@@ -1,163 +1,6 @@
 			<div class="layout-content">
 				<div class="layout-content-body">
-					<div class="row gutter-xs">
-						<!--<div class="col-xs-6 col-md-3">
-							<div class="card">
-								<div class="card-values">
-									<div class="p-x">
-										<small>Visitors</small>
-										<h3 class="card-title fw-l">185,118</h3>
-									</div>
-								</div>
-								<div class="card-chart">
-									<canvas data-chart="line" data-animation="false" data-labels='["Jun 21", "Jun 20", "Jun 19", "Jun 18", "Jun 17", "Jun 16", "Jun 15"]' data-values='[{"colorStop1": "#feeeda", "colorStop2": "#ffffff", "y0": 0, "y1": 36, "borderColor": "#f7a033", "data": [25250, 23370, 25568, 28961, 26762, 30072, 25135]}]' data-scales='{"yAxes": [{ "ticks": {"max": 31072}}]}' data-hide='["legend", "points", "scalesX", "scalesY", "tooltips"]' height="50"></canvas>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-6 col-md-3">
-							<div class="card">
-								<div class="card-values">
-									<div class="p-x">
-										<small>New visitors</small>
-										<h3 class="card-title fw-l">68,494</h3>
-									</div>
-								</div>
-								<div class="card-chart">
-									<canvas data-chart="line" data-animation="false" data-labels='["Jun 21", "Jun 20", "Jun 19", "Jun 18", "Jun 17", "Jun 16", "Jun 15"]' data-values='[{"colorStop1": "#feeeda", "colorStop2": "#ffffff", "y0": 0, "y1": 36,"borderColor": "#f7a033", "data": [8796, 11317, 8678, 9452, 8453, 11853, 9945]}]' data-scales='{"yAxes": [{ "ticks": {"max": 12853}}]}' data-hide='["legend", "points", "scalesX", "scalesY", "tooltips"]' height="50"></canvas>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-6 col-md-3">
-							<div class="card">
-								<div class="card-values">
-									<div class="p-x">
-										<small>Pageviews</small>
-										<h3 class="card-title fw-l">925,590</h3>
-									</div>
-								</div>
-								<div class="card-chart">
-									<canvas data-chart="line" data-animation="false" data-labels='["Jun 21", "Jun 20", "Jun 19", "Jun 18", "Jun 17", "Jun 16", "Jun 15"]' data-values='[{"colorStop1": "#feeeda", "colorStop2": "#ffffff", "y0": 0, "y1": 36,"borderColor": "#f7a033", "data": [116196, 145160, 124419, 147004, 134740, 120846, 137225]}]' data-scales='{"yAxes": [{ "ticks": {"max": 157004}}]}' data-hide='["legend", "points", "scalesX", "scalesY", "tooltips"]' height="50"></canvas>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-6 col-md-3">
-							<div class="card">
-								<div class="card-values">
-									<div class="p-x">
-										<small>Average duration</small>
-										<h3 class="card-title fw-l">00:07:56</h3>
-									</div>
-								</div>
-								<div class="card-chart">
-									<canvas data-chart="line" data-animation="false" data-labels='["Jun 21", "Jun 20", "Jun 19", "Jun 18", "Jun 17", "Jun 16", "Jun 15"]' data-values='[{"colorStop1": "#feeeda", "colorStop2": "#ffffff", "y0": 0, "y1": 36,"borderColor": "#f7a033", "data": [13590442, 12362934, 13639564, 13055677, 12915203, 11009940, 11542408]}]' data-scales='{"yAxes": [{ "ticks": {"max": 14662531}}]}' data-hide='["legend", "points", "scalesX", "scalesY", "tooltips"]' height="50"></canvas>
-								</div>
-							</div>
-						</div>
-					--></div>
-				<!--	<div class="row gutter-xs">
-						<div class="col-xs-12 col-md-6">
-							<div class="card">
-								<div class="card-body">
-									<div class="pull-left">
-										<h4 class="card-title">Audience Overview</h4>
-									</div>
-									<div class="pull-right" data-toggle="buttons">
-										<label class="btn btn-outline-primary btn-xs btn-pill active">
-											<input type="radio" name="options" id="option1" autocomplete="off" checked="checked"> Past 24hr
-										</label>
-										<label class="btn btn-outline-primary btn-xs btn-pill">
-											<input type="radio" name="options" id="option2" autocomplete="off"> Past 7 days
-										</label>
-										<label class="btn btn-outline-primary btn-xs btn-pill">
-											<input type="radio" name="options" id="option3" autocomplete="off"> Past 30 days
-										</label>
-									</div>
-								</div>
-								<div class="card-body">
-									<div class="card-chart">
-										<canvas data-chart="line" data-animation="false" data-labels='["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]' data-values='[{"label": "This week", "backgroundColor": "#f7a033", "borderColor": "#f7a033", "data": [5022, 11017, 12230, 8801, 14102, 21512, 9932]}, {"label": "Last week", "backgroundColor": "#ed4882", "borderColor": "#ed4882", "data": [5012, 7203, 10204, 15052, 14820, 21805, 13203]}]' data-tooltips='{"mode": "label"}' data-hide='["gridLinesX", "legend", "points"]' data-scales='{"yAxes": [{"gridLines": {"color": "#f5f5f5"}, "ticks": {"fontColor": "#bcc1c6", "maxTicksLimit": 5}}], "xAxes": [{ "gridLines": {"color": "#f5f5f5"}, "ticks": {"fontColor": "#bcc1c6"}} ]}' height="128"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-12 col-md-6">
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">19,429 Signups</h4>
-								</div>
-								<div class="card-body">
-									<div class="card-chart">
-										<canvas data-chart="bar" data-animation="false" data-labels='["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]' data-values='[{"label": "This week", "backgroundColor": "#f7a033", "borderColor": "#f7a033", "data": [23167, 15991, 13905, 17447, 24558, 22594, 23067]}, {"label": "Last week", "backgroundColor": "#ed4882", "borderColor": "#ed4882", "data": [7374, 16740, 22929, 16788, 12103, 16459, 24058]}]' data-tooltips='{"mode": "label"}' data-hide='["gridLinesX", "legend", "points"]' data-scales='{"yAxes": [{"gridLines": {"color": "#f5f5f5"}, "ticks": {"fontColor": "#bcc1c6", "maxTicksLimit": 5}}], "xAxes": [{ "gridLines": {"color": "#f5f5f5"}, "ticks": {"fontColor": "#bcc1c6"}} ]}' height="128"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
-					<div class="row gutter-xs">
-	<!--	             <div class="col-md-4">
-							<div class="card">
-								<div class="card-body">
-									<div class="media">
-										<div class="media-middle media-left">
-											<span class="bg-gray sq-64 circle">
-												<span class="icon-works">&#228;</span>
-											</span>
-										</div>
-										<div class="media-middle media-body">
-											<h3 class="media-heading">
-												<span class="fw-l">1,256 Issues</span>
-												<span class="fw-b fz-sm text-danger">
-													<span class="icon icon-caret-up"></span>
-													15%
-												</span>
-											</h3>
-											<small>6 issues are unassigned</small>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-	--><!--					<div class="col-md-4">
-							<div class="card">
-								<div class="card-body">
-									<div class="media">
-										<div class="media-middle media-left">
-											<div class="media-chart">
-												<canvas data-chart="doughnut" data-animation="false" data-labels='["Resolved", "Unresolved"]' data-values='[{"backgroundColor": ["#f7a033", "#667589"], "data": [879, 377]}]' data-hide='["legend", "scalesX", "scalesY", "tooltips"]' height="64" width="64"></canvas>
-											</div>
-										</div>
-										<div class="media-middle media-body">
-											<h2 class="media-heading">
-												<span class="fw-l">879</span>
-												<small>Resolved</small>
-											</h2>
-											<small>More than 70% resolved issues</small>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card-body">
-									<div class="media">
-										<div class="media-middle media-left">
-											<div class="media-chart">
-												<canvas data-chart="doughnut" data-animation="false" data-labels='["Resolved", "Unresolved"]' data-values='[{"backgroundColor": ["#667589", "#f7a033"], "data": [879, 377]}]' data-hide='["legend", "scalesX", "scalesY", "tooltips"]' height="64" width="64"></canvas>
-											</div>
-										</div>
-										<div class="media-middle media-body">
-											<h2 class="media-heading">
-												<span class="fw-l">377</span>
-												<small>Unresolved</small>
-											</h2>
-											<small>Less than 30% unresolved issues</small>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>-->	
+						
 					<?php if(($this->session->userdata("isAdmin")==1)):?>
 				<div class="row gutter-xs">
 						<div class="col-md-8 col-md-push-4">
@@ -231,54 +74,74 @@
 												</tbody>
 											</table>
 										</div>
-
-															
-														</div>
-														
-													</div>
-												</li>
-
-												
-											</ul>
-										</div>
-									</div>
-									
-								</div>
-								<div class="col-md-6">
-									<div class="card">
-										<div class="card-header">
-											<div class="card-actions">
-												<button type="button" class="card-action card-toggler" title="Collapse"></button>
-												<button type="button" class="card-action card-reload" title="Reload"></button>
-												<button type="button" class="card-action card-remove" title="Remove"></button>
-											</div>
-											<strong>All Branches</strong>
-										</div>
-										<?php $data=$this->db->get('branch')->result();?>
-										<div class="card-body" data-toggle="match-height">
-											<table class="table table-borderless table-striped table-middle">
-												<tbody>
-												<?php $i=1;
-												foreach($data as $dt):?>
-													<tr>
-														<td class="col-xs-1"><?php echo $i;?></td>
-														<td class="col-xs-6">
-														<?php echo $dt->title;?>
-														</td>
-														
-														
-														
-													</tr>
-														<?php $i++;
-													 endforeach;?>
-													
-												</tbody>
-											</table>
-										</div>
 									</div>
 								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-actions">
+								<button type="button" class="card-action card-toggler" title="Collapse"></button>
+								<button type="button" class="card-action card-reload" title="Reload"></button>
+								<button type="button" class="card-action card-remove" title="Remove"></button>
 							</div>
+							<strong>All Branches</strong>
 						</div>
+						
+						<div class="card-body" data-toggle="match-height">
+							<table class="table table-borderless table-striped table-middle">
+									<thead>
+										<th class="col-xs-1">S.N.</th>
+										<th class="col-xs-3">Branch Name</th>
+										<th class="col-xs-4"><div class="text-right">Opening Balance</div></th>
+										<th class="col-xs-4"><div class="text-right">Clossing Balance</div></th>
+
+										<!-- <td class="col-xs-2">
+										Opening Balance
+										</td> -->
+										
+									</thead>
+								<tbody>
+								<?php $data=$this->db->get('branch')->result();?>
+
+								
+								
+								<?php $i=1;
+								foreach($data as $dt):?>
+									<tr>
+										<td class="col-xs-1"><?php echo $i;?></td>
+										<td class="col-xs-6">
+										<?php echo $dt->title;?>
+										</td>
+									<?php 
+										$this->db->from('opening_closing_balance');
+										$this->db->where('branch_id',$dt->id);
+										$amount=$this->db->get()->row();
+									?>
+										<td class="col-xs-2">
+											<div class="text-right"><?php echo $amount->opening_balance ;?></div>
+										</td>
+										<td class="col-xs-2">
+											<div class="text-right"><?php echo $amount->closing_balance ;?></div>
+										</td>
+										
+									</tr>
+										<?php $i++;
+										endforeach;?>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div> 
+			</div>
+		</div>
+
 						<div class="col-md-4 col-md-pull-8">
 							<div class="card">
 								<div class="card-header">
@@ -291,6 +154,15 @@
 								</div>
 								<div class="card-body" data-toggle="match-height">
 											<table class="table table-borderless table-striped table-middle">
+											<thead>
+														<th class="col-xs-1">S.N.</th>
+														<th class="col-xs-4">Plan</th>
+														<th class="col-xs-4"><div class="text-right">Amount</div></th>
+														<!-- <td class="col-xs-2">
+														Opening Balance
+														</td> -->
+														
+													</thead>
 												<tbody>
 													<tr>
 														<td class="col-xs-1">1.</td>
@@ -394,7 +266,6 @@
 												</tbody>
 											</table>
 										</div>
-								
  							</div>
 						</div>
 					</div>
@@ -495,63 +366,7 @@
 									</div>
 									
 								</div>
-								<!-- <div class="col-md-6">
-									<div class="card">
-										<div class="card-header">
-											<div class="card-actions">
-												<button type="button" class="card-action card-toggler" title="Collapse"></button>
-												<button type="button" class="card-action card-reload" title="Reload"></button>
-												<button type="button" class="card-action card-remove" title="Remove"></button>
-											</div>
-											<strong>All Branches</strong>
-										</div>
-										
-										<div class="card-body" data-toggle="match-height">
-											<table class="table table-borderless table-striped table-middle">
-											       <thead>
-														<th class="col-xs-1">S.N.</th>
-														<th class="col-xs-3">Branch Name</th>
-														<th class="col-xs-4"><div class="text-right">Opening Balance</div></th>
-														<th class="col-xs-4"><div class="text-right">Clossing Balance</div></th>
-
-														<!-- <td class="col-xs-2">
-														Opening Balance
-														</td> -->
-														
-													</thead>
-												<tbody>
-												<?php $data=$this->db->get('branch')->result();?>
-
-												
-												
-												<?php $i=1;
-												foreach($data as $dt):?>
-													<tr>
-														<td class="col-xs-1"><?php echo $i;?></td>
-														<td class="col-xs-6">
-														<?php echo $dt->title;?>
-														</td>
-													<?php 
-													  $this->db->from('opening_closing_balance');
-													  $this->db->where('branch_id',$dt->id);
-													  $amount=$this->db->get()->row();
-												    ?>
-														<td class="col-xs-2">
-															<div class="text-right"><?php echo $amount->opening_balance ;?></div>
-														</td>
-														<td class="col-xs-2">
-															<div class="text-right"><?php echo $amount->closing_balance ;?></div>
-														</td>
-														
-													</tr>
-														<?php $i++;
-													 endforeach;?>
-													
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div> -->
+				
 							</div>
 						</div>
 						<div class="col-md-4 col-md-pull-8">
@@ -588,7 +403,7 @@
 							                           $rdate = date('Y-m-d');
 													
 														 $this->db->select('Customer_ID');
-														$this->db->where("branchID",$this->session->userdata("branchid"));
+														$this->db->where("branchID",$this->session->userdata("branchId"));
 														$dfr = $this->db->get('customer')->result();
 
 														foreach ($dfr as $valr):
@@ -604,7 +419,7 @@
 																						$rd=$this->db->get()->row()->premiumAmount;
 																				$rdtotal =$rdtotal+$rd;
 
-														   // }
+														   
 
 														  endforeach;
 
@@ -616,38 +431,37 @@
 													<tr>
 														<td class="col-xs-1">2.</td>
 														<td class="col-xs-6">
-															
-													<?php 
-
-							                           $fdtotal =0;
-							                           $cdate = date('Y-m-d');
-													
-														 $this->db->select('Customer_ID');
-														$this->db->where("branchID",$this->session->userdata("branchid"));
-														$df = $this->db->get('customer')->result();
-
-														foreach ($df as $val):
-														 
-														    $val->Customer_ID;
-														    $this->db->where("customerID",$val->Customer_ID);
-														   $plan= $this->db->get("investmentdetail")->row();
-														   if($plan->planID==1){
-														                  $this->db->select_sum('premiumAmount');
-																						$this->db->from('fddetail');
-																						$this->db->where('should_paid <',$cdate);
-																						$this->db->where('status','pending');
-																						$d=$this->db->get()->row()->premiumAmount;
-																				$fdtotal =$fdtotal+$d;
-
-														   }
-
-														  endforeach;
-
-							                               ?>
 															<a href="<?= base_url();?>index.php/Home/Fd_Premium_Due" >FD Premium Due</a>
 														</td>
-														<td class="col-xs-5">
+														<?php 
 
+															$fdtotal =0;
+															$cdate = date('Y-m-d');
+
+															$this->db->select('Customer_ID');
+															$this->db->where("branchID",$this->session->userdata("branchId"));
+															$df = $this->db->get('customer')->result();
+
+															foreach ($df as $val):
+															
+																$val->Customer_ID;
+																$this->db->where("customerID",$val->Customer_ID);
+																$plan= $this->db->get("investmentdetail")->row();
+																if($plan->planID==1)
+																{
+																	$this->db->select_sum('premiumAmount');
+																	$this->db->from('fddetail');
+																	$this->db->where('should_paid <',$cdate);
+																	$this->db->where('status','pending');
+																	$d=$this->db->get()->row()->premiumAmount;
+																	$fdtotal =$fdtotal+$d;
+
+																}
+
+															endforeach;
+
+																?>
+														<td class="col-xs-5">
 															<div class="text-right"><?php if($fdtotal==0){echo "0.00" ;} else{ echo $fdtotal;}?></div>
 														</td>
 														
@@ -678,10 +492,7 @@
 															$this->db->where('status','pending');
 															$daf=$this->db->get()->row()->premiumAmount;
 													        $mistotal =$mistotal+$daf;
-													       //print_r($da); 
-
-
-							                                 //}
+													       
 
 							                             endforeach;
 
