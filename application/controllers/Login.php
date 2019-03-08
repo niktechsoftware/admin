@@ -166,8 +166,7 @@ public function logout()
 
 
     function smssetting(){
-        $data['title'] = 'Sms Panel';
-        $data['row'] =  $this->smsmodel->getsmsseting()->result();
+        $data['row']  = $this->db->get("sms")->result(); 
         $data['title'] = 'Sms Panel';
         $data['body'] = 'sms/smsPanel';
         $this->load->view('layout',$data);

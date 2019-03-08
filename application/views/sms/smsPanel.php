@@ -138,7 +138,7 @@
                  
                   <tr>
                     <th>All Employee</th>
-                    <th>All Agent</th>
+                     <th>All Agent</th>
                       <th>All Customer</th> 
                       <th>All Branch</th>
                   </tr>        
@@ -148,15 +148,13 @@
                     <td>
                       <label class="switch" id="employee">
                       <input class="switch-input" name="employee" id="emplo" value="<?php echo $emp; ?>" type="checkbox" />
-                      <input type="hidden" name="emplye" value="NO">
                    <span class="switch-label" id="employeelb" data-on="Yes" data-off="No"></span> 
                     <span class="switch-handle"></span> 
                            </label>
                     </td>
                     <td>
                       <label class="switch" id="agent">
-                      <input class="switch-input"   name="agent" value="<?php echo $emp; ?>" type="checkbox" />
-                       <input type="hidden" name="agen" value="NO">
+                      <input class="switch-input"   name="agent" value="<?php echo $age; ?>" type="checkbox" />
                    <span class="switch-label" id="agentlb" data-on="Yes" data-off="No"></span> 
                     <span class="switch-handle"></span> 
                            </label>
@@ -172,7 +170,6 @@
                     <td>
                    <label class="switch" id="branch">
                    <input class="switch-input" name="branch" value="<?php echo $bran; ?>"  type="checkbox" />
-                    <input type="hidden" name="brach" value="NO">
                  <span class="switch-label" id="branchlb" data-on="Yes" data-off="No"></span> 
                  <span class="switch-handle"></span> 
                    </label>
@@ -181,10 +178,10 @@
                 </tbody>  
               </table>          
                 <?php } ?>
-               
+               </div>
           <div style="margin-top:30px;" class="row">
             <div class="col-md-3">
-          <label for="id_select" class="border-style:none;" class="form-control"><span style="font-size:15px;color:orange"  class="text-center">  Select Group Sms </span>
+          <label for="id_select" class="border-style:none;" class="form-control"><span style="font-size:15px;color:orange;margin-left:10px;"class="text-center"> Select Group Sms </span>
            </label>
           </div>
           <?php if($this->session->userdata("isAdmin")==1)
@@ -202,22 +199,22 @@
            </div>
           <?php }
             ?> 
-            <?php if($this->session->userdata("isAdmin")==2)
+            <?php if($this->session->userdata("isAdmin")==2||$this->session->userdata("branchid"))
             {?>
             <div class="col-md-6">       
         <select name="select" autofocus="true" class="form-control" style="color:orange" >
 
-      <?php if(($_POST['employee'])&&($_POST['customer'])&&($_POST['agent'])) {?>
+      <?php if(($emp)&&($age)&&($cust)) {?>
       <option value="All" class="form-control"> <span  class="text-center">All</span></option>
        <?php } ?>
       
-         <?php if(($_POST['employee'])) {?>
+         <?php if($emp) {?>
        <option value="Empolyee" class="form-control"> <span  class="text-center">Empolyee </span> </option>
         <?php } ?>
-        <?php if(($_POST['customer'])) {?>
+        <?php if($cust) {?>
        <option value="Customer" class="form-control"> <span class="text-center">Customer </span></option>
         <?php } ?>
-           <?php if(($_POST['agent'])) {?>
+           <?php if($age) {?>
         <option value="Agent" class="form-control"> <span  class="text-center">Agent</span></option>
          <?php } ?>
        </select>
@@ -227,11 +224,11 @@
             </div>
             <div style="margin-top:30px;"  class="row">
             <div class="col-md-3">
-          <label for="message" class="border-style:none;" class="form-control"><span style="font-size:15px;color:orange"  class="text-center"> Write Your Message </span>
+          <label for="message" class="border-style:none;" class="form-control"><span style="font-size:15px;color:orange;margin-left:10px;"  class="text-center"> Write Your Message </span>
            </label>
           </div>
            <div class="col-md-6">
-            <input type="text" name="message" cols="40" rows="5" class="form-control" placeholder="Write Your Message here "></textarea>
+            <input type="text" name="message" cols="40" rows="5" class="form-control" required="" placeholder="Write Your Message here "></textarea>
             </div> 
             <div class="col-md-2"></div>
             </div>
@@ -240,13 +237,14 @@
             <div class="col-md-5"><input type="submit" name="submit" class="btn btn-warning" id="submit" value="Send Message"></div>
               <div class="col-md-2"></div>
             </div>
-            </form> 
           </div>
-        </div>
+        </form>
       </div>
-       </div>
-      </div>
-       </div>
+    </div>
+  </div>
+</div>
+</div>
+
         <!-- <script>
 
           $(document).ready(function() {

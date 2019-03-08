@@ -22,10 +22,8 @@ class SmsAjax extends CI_Controller
 
 	 function getsms()
 	 {
-
-
 	 	   if($this->session->userdata("isAdmin")==1)
-	 	   {
+	 	     {
                $emp=$this->input->post("employee");
                $age=$this->input->post("agent");
                $comm=$this->input->post("committee");
@@ -36,9 +34,8 @@ class SmsAjax extends CI_Controller
              if($emp=='yes')
               {
                  if($this->input->post('select')=='Empolyee'||$this->input->post('select')=='All')
-                 {
+                 { 
                    $employee=$this->db->get('employee')->result(); 
-
                     foreach ($employee as $value)
                      { 
                          $this->load->helper('sms');
@@ -46,9 +43,10 @@ class SmsAjax extends CI_Controller
                         $a =$value->mobile;
                         $bcc="Dear Employe "." ". $b." ". $message;
                          sms($a,$bcc);
-
+                        
                       } 
                    }
+                   echo " message send successfully";
 
               }
               if($age=='yes')
@@ -63,16 +61,18 @@ class SmsAjax extends CI_Controller
                         $b=$value->name;
                         $a =$value->mobile;
                       $bcc="Dear Agent "."". $b."". $message;    	
-                     sms($a,$bcc);
+                    sms($a,$bcc);
+                      
 
-                      }    
-                  }
+                      } 
+                   }
+
+                    echo " message send successfully";
               }
               if($cust=='yes')
               {  
                  if($this->input->post('select')=='Customer'||$this->input->post('select')=='All')
                  {
-              
                    $customer=$this->db->get('customer')->result(); 
                     foreach ($customer as $value)
                      { 
@@ -80,10 +80,13 @@ class SmsAjax extends CI_Controller
                         $b=$value->name;
                         $a =$value->mobile;
                       $bcc="Dear Customer "."". $b."". $message;    	
-                     sms($a,$bcc);
+                      sms($a,$bcc);
+                      
 
-                       } 
-                     }   
+                      } 
+                   }
+
+                    echo " message send successfully";
               }
             if($bran=='yes')
               {
@@ -97,24 +100,32 @@ class SmsAjax extends CI_Controller
                         $a =$value->mobile;
                         $bcc="Your Branch "."". $b."". $message;    	
                        sms($a,$bcc);
+                        
+  
+                      } 
+                   }
 
-                      }  
-                    }  
+                   echo " message send successfully";
                 }
+              
+              redirect('Login/smssetting','refresh');
+               window.location.reload();
 
-                 redirect('Login/smssetting','refresh');
 	        }
 
 	         if($this->session->userdata("isAdmin")==2)
 	 	      {
-               $emp=$this->input->post("employee");
-               $age=$this->input->post("agent");
-               $cust=$this->input->post("customer");
-              $message=$this->input->post("message");
+             $message=$this->input->post("message");
+               $row=$this->db->get('sms')->row();  
+                $emp=$row->employee;
+                $cust=$row->customer;
+                $age=$row->agent;
              if($emp=='yes')
               {
+              
                  if($this->input->post('select')=='Empolyee'||$this->input->post('select')=='All')
-                   $this->db->where(' branchID',$this->session->userdata("branchid"));
+                 {
+                   $this->db->where('branchID',$this->session->userdata("branchid"));
                    $employee=$this->db->get('employee')->result(); 
                     foreach ($employee as $value)
                      { 
@@ -124,7 +135,9 @@ class SmsAjax extends CI_Controller
                       $bcc="Dear Employe "."". $b."".$message;    	
                      sms($a,$bcc);
 
-                      }    
+                      }
+                   }
+                    echo " message send successfully";    
                 }
               else
                {
@@ -134,18 +147,24 @@ class SmsAjax extends CI_Controller
                 }
               if($age=='yes')
               {
+                 
                  if($this->input->post('select')=='Agent'||$this->input->post('select')=='All')
+                 {
                    $this->db->where('branchID',$this->session->userdata("branchid"));
-                   $agent=$this->db->get('agent')->result(); 
+                   $agent=$this->db->get('agent')->result();
+                 
                     foreach ($agent as $value)
                      { 
+                        
                          $this->load->helper('sms');
                         $b=$value->name;
                         $a =$value->mobile;
                       $bcc="Dear Agent "."". $b."".$message;    	
                      sms($a,$bcc);
 
-                      }    
+                      } 
+                   } 
+                    echo " message send successfully";  
               }
                else
                {
@@ -153,9 +172,11 @@ class SmsAjax extends CI_Controller
                }
               if($cust=='yes')
               {
+                
                  if($this->input->post('select')=='Customer'||$this->input->post('select')=='All')
-                   $this->db->where('branchID',$this->session->userdata("branchid"));
-                   $customer=$this->db->get('customer')->result(); 
+                 {
+                  $this->db->where('branchID',$this->session->userdata("branchid"));
+                   $customer=$this->db->get('customer')->result();
                     foreach ($customer as $value)
                      { 
                          $this->load->helper('sms');
@@ -164,17 +185,21 @@ class SmsAjax extends CI_Controller
                       $bcc="Dear Customer "."". $b."".$message;    	
                      sms($a,$bcc);
 
-                      }    
+                      }
+                  }  
+                   echo " message send successfully";  
               }
              else
                {
                       echo " Something is wrong!Please Contact to Admin,For Send the Message ";
               }
+
+              redirect('Login/smssetting','refresh');
+              window.location.reload();
+
 	        }
-
-
-
 		
-	}
-}
+	    }
+
+  }
 ?>
