@@ -50,6 +50,8 @@
                      
                     <table class="table table-striped table-hover center" id="mismy">
                       <?php 
+                        $c1date = date('Y-m-d'); 
+                      $this->db->where('should_paid <',$c1date);
                         $this->db->where('status','pending');
                         $data=$this->db->get('misdetail')->result();
                         ?>
@@ -154,7 +156,7 @@
                      <center> <h4 class="text-primary">MIS Premium Due </h4></center>
                      <div class=" panel-scroll table-responsive">
                      
-                    <table class="table table-striped table-hover center" id="mismy">
+                    <table class="table table-striped table-hover center" id="mismy1">
                       <?php  
                        $cdate = date('Y-m-d');   
 
