@@ -50,6 +50,9 @@
                      
                     <table class="table table-striped table-hover center" id="rdmy">
                       <?php 
+                       $c1date = date('Y-m-d'); 
+                      $this->db->where('should_paid <',$c1date);
+                      
                         $this->db->where('status','pending');
                         $data=$this->db->get('rddetail')->result();
                         ?>
@@ -155,7 +158,7 @@
                   <center> <h4 class="text-primary">RD Premium Due </h4></center>
                      <div class=" panel-scroll table-responsive">
                      
-                    <table class="table table-striped table-hover center" id="rdmy">
+                    <table class="table table-striped table-hover center" id="rdmy1">
                        <?php  
                             $cdate = date('Y-m-d');    
 

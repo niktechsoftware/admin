@@ -90,17 +90,32 @@ $(document).ready(function() {
   $(document).ready(function() {
     $('#fdmy').DataTable();
 } );
+  $(document).ready(function() {
+    $('#fdmy1').DataTable();
+} );
    $(document).ready(function() {
     $('#rdmy').DataTable();
+} );
+    $(document).ready(function() {
+    $('#rdmy1').DataTable();
 } );
       $(document).ready(function() {
     $('#mismy').DataTable();
 } );
+       $(document).ready(function() {
+    $('#mismy1').DataTable();
+} );
          $(document).ready(function() {
     $('#npsmy').DataTable();
 } );
+       $(document).ready(function() {
+    $('#npsmy1').DataTable();
+} );
             $(document).ready(function() {
     $('#loanmy').DataTable();
+} );
+     $(document).ready(function() {
+    $('#loanmy1').DataTable();
 } );
  
  

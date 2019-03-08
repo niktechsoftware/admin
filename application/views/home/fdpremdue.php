@@ -52,6 +52,8 @@
                      
                     <table class="table table-striped table-hover center" id="rdmy">
                       <?php 
+                        $c1date = date('Y-m-d'); 
+                      $this->db->where('should_paid <',$c1date);
                         $this->db->where('status','pending');
                         $data=$this->db->get('fddetail')->result();
                         ?>
@@ -160,7 +162,7 @@
                      <center> <h4 class="text-primary">FD Premium Due </h4></center>
                      <div class=" panel-scroll table-responsive">
                      
-                    <table class="table table-striped table-hover center" id="rdmy">
+                    <table class="table table-striped table-hover center" id="rdmy1">
                       <?php     
                        $cdate = date('Y-m-d');
                           $this->db->select('Customer_ID');
