@@ -1,6 +1,6 @@
 			<div class="layout-content">
 				<div class="layout-content-body">
-						
+
 					<?php if(($this->session->userdata("isAdmin")==1)):?>
 				<div class="row gutter-xs">
 						<div class="col-md-8 col-md-push-4">
@@ -16,41 +16,38 @@
 											<strong>Top 10 Due</strong>
 										</div>
 										<div class="card-body" data-toggle="match-height">
-											<ul class="list-group list-group-divided">
-								
-												<li class="list-group-item">
-													<div class="media">
-														<div class="media-middle media-body">
+										
 															<h5 class="media-heading">
 																<span>Top 10 Due Agent Amount</span>
 															</h5>
-															<div class="card-body" data-toggle="match-height">
 											<table class="table table-borderless table-striped table-middle">
 
-											       <thead>
+												
+											<thead>
 														<th class="col-xs-1">S.N.</th>
-														<th class="col-xs-6">Agent Name</th>
-														<th class="col-xs-2"><div class="text-right">Amount</div></th>
+														<th class="col-xs-6">
+															Agent Name
+														</th>
+														<th class="col-xs-2">
+															<div class="text-right">Amount</div>
+														</th>
 														
 													</thead>
-												<tbody>
-													
+													<tbody>
+
 													<?php
 															$i=1;
 																$id=$this->db->get('agent')->result();
-																// echo"<pre>";
-																// print_r($agentid);
-																// exit;
 																foreach($id as $row):
 															?>
-															<!-- <h4 class="media-heading">67%
-																<small>124,029</small>
-															</h4> -->
 															<?php 
 															$this->db->select_sum('amount');
 															$this->db->from('agent_comission');
 															$this->db->where('a_id',$row->id);
-															//$this->db->order_by("amount" , "asc");
+
+															$this->db->limit(1);
+															$this->db->order_by("amount" , "asc");
+
 															$amount=$this->db->get()->row();
 															// $this->db->order_by($amount->amount , "asc");
 															// $this->db->limit(10);
@@ -73,14 +70,11 @@
 													
 												</tbody>
 											</table>
+
 										</div>
 									</div>
 								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+							
 
 				<div class="col-md-6">
 					<div class="card">
@@ -139,8 +133,7 @@
 						</div>
 					</div>
 				</div> 
-			</div>
-		</div>
+			
 
 						<div class="col-md-4 col-md-pull-8">
 							<div class="card">
@@ -156,11 +149,14 @@
 											<table class="table table-borderless table-striped table-middle">
 											<thead>
 														<th class="col-xs-1">S.N.</th>
-														<th class="col-xs-4">Plan</th>
-														<th class="col-xs-4"><div class="text-right">Amount</div></th>
-														<!-- <td class="col-xs-2">
-														Opening Balance
-														</td> -->
+
+														<th class="col-xs-6">
+															Plan
+														</th>
+														<th class="col-xs-2">
+															<div class="text-right">Amount</div>
+														</th>
+
 														
 													</thead>
 												<tbody>
@@ -269,6 +265,10 @@
  							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+				
+			
 					<div class="row gutter-xs">
 						<div class="col-md-8 col-md-push-4">
 							<div class="row gutter-xs">
@@ -293,7 +293,7 @@
 															
 
 															?>
-															<center><p style="font-size: 15px;"> <?php echo $clb->amount;?> </p></center>
+															<p style="font-size: 15px;text-align:center;"> <?php echo $clb->amount;?> </p>
 
 
 										</div>
@@ -383,51 +383,42 @@
 											<strong>Top 10 Due</strong>
 										</div>
 										<div class="card-body" data-toggle="match-height">
-											<ul class="list-group list-group-divided">
-								
-												<li class="list-group-item">
-													<div class="media">
-														<div class="media-middle media-body">
+											
 															<h5 class="media-heading">
 																<span>Top 10 Due Agent Amount</span>
 															</h5>
-															<div class="card-body" data-toggle="match-height">
 											<table class="table table-borderless table-striped table-middle">
-												<tbody>
-													<tr>
-														<td class="col-xs-1">S.N.</td>
-														<td class="col-xs-6">
-															Agent Id
-														</td>
-														<td class="col-xs-2">
+											      <thead>
+													
+														<th class="col-xs-1">S.N.</th>
+														<th class="col-xs-6">
+															Agent Name
+														</th>
+														<th class="col-xs-2">
 															<div class="text-right">Amount</div>
-														</td>
+														</th>
 														
-													</tr>
+													
+													</thead>
 													<?php
 															$i=1;
 																$id=$this->db->get('agent')->result();
-																// echo"<pre>";
-																// print_r($agentid);
-																// exit;
 																foreach($id as $row):
 															?>
-															<!-- <h4 class="media-heading">67%
-																<small>124,029</small>
-															</h4> -->
 															<?php 
 															$this->db->select_sum('amount');
 															$this->db->from('agent_comission');
 															$this->db->where('a_id',$row->id);
-															$this->db->order_by("amount" , "asc");
+															
 															$amount=$this->db->get()->row();
 															// $this->db->order_by($amount->amount , "asc");
 															// $this->db->limit(10);
 															?>
+											<tbody>
 													<tr>
 														<td class="col-xs-1"><?php echo $i;?></td>
 														<td class="col-xs-6">
-														<?php echo "$row->id";?>
+														<?php echo "$row->name";?>
 														</td>
 														<td class="col-xs-2">
 															<div class="text-right"><?php echo "$amount->amount";?></div>
@@ -442,16 +433,7 @@
 													
 												</tbody>
 											</table>
-										</div>
-
-															
-														</div>
-														
-													</div>
-												</li>
-
-												
-											</ul>
+							
 										</div>
 									</div>
 									
@@ -473,11 +455,11 @@
 											<table class="table table-borderless table-striped table-middle">
 											<thead>
 														<th class="col-xs-1">S.N.</th>
+
 														<th class="col-xs-4">Plan</th>
 														<th class="col-xs-4"><div class="text-right">Amount</div></th>
-														<!-- <td class="col-xs-2">
-														Opening Balance
-														</td> -->
+														
+
 														
 													</thead>
 												<tbody>
@@ -582,7 +564,6 @@
 															$this->db->where('status','pending');
 															$daf=$this->db->get()->row()->premiumAmount;
 													        $mistotal =$mistotal+$daf;
-													       
 
 							                             endforeach;
 
@@ -782,3 +763,4 @@
 
 			<?php endif;?>
 			</div>
+		</div>

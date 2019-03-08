@@ -47,7 +47,7 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body" data-toggle="match-height">
-                     <center> <h4 class="text-primary">FD Premium Due </h4></center>
+                      <h4 class="text-primary text-center">FD Premium Due </h4>
                      <div class=" panel-scroll table-responsive">
                      
                     <table class="table table-striped table-hover center" id="rdmy">
@@ -75,11 +75,15 @@
                           <th>Status</th>
                         </tr>
                       </thead>
+                      <?php 
+                        $this->db->where('status','pending');
+                        $data=$this->db->get('fddetail')->result();
+                        ?>
                       <tbody>
                         <?php $i=1;?>
                         <?php foreach ($data as $dt ): 
                           ?>
-                          <tr class='clickable-row'>
+                          <tr class="clickable-row">
                            <td><?php echo $i; ?></td>
                             <td><?php echo $dt->customerID; ?></td>
                             <td><?php  echo $dt->policyID; ?></td>
