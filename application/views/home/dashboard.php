@@ -1,6 +1,6 @@
 			<div class="layout-content">
 				<div class="layout-content-body">
-					<div class="row gutter-xs">
+					
 						<!--<div class="col-xs-6 col-md-3">
 							<div class="card">
 								<div class="card-values">
@@ -53,7 +53,7 @@
 								</div>
 							</div>
 						</div>
-					--></div>
+					-->
 				<!--	<div class="row gutter-xs">
 						<div class="col-xs-12 col-md-6">
 							<div class="card">
@@ -93,71 +93,8 @@
 							</div>
 						</div>
 					</div> -->
-					<div class="row gutter-xs">
-	<!--	             <div class="col-md-4">
-							<div class="card">
-								<div class="card-body">
-									<div class="media">
-										<div class="media-middle media-left">
-											<span class="bg-gray sq-64 circle">
-												<span class="icon-works">&#228;</span>
-											</span>
-										</div>
-										<div class="media-middle media-body">
-											<h3 class="media-heading">
-												<span class="fw-l">1,256 Issues</span>
-												<span class="fw-b fz-sm text-danger">
-													<span class="icon icon-caret-up"></span>
-													15%
-												</span>
-											</h3>
-											<small>6 issues are unassigned</small>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-	--><!--					<div class="col-md-4">
-							<div class="card">
-								<div class="card-body">
-									<div class="media">
-										<div class="media-middle media-left">
-											<div class="media-chart">
-												<canvas data-chart="doughnut" data-animation="false" data-labels='["Resolved", "Unresolved"]' data-values='[{"backgroundColor": ["#f7a033", "#667589"], "data": [879, 377]}]' data-hide='["legend", "scalesX", "scalesY", "tooltips"]' height="64" width="64"></canvas>
-											</div>
-										</div>
-										<div class="media-middle media-body">
-											<h2 class="media-heading">
-												<span class="fw-l">879</span>
-												<small>Resolved</small>
-											</h2>
-											<small>More than 70% resolved issues</small>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card-body">
-									<div class="media">
-										<div class="media-middle media-left">
-											<div class="media-chart">
-												<canvas data-chart="doughnut" data-animation="false" data-labels='["Resolved", "Unresolved"]' data-values='[{"backgroundColor": ["#667589", "#f7a033"], "data": [879, 377]}]' data-hide='["legend", "scalesX", "scalesY", "tooltips"]' height="64" width="64"></canvas>
-											</div>
-										</div>
-										<div class="media-middle media-body">
-											<h2 class="media-heading">
-												<span class="fw-l">377</span>
-												<small>Unresolved</small>
-											</h2>
-											<small>Less than 30% unresolved issues</small>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>-->	
+					
+	           
 					<?php if(($this->session->userdata("isAdmin")==1)):?>
 				<div class="row gutter-xs">
 						<div class="col-md-8 col-md-push-4">
@@ -256,29 +193,52 @@
 											</div>
 											<strong>All Branches</strong>
 										</div>
-										<?php $data=$this->db->get('branch')->result();?>
 										<div class="card-body" data-toggle="match-height">
-											<table class="table table-borderless table-striped table-middle">
-												<tbody>
-												<?php $i=1;
-												foreach($data as $dt):?>
-													<tr>
-														<td class="col-xs-1"><?php echo $i;?></td>
-														<td class="col-xs-6">
-														<?php echo $dt->title;?>
-														</td>
-														
-														
-														
-													</tr>
-														<?php $i++;
-													 endforeach;?>
-													
-												</tbody>
-											</table>
-										</div>
-									</div>
+                            <table class="table table-borderless table-striped table-middle">
+                                    <thead>
+                                        <th class="col-xs-1">S.N.</th>
+                                        <th class="col-xs-3">Branch Name</th>
+                                        <th class="col-xs-4"><div class="text-right">Opening Balance</div></th>
+                                        <th class="col-xs-4"><div class="text-right">Clossing Balance</div></th>
+
+                                        <!-- <td class="col-xs-2">
+                                        Opening Balance
+                                        </td> -->
+                                        
+                                    </thead>
+                                <tbody>
+                                <?php $data=$this->db->get('branch')->result();?>
+
+                                
+                                
+                                <?php $i=1;
+                                foreach($data as $dt):?>
+                                    <tr>
+                                        <td class="col-xs-1"><?php echo $i;?></td>
+                                        <td class="col-xs-6">
+                                        <?php echo $dt->title;?>
+                                        </td>
+                                    <?php
+                                        $this->db->from('opening_closing_balance');
+                                        $this->db->where('branch_id',$dt->id);
+                                        $amount=$this->db->get()->row();
+                                    ?>
+                                        <td class="col-xs-2">
+                                            <div class="text-right"><?php echo $amount->opening_balance ;?></div>
+                                        </td>
+                                        <td class="col-xs-2">
+                                            <div class="text-right"><?php echo $amount->closing_balance ;?></div>
+                                        </td>
+                                        
+                                    </tr>
+                                        <?php $i++;
+                                        endforeach;?>
+                                    
+                                </tbody>
+                            </table>
+                        </div>									</div>
 								</div>
+								
 							</div>
 						</div>
 						<div class="col-md-4 col-md-pull-8">
@@ -395,6 +355,96 @@
 													</tr>
 												</tbody>
 											</table>
+										</div>
+								
+ 							</div>
+						</div>
+					</div>
+					<div class="row gutter-xs">
+						<div class="col-md-8 col-md-push-4">
+							<div class="row gutter-xs">
+								<div class="col-md-6">
+									<div class="card">
+										<div class="card-header">
+											<div class="card-actions">
+												<button type="button" class="card-action card-toggler" title="Collapse"></button>
+												<button type="button" class="card-action card-reload" title="Reload"></button>
+												<button type="button" class="card-action card-remove" title="Remove"></button>
+											</div>
+											<strong>Todays Collects</strong>
+										</div>
+										<div class="card-body" data-toggle="match-height">
+											<?php 
+															$cldate = date('Y-m-d');
+															$this->db->select_sum('amount');
+															$this->db->from('daybook');
+															$this->db->where('transactionType','credit');
+															$this->db->where('updated =',$cldate);
+															$clb=$this->db->get()->row();
+															
+
+															?>
+															<center><p style="font-size: 15px;"> <?php echo $clb->amount;?> </p></center>
+
+
+										</div>
+									</div>
+									
+								</div>
+								<div class="col-md-6">
+									<div class="card">
+										<div class="card-header">
+											<div class="card-actions">
+												<button type="button" class="card-action card-toggler" title="Collapse"></button>
+												<button type="button" class="card-action card-reload" title="Reload"></button>
+												<button type="button" class="card-action card-remove" title="Remove"></button>
+											</div>
+											<strong>Todays Expence</strong>
+										</div>
+										<div class="card-body" data-toggle="match-height">
+											<?php 
+															$cedate = date('Y-m-d');
+															$this->db->select_sum('amount');
+															$this->db->from('daybook');
+															$this->db->where('transactionType','debit');
+															$this->db->where('updated =',$cedate);
+															$ceb=$this->db->get()->row();
+															
+
+															?>
+															<center><p style="font-size: 15px;"> <?php echo $ceb->amount;?> </p></center>
+
+										</div>
+									</div>
+									
+								</div>
+
+								
+							</div>
+						</div>
+						<div class="col-md-4 col-md-pull-8">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-actions">
+										<button type="button" class="card-action card-toggler" title="Collapse"></button>
+										<button type="button" class="card-action card-reload" title="Reload"></button>
+										<button type="button" class="card-action card-remove" title="Remove"></button>
+									</div>
+									<strong>Total Business</strong>
+								</div>
+								<div class="card-body" data-toggle="match-height">
+										<?php 
+															$ctdate = date('Y-m-d');
+															$this->db->select_sum('amount');
+															$this->db->from('daybook');
+															
+															$this->db->where('updated =',$ctdate);
+															$ctb=$this->db->get()->row();
+															
+
+															?>
+															<center><p style="font-size: 15px;"> <?php echo $ctb->amount;?> </p></center>
+
 										</div>
 								
  							</div>
@@ -573,7 +623,7 @@
 																						$rd=$this->db->get()->row()->premiumAmount;
 																				$rdtotal =$rdtotal+$rd;
 
-														   // }
+														   
 
 														  endforeach;
 
@@ -712,7 +762,7 @@
 
 															foreach ($dfgl as $valuel):
 															 
-															    $valuel->Customer_ID;
+															  
 															  
  							    
 															$this->db->where("customerID",$valuel->Customer_ID);
@@ -729,10 +779,11 @@
 
 
 															?>
-															<div class="text-right"><?php if($dtotal==0){echo "0.00" ;} else{ echo $dtotal;}?></div>
+															<div  class="text-right"><?php if($dtotal==0){echo "0.00" ;} else{ echo $dtotal;}?></div>
 														</td>
 														
 													</tr>
+
 												</tbody>
 											</table>
 										</div>
@@ -740,8 +791,114 @@
  							</div>
 						</div>
 					</div>
+					<div class="row gutter-xs">
+						<div class="col-md-8 col-md-push-4">
+							<div class="row gutter-xs">
+								<div class="col-md-6">
+									<div class="card">
+										<div class="card-header">
+											<div class="card-actions">
+												<button type="button" class="card-action card-toggler" title="Collapse"></button>
+												<button type="button" class="card-action card-reload" title="Reload"></button>
+												<button type="button" class="card-action card-remove" title="Remove"></button>
+											</div>
+											<strong>Todays Collects</strong>
+										</div>
+										<div class="card-body" data-toggle="match-height">
+											<?php 
+
+															$cbcdate = date('Y-m-d');
+															$this->db->select_sum('amount');
+															$this->db->from('daybook');
+															$this->db->where("branchID",$this->session->userdata("branchid"));
+															$this->db->where('transactionType','credit');
+															$this->db->where('updated ',$cbcdate);
+															$cbcb=$this->db->get()->row()->amount;
+															
+
+															?>
+															<center><p style="font-size: 15px;"> <?php if($cbcb==0){echo "0.00";} else{ echo $cbcb;}?> </p></center>
+
+										</div>
+									</div>
+									
+								</div>
+								<div class="col-md-6">
+									<div class="card">
+										<div class="card-header">
+											<div class="card-actions">
+												<button type="button" class="card-action card-toggler" title="Collapse"></button>
+												<button type="button" class="card-action card-reload" title="Reload"></button>
+												<button type="button" class="card-action card-remove" title="Remove"></button>
+											</div>
+											<strong>Todays Expence</strong>
+										</div>
+										<div class="card-body" data-toggle="match-height">
+											<?php 
+
+															$cbedate = date('Y-m-d');
+															$this->db->select_sum('amount');
+															$this->db->from('daybook');
+															$this->db->where("branchID",$this->session->userdata("branchid"));
+															$this->db->where('transactionType','debit');
+															$this->db->where('updated =',$cbedate);
+															$cbecb=$this->db->get()->row()->amount;
+															
+
+															?>
+															<center><p style="font-size: 15px;"> <?php if($cbecb==0){echo "0.00";} else{ echo $cbecb;}?> </p></center>
+
+										</div>
+									</div>
+									
+								</div>
+
+								
+							</div>
+						</div>
+						<div class="col-md-4 col-md-pull-8">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-actions">
+										<button type="button" class="card-action card-toggler" title="Collapse"></button>
+										<button type="button" class="card-action card-reload" title="Reload"></button>
+										<button type="button" class="card-action card-remove" title="Remove"></button>
+									</div>
+									<strong>Total Business</strong>
+								</div>
+								<div class="card-body" data-toggle="match-height">
+										<?php 
+
+															$cbedate = date('Y-m-d');
+															$this->db->select_sum('amount');
+															$this->db->from('daybook');
+															$this->db->where("branchID",$this->session->userdata("branchid"));
+															$this->db->where('transactionType','debit');
+															$this->db->where('updated =',$cbedate);
+															$cbecb=$this->db->get()->row()->amount;
+															
+
+															?>
+															<center><p style="font-size: 15px;"> <?php if($cbecb==0){echo "0.00";} else{ echo $cbecb;}?> </p></center>
+
+										</div>
+								
+ 							</div>
+						</div>
+					</div>
+
 					<?php endif;?>
 
-				</div>
-			</div>
+				<?php if(($this->session->userdata("isAdmin")==3)):?>
+					<h1><center>Under Constructions</center></h1>
+
+			<?php endif;?>
+			<?php if(($this->session->userdata("isAdmin")==4)):?>
+					<h1><center>Under Constructions</center></h1>
+
+			<?php endif;?>
+			<?php if(($this->session->userdata("isAdmin")==5)):?>
+					<h1><center> Under Constructions</center></h1>
+
+			<?php endif;?>
 			</div>
