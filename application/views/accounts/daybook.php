@@ -317,7 +317,7 @@ body {font-family: Arial;}
                             <td>CustomerID</td>
                             <td>Amount</td>
                             <td>Transaction Type</td>
-							<td>Source</td>
+							              <td>Source</td>
                             <td>Updated</td>
                             <td>Created</td>
                             <td>Invoice No.</td>
@@ -327,7 +327,7 @@ body {font-family: Arial;}
                      <?php foreach($da as $data){ ?>
                        <tr>
 					        <td><?php echo $data->customer_ID; ?></td>
-                             <td><?php echo $data->amount; ?></td>
+                            <td><?php echo $data->amount; ?></td>
                             <td><?php echo $data->transactionType; ?></td>
                             <td><?php echo $data->source; ?></td>
                             <td><?php echo $data->updated; ?></td>
@@ -554,17 +554,18 @@ $ln=$this->db->get("loanDetail")->result();
 <?php if(($this->session->userdata("isAdmin")==2)):?>
   <div id="all" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
-  <h3>All DayBook Transection </h3>
+  <h3 ><center > All DayBook Transection </center> </h3>
   
   <?php 
   $this->db->where("branchID",$this->session->userdata("branchId"));
- $dab=$this->db->get("daybook")->row();
-   
+ $dab=$this->db->get("daybook")->result();
+ 
   ?>
                    <div class="panel-scroll table-responsive">
-                    <table class="table table-striped table-hover center" id="alle">
+                    <table class="table table-striped table-hover center" id="allb">
                       <thead>
                         <tr>
+                          <td>#</td>
                             <td>CustomerID</td>
                             <td>Amount</td>
                             <td>Transaction Type</td>
@@ -575,9 +576,11 @@ $ln=$this->db->get("loanDetail")->result();
                         </tr>
                     </thead>
                     <tbody>
-                     <?php foreach($dab as $dat): ?>
+                     <?php $i=1;
+                      foreach($dab as $dat): ?>
                        <tr>
-                        <td><?php echo $dat->customer_ID; ?></td>
+                        <td><?php echo $i; ?></td>
+                             <td><?php echo $dat->customer_ID; ?></td>
                              <td><?php echo $dat->amount; ?></td>
                             <td><?php echo $dat->transactionType; ?></td>
                             <td><?php echo $dat->source; ?></td>
@@ -585,7 +588,7 @@ $ln=$this->db->get("loanDetail")->result();
                             <td><?php echo $dat->created; ?></td>
                             <td><?php echo $dat->invoice_no; ?></td>
                         </tr>
-                        <?php
+                        <?php $i++;
                                endforeach;?>
                     </tbody>
                 </table>
@@ -594,10 +597,44 @@ $ln=$this->db->get("loanDetail")->result();
 
 <div id="fd" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
-  <h3>All FD Transactions</h3>
-  
+  <h3><center> All FD Transactions</center></h3>
+ 
       <div class="panel-scroll table-responsive">
-                    <table class="table table-striped table-hover center" id="fdv">
+                    <table class="table table-striped table-hover center" id="fdvb">
+                       <?php 
+
+
+ $this->db->select('Customer_ID');
+$this->db->where("branchID",$this->session->userdata("branchId"));
+$dfr = $this->db->get('customer')->result();
+
+foreach ($dfr as $valr):
+ 
+    $valr->Customer_ID;
+    $this->db->where("customerID",$valr->Customer_ID);
+  
+    
+                  
+               $resul= $this->db->get('fddetail')->result();
+                ?>
+                
+                
+                         <tbody>
+                        <?php foreach ($resul as $fbf){ ?>
+                        <tr>
+                            <td><?php echo $fbf->customerID; ?></td>
+                            <td><?php echo $fbf->depositorName; ?></td>
+                            <td><?php echo $fbf->premiumAmount; ?></td>
+                            <td><?php echo $fbf->paid; ?></td>
+                            <td><?php echo $fbf->payMode; ?></td>
+                            <td><?php echo $fbf->paid_date; ?></td>
+                            <td><?php echo $fbf->invoice_slip; ?></td>
+                            <td><?php echo $fbf->status; ?></td>
+                        </tr>
+                        <?php
+                         }?>
+                       </tbody>
+                    <?php endforeach;  ?>
                      <thead>
                         <tr>
                             <td>CustomerID</td>
@@ -610,21 +647,7 @@ $ln=$this->db->get("loanDetail")->result();
                             <td>Status</td>
                              </tr>
                     </thead>
-                    <tbody>
-                        <?php foreach ($detail as $fd){ ?>
-                        <tr>
-                            <td><?php echo $fd->customerID; ?></td>
-                            <td><?php echo $fd->depositorName; ?></td>
-                            <td><?php echo $fd->premiumAmount; ?></td>
-                            <td><?php echo $fd->paid; ?></td>
-                            <td><?php echo $fd->payMode; ?></td>
-                            <td><?php echo $fd->paid_date; ?></td>
-                            <td><?php echo $fd->invoice_slip; ?></td>
-                            <td><?php echo $fd->status; ?></td>
-                        </tr>
-                        <?php
-                         }?>
-                    </tbody>
+                    
                 </table>
         
             </div>
@@ -632,43 +655,64 @@ $ln=$this->db->get("loanDetail")->result();
 
 <div id="rd" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>All RD Transactions</h3>
+  <h3><center>All RD Transactions</center></h3>
  
-  <?php 
-   $rd=$this->db->get("rdDetail")->result();
+  
+   <div class="panel-scroll table-responsive">
+                    <table class="table table-striped table-hover center" id="fdvr">
+                       <?php 
+
+
+ $this->db->select('Customer_ID');
+$this->db->where("branchID",$this->session->userdata("branchId"));
+$df = $this->db->get('customer')->result();
+
+foreach ($df as $val):
+ 
+    $val->Customer_ID;
+    $this->db->where("customerID",$val->Customer_ID);
+  
+    
+                  
+               $resulr= $this->db->get('rddetail')->result();
+                ?>
+                
+                
+                         <tbody>
+                        <?php foreach ($resulr as $fbfr){ ?>
+                        <tr>
+                            <td><?php echo $fbfr->customerID; ?></td>
+                            <td><?php echo $fbfr->depositorName; ?></td>
+                            <td><?php echo $fbfr->premiumAmount; ?></td>
+                            <td><?php echo $fbfr->paid; ?></td>
+                            <td><?php echo $fbfr->payMode; ?></td>
+                            <td><?php echo $fbfr->paid_date; ?></td>
+                            <td><?php echo $fbfr->invoice_slip; ?></td>
+                            <td><?php echo $fbfr->status; ?></td>
+                        </tr>
+                        <?php
+                         }?>
+                       </tbody>
+   <?php
+
+  endforeach;
 
   ?>
-   <div class=" panel-scroll table-responsive">
-                    <table class="table table-striped table-hover center" id="rdev">
-                      <thead>
+                     <thead>
                         <tr>
-                            <td>customerID</td>
+                            <td>CustomerID</td>
                             <td>Depositer Name</td>
+                            <td>Premium Amount</td>
                             <td>Paid</td>
                             <td>Pay Mode</td>
                             <td>Paid Date</td>
                             <td>Invoice Slip</td>
                             <td>Status</td>
-                             <td>Duration</td>
-
-                        </tr>
+                             </tr>
                     </thead>
-                    <tbody>
-                       <?php foreach ($rd as $rde){ ?>
-                          <tr>
-                              <td><?php echo $rde->customerID?></td>
-                              <td><?php echo $rde->depositorName?></td>
-                              <td><?php echo $rde->paid?></td>
-                              <td><?php echo $rde->payMode?></td>
-                              <td><?php echo $rde->paid_date?></td>
-                              <td><?php echo $rde->invoice_slip?></td>
-                              <td><?php echo $rde->status?></td>
-                              <td><?php echo $rde->status?></td>
-                          </tr>
-                          <?php 
-                         } ?>
-                    </tbody>
+                    
                 </table>
+        
             </div>
 
 
@@ -676,14 +720,49 @@ $ln=$this->db->get("loanDetail")->result();
 <div id="mis" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
   <h3>All MIS Transactions</h3>
- <?php 
-$mis=$this->db->get("misDetail")->result();
- ?>
- <div class=" panel-scroll table-responsive">
-                    <table class="table table-striped table-hover center" id="misd">
-                      <thead>
+ <div class="panel-scroll table-responsive">
+ <table class="table table-striped table-hover center" id="fdvm">
+  <?php 
+
+
+ $this->db->select('Customer_ID');
+$this->db->where("branchID",$this->session->userdata("branchId"));
+$dfm = $this->db->get('customer')->result();
+
+foreach ($dfm as $valm):
+ 
+    $valm->Customer_ID;
+    $this->db->where("customerID",$valm->Customer_ID);
+  
+    
+                  
+               $resulm= $this->db->get('misdetail')->result();
+                ?>
+                
+                
+                         <tbody>
+                        <?php foreach ($resulm as $fbfm){ ?>
                         <tr>
-                            <td>customerID</td>
+                            <td><?php echo $fbfm->customerID; ?></td>
+                            <td><?php echo $fbfm->depositorName; ?></td>
+                            <td><?php echo $fbfm->premiumAmount; ?></td>
+                            <td><?php echo $fbfm->paid; ?></td>
+                            <td><?php echo $fbfm->payMode; ?></td>
+                            <td><?php echo $fbfm->paid_date; ?></td>
+                            <td><?php echo $fbfm->invoice_slip; ?></td>
+                            <td><?php echo $fbfm->status; ?></td>
+                        </tr>
+                        <?php
+                         }?>
+                       </tbody>
+   <?php
+
+  endforeach;
+
+  ?>
+                     <thead>
+                        <tr>
+                            <td>CustomerID</td>
                             <td>Depositer Name</td>
                             <td>Premium Amount</td>
                             <td>Paid</td>
@@ -691,42 +770,61 @@ $mis=$this->db->get("misDetail")->result();
                             <td>Paid Date</td>
                             <td>Invoice Slip</td>
                             <td>Status</td>
-                            <td>Remaining Months</td>
-                             
-
-                        </tr>
+                             </tr>
                     </thead>
-                    <tbody>
-                        <?php foreach($mis as $data1){ ?>
-                        <tr>
-                           <td><?php echo $data1->customerID?></td>
-                           <td><?php echo $data1->depositorName?></td>
-                           <td><?php echo $data1->premiumAmount?></td>
-                           <td><?php echo $data1->paid?></td>
-                           <td><?php echo $data1->payMode?></td>
-                           <td><?php echo $data1->paid_date?></td>
-                           <td><?php echo $data1->invoice_slip?></td>
-                           <td><?php echo $data1->status?></td>
-                           <td><?php echo $data1->remaining_months?></td> 
-                        </tr>
-                        <?php
-                    }?>
-                    </tbody>
+                    
                 </table>
+        
             </div>
+
 </div>
 <div id="nps" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>All NPS Transactions</h3>
+  <h3><center> All NPS Transactions</center></h3>
   
-  <?php
-$np=$this->db->get("npsDetail")->result();
-  ?>
-  <div class=" panel-scroll table-responsive">
-                    <table class="table table-striped table-hover center" id="npsv">
-                      <thead>
+   <div class="panel-scroll table-responsive">
+ <table class="table table-striped table-hover center" id="fdvn">
+  <?php 
+
+
+ $this->db->select('Customer_ID');
+$this->db->where("branchID",$this->session->userdata("branchId"));
+$dfn = $this->db->get('customer')->result();
+
+foreach ($dfn as $valn):
+ 
+    $valn->Customer_ID;
+    $this->db->where("customerID",$valn->Customer_ID);
+  
+    
+                  
+               $resuln= $this->db->get('npsdetail')->result();
+                ?>
+                
+                
+                         <tbody>
+                        <?php foreach ($resuln as $fbfn){ ?>
                         <tr>
-                            <td>customerID</td>
+                            <td><?php echo $fbfn->customerID; ?></td>
+                            <td><?php echo $fbfn->depositorName; ?></td>
+                            <td><?php echo $fbfn->premiumAmount; ?></td>
+                            <td><?php echo $fbfn->paid; ?></td>
+                            <td><?php echo $fbfn->payMode; ?></td>
+                            <td><?php echo $fbfn->paid_date; ?></td>
+                            <td><?php echo $fbfn->invoice_slip; ?></td>
+                            <td><?php echo $fbfn->status; ?></td>
+                        </tr>
+                        <?php
+                         }?>
+                       </tbody>
+   <?php
+
+  endforeach;
+
+  ?>
+                     <thead>
+                        <tr>
+                            <td>CustomerID</td>
                             <td>Depositer Name</td>
                             <td>Premium Amount</td>
                             <td>Paid</td>
@@ -734,44 +832,59 @@ $np=$this->db->get("npsDetail")->result();
                             <td>Paid Date</td>
                             <td>Invoice Slip</td>
                             <td>Status</td>
-                            <td>Remaining Months</td>
-                             
-
-                        </tr>
+                             </tr>
                     </thead>
-                    <tbody>
-                        <?php foreach($np as $nps){ ?>
-                        <tr>
-                            <td><?php echo $nps->customerID ?></td>
-                            <td><?php echo $nps->depositorName ?></td>
-                            <td><?php echo $nps->premiumAmount ?></td>
-                            <td><?php echo $nps->paid ?></td>
-                            <td><?php echo $nps->payMode ?></td>
-                            <td><?php echo $nps->paid_date ?></td>
-                            <td><?php echo $nps->invoice_slip ?></td>
-                            <td><?php echo $nps->status ?></td>
-                            <td><?php echo $nps->remaining_months?></td>
-                        </tr>
-                        <?php 
-                    }?>
-                    </tbody>
+                    
                 </table>
+        
             </div>
-
 </div>
 <div id="loan" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
   <h3>All Loan Transactions</h3>
-  <?php
-$ln=$this->db->get("loanDetail")->result();
+   <div class="panel-scroll table-responsive">
+ <table class="table table-striped table-hover center" id="fdvl">
+  <?php 
+
+
+ $this->db->select('Customer_ID');
+$this->db->where("branchID",$this->session->userdata("branchId"));
+$dfl = $this->db->get('customer')->result();
+
+foreach ($dfl as $vall):
+ 
+    $vall->Customer_ID;
+    $this->db->where("customerID",$vall->Customer_ID);
+  
+    
+                  
+               $resull= $this->db->get('loandetail')->result();
+                ?>
+                
+                
+                         <tbody>
+                        <?php foreach ($resull as $fbfl){ ?>
+                        <tr>
+                            <td><?php echo $fbfl->customerID; ?></td>
+                            <td><?php echo $fbfl->depositorName; ?></td>
+                            <td><?php echo $fbfl->premiumAmount; ?></td>
+                            <td><?php echo $fbfl->paid; ?></td>
+                            <td><?php echo $fbfl->payMode; ?></td>
+                            <td><?php echo $fbfl->paid_date; ?></td>
+                            <td><?php echo $fbfl->invoice_slip; ?></td>
+                            <td><?php echo $fbfl->status; ?></td>
+                        </tr>
+                        <?php
+                         }?>
+                       </tbody>
+   <?php
+
+  endforeach;
 
   ?>
-   <div class=" panel-scroll table-responsive">
-                   
-         <table class="table table-striped table-hover center" id="ln">
-                      <thead>
+                     <thead>
                         <tr>
-                            <td>customerID</td>
+                            <td>CustomerID</td>
                             <td>Depositer Name</td>
                             <td>Premium Amount</td>
                             <td>Paid</td>
@@ -779,26 +892,11 @@ $ln=$this->db->get("loanDetail")->result();
                             <td>Paid Date</td>
                             <td>Invoice Slip</td>
                             <td>Status</td>
-                            <td>Remaining Months</td>
-                        </tr>
+                             </tr>
                     </thead>
-                    <tbody>
-                        <?php foreach($ln as $lnd ){ ?>
-                        <tr>
-                            <td><?php echo $lnd->customerID; ?></td>
-                            <td><?php echo $lnd->depositorName; ?></td>
-                            <td><?php echo $lnd->premiumAmount; ?></td>
-                            <td><?php echo $lnd->paid; ?></td>
-                            <td><?php echo $lnd->payMode; ?></td>
-                            <td><?php echo $lnd->paid_date; ?></td>
-                            <td><?php echo $lnd->invoice_slip; ?></td>
-                            <td><?php echo $lnd->status; ?></td>
-                            <td><?php echo $lnd->remaining_months; ?></td>
-                        </tr>
-                        <?php
-                           }?>
-                    </tbody>
+                    
                 </table>
+        
             </div>
 </div>
   <?php endif;?>

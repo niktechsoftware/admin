@@ -257,11 +257,11 @@ $this->db->select_sum('amount');
 $this->db->from('daybook');
 $this->db->where('transactionType','credit');
 $this->db->where('updated =',$cldate);
-$clb=$this->db->get()->row();
+$clb=$this->db->get()->row()->amount;
 
 
 ?>
-<p style="font-size: 15px;text-align:center;"> <?php echo $clb->amount;?> </p>
+<p style="font-size: 15px;text-align:center;"> <?php if($clb==0) {echo "0.00";}else{echo $clb;}?> </p>
 
 
 		</div>
@@ -285,11 +285,11 @@ $this->db->select_sum('amount');
 $this->db->from('daybook');
 $this->db->where('transactionType','debit');
 $this->db->where('updated =',$cedate);
-$ceb=$this->db->get()->row();
+$ceb=$this->db->get()->row()->amount;
 
 
 ?>
-<center><p style="font-size: 15px;"> <?php echo $ceb->amount;?> </p></center>
+<center><p style="font-size: 15px;"> <?php if($ceb==0){echo "0.00";} else{echo $ceb;}?> </p></center>
 
 				</div>
 			</div>
@@ -316,11 +316,11 @@ $ceb=$this->db->get()->row();
                 $this->db->from('daybook');
                 
                 $this->db->where('updated =',$ctdate);
-                $ctb=$this->db->get()->row();
+                $ctb=$this->db->get()->row()->amount;
                 
                 
                 ?>
-                <center><p style="font-size: 15px;"> <?php echo $ctb->amount;?> </p></center>
+                <center><p style="font-size: 15px;"> <?php if($ctb==0) {echo "0.00";} else{echo $ctb;}?> </p></center>
 
 			</div>
 		</div>

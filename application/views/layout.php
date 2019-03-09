@@ -29,6 +29,24 @@
   <script src="<?= base_url(); ?>assets/js/datatable/dataTables.bootstrap4.min.js"></script>
  <!--end datatable-->
 <script type="text/javascript">
+   $(document).ready(function() {
+    $('#allb').DataTable();
+} );
+    $(document).ready(function() {
+    $('#fdvr').DataTable();
+} );
+     $(document).ready(function() {
+    $('#fdvm').DataTable();
+} );
+      $(document).ready(function() {
+    $('#fdvn').DataTable();
+} );
+       $(document).ready(function() {
+    $('#fdvl').DataTable();
+} );
+   $(document).ready(function() {
+    $('#fdvb').DataTable();
+} );
   $(document).ready(function() {
     $('#customers').DataTable();
 } );

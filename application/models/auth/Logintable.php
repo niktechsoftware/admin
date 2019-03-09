@@ -19,7 +19,7 @@ class Logintable extends CI_Model {
 
 		//$this->db->where('password',md5($password));
 
-		$this->db->where('password', sha1($password));
+		$this->db->where('password', md5($password));
 
 		$login = $this->db->get('login');
 		/**
