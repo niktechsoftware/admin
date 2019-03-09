@@ -1,4 +1,4 @@
-<?php echo $comission_id;
+<?php //echo $comission_id;
  $this->db->where("a_id",$comission_id)  ;
   $query=$this->db->get("agent_comission");
   
@@ -83,6 +83,7 @@
                           <div class="form-group form-group-sm">
                               <input id="form-control-12" class="form-control" type="text" name="dipositorName" value ='<?php echo $this->session->userdata("username");?>' >
                           </div>
+                        </td>
                         <th>Pay-Mode</th>
                         <td>
                           <select class="form-control custom-select-sm" name="payMode">

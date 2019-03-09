@@ -52,17 +52,41 @@ public function sallaryall() {
 	    $this->load->view('layout',$data);
 	}
 	public function emp_pay_Salary() {
+		 $eid =$this->input->post('emp_code');
+		 $amount=$this->input->post('amount');
+		 $depname=$this->input->post('depositorname');
+		 $pdate=$this->input->post('pdate');
+		  $source = $depname." Pay Salary";
+		   $redy = 	$this->db->get("daybook");
+	      $ins = $redy->num_rows();
+		 $invoice_s = $eid."PayS".$ins;
+
 	     $data= array(
             
-            'emp_code' =>$this->input->post('emp_code') ,
+            'emp_code' =>$eid ,
             'emp_name' =>$this->input->post('Empolyeename') ,
             'paid_month'  =>$this->input->post('paymonth') , 
-            'paid_amount'=>$this->input->post('amount') ,
+            'paid_amount'=>$amount ,
             'pay_mode'=>$this->input->post('paymentmode') ,
             'pay_date'=>date('y-m-d')
 	     );
+	     
+	    
+	     $datad= array(
+            
+           'customer_ID'       =>$eid,
+	       'amount'            =>$amount,
+	       'transactionType'   =>"debit",
+	       'source'            =>$source,
+	       'updated'           =>date ("y-m-d H:i:s",strtotime($pdate)),
+	       'created'           =>date("y-m-s H:i:s"),
+	       'invoice_no'        =>$invoice_s,
+	       'branchID'          =>$this->session->userdata("branchId")
+	     );
+
+           $data2=$this->db->insert('daybook',$datad);
 	     $data1=$this->db->insert('emp_salary',$data);
-	     if($data1)
+	     if($data1 && $data2)
 	     {
 	     	redirect(base_url().'employes.html','refresh');
 	     }

@@ -63,6 +63,15 @@
 	                  	<option>Cash</option>
 	                  	<option>Online</option>
 	                  </select>
+	                </div>
+	                <br><br>
+	                <label class="col-sm-2 control-label" for="form-control-1">Paid Date</label>
+	                <div class="col-sm-4">
+	                  <input id="form-control-1" class="form-control" name="pdate" type="date"  required="required">
+	                </div><br><br>
+	                <label class="col-sm-2 control-label" for="form-control-1">Depositor Name</label>
+	                <div class="col-sm-4">
+	                  <input id="form-control-1" class="form-control" name="depositorname" type="text" value="<?php echo $this->session->userdata("username");?>" required="required">
 	                </div><br><br>
 	                 <div class="col-sm-5">
 	                  <div class="col-sm-4"></div>

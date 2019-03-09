@@ -72,19 +72,23 @@ class Agent extends CI_Controller {
 	   $amount=$this->input->post("totalAmount");
 	   $paydate = $this->input->post("payDate");
 	   $id =$this->input->post("id");
-	   
 	   $redy = 	$this->db->get("daybook");
 	   $ins = $redy->num_rows();
+	  
+	 // echo $bid;
+
 	   $invoice_s = $id."PayC".$ins;
 	   
 	   $data = array(
+
 	       'customer_ID'       =>$aid,
 	       'amount'            =>$amount,
 	       'transactionType'   =>"debit",
 	       'source'            =>$source,
 	       'updated'           =>date ("y-m-d H:i:s",strtotime($paydate)),
 	       'created'           =>date("y-m-s H:i:s"),
-	       'invoice_no'        =>$invoice_s
+	       'invoice_no'        =>$invoice_s,
+	       'branchID'          =>$this->session->userdata("branchId")
 	       
 	   );
 	   
