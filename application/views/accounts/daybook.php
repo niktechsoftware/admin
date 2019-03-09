@@ -901,15 +901,15 @@ foreach ($dfl as $vall):
 </div>
   <?php endif;?>
   <?php if(($this->session->userdata("isAdmin")==3)):?>
-    <h2><center>Under Construction</center></h2>
+    <h2 class="text-primary"><center>Under Construction</center></h2>
 <?php endif;?>
 
 <?php if(($this->session->userdata("isAdmin")==4)):?>
-  <h2><center>Under Construction</center></h2>
+  <h2 class="text-primary"><center>Under Construction</center></h2>
 <?php endif;?>
 
 <?php if(($this->session->userdata("isAdmin")==5)):?>
-  <h2><center>Under Construction</center></h2>
+  <h2 class="text-primary"><center>Under Construction</center></h2>
 <?php endif;?>
 <script>
 function openCity(evt, cityName) {

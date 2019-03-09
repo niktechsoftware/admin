@@ -718,15 +718,15 @@ $cbecb=$this->db->get()->row()->amount;
 <?php endif;?>
 
 <?php if(($this->session->userdata("isAdmin")==3)):?>
-<h1><center>Under Constructions</center></h1>
+<h1 class="text-primary"><center>Under Constructions</center></h1>
 
 <?php endif;?>
 <?php if(($this->session->userdata("isAdmin")==4)):?>
-<h1><center>Under Constructions</center></h1>
+<h1 class="text-primary"><center>Under Constructions</center></h1>
 
 <?php endif;?>
 <?php if(($this->session->userdata("isAdmin")==5)):?>
-<h1><center> Under Constructions</center></h1>
+<h1 class="text-primary"><center> Under Constructions</center></h1>
 
 <?php endif;?>
 	</div>
