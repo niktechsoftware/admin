@@ -290,7 +290,7 @@ body {font-family: Arial;}
 </style>
 
 <div class="layout-content"><div class="layout-content-body">
-<h2>DayBook</h2>
+<h2 class="text-primary"><center>Daybook</center></h2>
 
 
 <div class="tab">
@@ -304,7 +304,7 @@ body {font-family: Arial;}
 <?php if(($this->session->userdata("isAdmin")==1)):?>
 <div id="all" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
-  <h3>All DayBook Transection </h3>
+  <h3 class="text-primary"><center>All Daybook Transection </center></h3>
   
   <?php 
  $da=$this->db->get("daybook")->result();
@@ -343,7 +343,7 @@ body {font-family: Arial;}
 
 <div id="fd" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
-  <h3>All FD Transactions</h3>
+  <h3 class="text-primary"><center>All FD Transactions</center></h3>
   
       <div class="panel-scroll table-responsive">
                     <table class="table table-striped table-hover center" id="fdv">
@@ -381,7 +381,7 @@ body {font-family: Arial;}
 
 <div id="rd" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>All RD Transactions</h3>
+  <h3 class="text-primary"><center>All RD Transactions</center></h3>
  
   <?php 
    $rd=$this->db->get("rdDetail")->result();
@@ -424,7 +424,7 @@ body {font-family: Arial;}
 </div>
 <div id="mis" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>All MIS Transactions</h3>
+  <h3 class="text-primary"><center>All MIS Transactions</center></h3>
  <?php 
 $mis=$this->db->get("misDetail")->result();
  ?>
@@ -466,7 +466,7 @@ $mis=$this->db->get("misDetail")->result();
 </div>
 <div id="nps" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>All NPS Transactions</h3>
+  <h3 class="text-primary"><center> All NPS Transactions</center></h3>
   
   <?php
 $np=$this->db->get("npsDetail")->result();
@@ -510,7 +510,7 @@ $np=$this->db->get("npsDetail")->result();
 </div>
 <div id="loan" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
-  <h3>All Loan Transactions</h3>
+  <h3 class="text-primary"><center>All Loan Transactions</center></h3>
   <?php
 $ln=$this->db->get("loanDetail")->result();
 
@@ -554,7 +554,7 @@ $ln=$this->db->get("loanDetail")->result();
 <?php if(($this->session->userdata("isAdmin")==2)):?>
   <div id="all" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
-  <h3 ><center > All DayBook Transection </center> </h3>
+  <h3 class="text-primary"> <center > All Daybook Transection </center> </h3>
   
   <?php 
   $this->db->where("branchID",$this->session->userdata("branchId"));
@@ -597,7 +597,7 @@ $ln=$this->db->get("loanDetail")->result();
 
 <div id="fd" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
-  <h3><center> All FD Transactions</center></h3>
+  <h3 class="text-primary"><center> All FD Transactions</center></h3>
  
       <div class="panel-scroll table-responsive">
                     <table class="table table-striped table-hover center" id="fdvb">
@@ -655,7 +655,7 @@ foreach ($dfr as $valr):
 
 <div id="rd" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3><center>All RD Transactions</center></h3>
+  <h3 class="text-primary"><center>All RD Transactions</center></h3>
  
   
    <div class="panel-scroll table-responsive">
@@ -719,7 +719,7 @@ foreach ($df as $val):
 </div>
 <div id="mis" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>All MIS Transactions</h3>
+  <h3 class="text-primary"><center> All MIS Transactions</center></h3>
  <div class="panel-scroll table-responsive">
  <table class="table table-striped table-hover center" id="fdvm">
   <?php 
@@ -780,7 +780,7 @@ foreach ($dfm as $valm):
 </div>
 <div id="nps" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3><center> All NPS Transactions</center></h3>
+  <h3 class="text-primary"><center> All NPS Transactions</center></h3>
   
    <div class="panel-scroll table-responsive">
  <table class="table table-striped table-hover center" id="fdvn">
@@ -841,7 +841,7 @@ foreach ($dfn as $valn):
 </div>
 <div id="loan" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">&times </span>
-  <h3>All Loan Transactions</h3>
+  <h3 class="text-primary"><center> All Loan Transactions</center></h3>
    <div class="panel-scroll table-responsive">
  <table class="table table-striped table-hover center" id="fdvl">
   <?php 
