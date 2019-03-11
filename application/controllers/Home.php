@@ -24,6 +24,9 @@ class Home extends CI_Controller {
 		$data['title'] = 'Dashboard';
 		$data['body'] = 'home/dashboard';
 		$this->load->view('layout',$data);
+		
+
+
 	}
 
 	public function forget() {

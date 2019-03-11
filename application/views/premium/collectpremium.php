@@ -1,4 +1,4 @@
-<?php  if($planid == 1){
+              <?php  if($planid == 1){
               	$this->db->where('id', $tableid);
               	$result = $this->db->get('fdDetail');
               	$detail = $result->row();
@@ -29,11 +29,11 @@
 			
 		
 		
-			$this->db->where("Customer_ID",$detail->customerID);
-			$getdata = $this->db->get("customer")->row();
-			
-		 $this->db->where("customerID", $detail->customerID);
-            $planid = $this->db->get("investmentDetail")->row();
+          			$this->db->where("Customer_ID",$detail->customerID);
+          			$getdata = $this->db->get("customer")->row();
+          			
+          		 $this->db->where("customerID", $detail->customerID);
+               $planid = $this->db->get("investmentDetail")->row();
             
                 $this->db->where("id",$planid->planID);
                $title =  $this->db->get("investmentPlans")->row()->title;
@@ -178,12 +178,9 @@
                     <option>- Select Code-</option>
                     
                     <?php $this->load->model('Agents');
-                    	
-    
                       foreach ($agents as  $value):
-                          
                         $userrow = $this->Agents->agentUsredata($value->loginID);?>
-                        <option value="<?php echo $value->id;?>" <?php if($value->id==$getdata->joinerID){echo 'selected="selected"';}?> ><?php echo $value->name."[".$userrow->username."]";?></option>
+                        <option value="<?php echo $value->id;?>"><?php echo $value->name."[".$value->agent_id."]";?></option>
               <?php 
                       endforeach;
                     ?>

@@ -342,9 +342,9 @@ $days_between = ceil(abs($end - $start) / 86400);
 	}
 
 	public function setpremium() {
-	    	$tableID = $this->input->post('tableid');
+	    $tableID = $this->input->post('tableid');
 		$planID = $this->input->post('planID');
-	$this->load->model("Agents");
+	    $this->load->model("Agents");
 		$policyID = $this->input->post('policyID');
 		$customerID = $this->input->post('customerID');
 	
@@ -463,7 +463,8 @@ $days_between = ceil(abs($end - $start) / 86400);
 			"amount" 			=> $totalAmount,
 			"transactionType" 	=> $planID == 4 ? "debit" : "credit",
 			"source" 			=> "Premium Amount",
-			"invoice_no"        =>  $invoice_s
+			"invoice_no"        =>  $invoice_s,
+			"branchID"        =>  $this->session->userdata("branchId")
 		);
 		
 		if($planID == 1){

@@ -1,11 +1,12 @@
 <?php
-class Smsmodel extends CI_Model
-{
-	function getsmsseting()
-	{
-		$row = $this->db->get("sms");
-		return $row;
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class dashboardmodel extends CI_Model {
+
+public function __construct() {
+    	parent::__construct();
 	}
+
 
 
 public function closingbal()
@@ -64,10 +65,33 @@ $cla = $this->db->query("select closing_balance from  opening_closing_balance wh
 
 
 
-
-
-
-
-	
-	
 }
+
+
+// $school_code=$this->session->userdata("branchId");
+// $clo = $this->db->query("select * from  opening_closing_balance where branch_id = '$school_code'  ORDER BY id DESC LIMIT 1")->row();
+// if($this->db->count_all("opening_closing_balance") <=0 ){
+// $balance = array(
+// "opening_balance" => 0,
+// "closing_balance" => 0,
+// "opening_date" => date("Y-m-d"),
+// "closing_date" => date("Y-m-d"),
+// "branch_id"=>$this->session->userdata("branchId")
+// );
+// $this->db->insert('opening_closing_balance',$balance);
+// }else{
+// $cl_date = $clo->closing_date;
+// $cl_balance = $clo->closing_balance;
+// $cr_date = date('Y-m-d');
+// }
+// if($cl_date != $cr_date)
+// {
+// $balance = array(
+// "opening_balance" => $cl_balance,
+// "closing_balance" => $cl_balance, 
+// "opening_date" => $cr_date,
+// "closing_date" => $cr_date,
+// "branch_id"=>$this->session->userdata("branchId")
+// );
+// $this->db->insert('opening_closing_balance',$balance);
+// }

@@ -256,7 +256,7 @@ $cldate = date('Y-m-d');
 $this->db->select_sum('amount');
 $this->db->from('daybook');
 $this->db->where('transactionType','credit');
-$this->db->where('updated =',$cldate);
+$this->db->where('updated',$cldate);
 $clb=$this->db->get()->row()->amount;
 
 
@@ -284,7 +284,7 @@ $cedate = date('Y-m-d');
 $this->db->select_sum('amount');
 $this->db->from('daybook');
 $this->db->where('transactionType','debit');
-$this->db->where('updated =',$cedate);
+$this->db->where('updated',$cedate);
 $ceb=$this->db->get()->row()->amount;
 
 
@@ -311,16 +311,34 @@ $ceb=$this->db->get()->row()->amount;
 </div>
 <div class="card-body" data-toggle="match-height">
 <?php 
-$ctdate = date('Y-m-d');
-$this->db->select_sum('amount');
-$this->db->from('daybook');
 
-$this->db->where('updated =',$ctdate);
-$ctb=$this->db->get()->row()->amount;
+
+
+
+$this->db->select_sum('closing_balance');
+$this->db->from('opening_closing_balance');
+$daf=$this->db->get()->row()->closing_balance;
+
+
+
+// $currentdt1 = date('Y-m-d');
+// $cla = $this->db->query("select distinct branch_id from opening_closing_balance where closing_date ='$currentdt1'")->result();
+
+
+// foreach($cla as $a):{
+// //print_r($cla);
+// //$this->db->get("opening_closing_balance")->result();
+// //$bid=$this->session->userdata("branchId");
+// $currentdt = date('Y-m-d');
+// $cla1 = $this->db->query("select closing_balance from  opening_closing_balance where closing_date='$currentdt' and branch_id ='$a->branch_id'")->result();
+// print_r($cla1);
+
+// }
+//endforeach;
 
 
 ?>
-<center><p style="font-size: 15px;"> <?php if($ctb==0) {echo "0.00";} else{echo $ctb;}?> </p></center>
+<center><p style="font-size: 15px;"> <?php echo $daf;?> </p></center>
 
 </div>
 </div>
@@ -703,11 +721,82 @@ $this->db->from('daybook');
 $this->db->where("branchID",$this->session->userdata("branchId"));
 $this->db->where('transactionType','debit');
 $this->db->where('updated =',$cbedate);
-$cbecb=$this->db->get()->row()->amount;
+$debit=$cbecb=$this->db->get()->row()->amount;
+
+
+
+$cbedatec = date('Y-m-d');
+$this->db->select_sum('amount');
+$this->db->from('daybook');
+$this->db->where("branchID",$this->session->userdata("branchId"));
+$this->db->where('transactionType','credit');
+$this->db->where('updated =',$cbedatec);
+$cbecbc=$this->db->get()->row();
+
+$credit=$cbecbc->amount;
+
+$totalamt=$credit-$debit;
+$cr_date1 = date('Y-m-d');
+if($totalamt){
+$balance = array(
+"opening_balance" => $totalamt,
+"closing_balance" => $totalamt, 
+"opening_date" => $cr_date1,
+"closing_date" => $cr_date1,
+"branch_id"=>$this->session->userdata("branchId")
+);
+	$this->db->insert('opening_closing_balance',$balance);
+}
+else{
+$balance = array(
+"opening_balance" => 0,
+"closing_balance" => 0,
+"opening_date" => date("Y-m-d"),
+"closing_date" => date("Y-m-d"),
+"branch_id"=>$this->session->userdata("branchId")
+);
+$this->db->insert('opening_closing_balance',$balance);
+
+	
+}
+
+
+// $school_code=$this->session->userdata("branchId");
+// $clo = $this->db->query("select * from  opening_closing_balance where branch_id = '$school_code'  ORDER BY id DESC LIMIT 1")->row();
+// if($this->db->count_all("opening_closing_balance") <=0 ){
+// $balance = array(
+// "opening_balance" => 0,
+// "closing_balance" => 0,
+// "opening_date" => date("Y-m-d"),
+// "closing_date" => date("Y-m-d"),
+// "branch_id"=>$this->session->userdata("branchId")
+// );
+// $this->db->insert('opening_closing_balance',$balance);
+// }else{
+// $cl_date = $clo->closing_date;
+// $cl_balance = $clo->closing_balance;
+// $cr_date = date('Y-m-d');
+// }
+// if($cl_date != $cr_date)
+// {
+// $balance = array(
+// "opening_balance" => $cl_balance,
+// "closing_balance" => $cl_balance, 
+// "opening_date" => $cr_date,
+// "closing_date" => $cr_date,
+// "branch_id"=>$this->session->userdata("branchId")
+// );
+// $this->db->insert('opening_closing_balance',$balance);
+// }
+$bid=$this->session->userdata("branchId");
+$currentdt = date('Y-m-d');
+$cla = $this->db->query("select closing_balance from  opening_closing_balance where branch_id = '$bid' and closing_date='$currentdt'  ORDER BY id DESC LIMIT 1")->row();
+
+
 
 
 ?>
-<center><p style="font-size: 15px;"> <?php if($cbecb==0){echo "0.00";} else{ echo $cbecb;}?> </p></center>
+<center><p style="font-size: 15px;"> <?php if($cla->closing_balance==0){echo "0.00";} else{ echo $cla->closing_balance;}?> </p></center>
 
 </div>
 
